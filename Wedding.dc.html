@@ -13,7 +13,8 @@
 <script src="./support.js"></script>
 <script>
 (() => {
-  const palette = new URLSearchParams(window.location.search).get("palette");
+  const params = new URLSearchParams(window.location.search);
+  const palette = params.get("palette");
   const palettes = {
     redpink: "#a72b28",
     orangewhite: "#f26a05",
@@ -23,6 +24,10 @@
   if (palettes[palette]) {
     document.documentElement.dataset.palette = palette;
     document.querySelector('meta[name="theme-color"]').content = palettes[palette];
+  }
+
+  if (params.get("material") !== "flat") {
+    document.documentElement.dataset.material = "print";
   }
 })();
 </script>
@@ -70,6 +75,14 @@
   --nav:"TrueSans","Helvetica Neue",Arial,sans-serif;
   --script:"Monsieur La Doulaise","Snell Roundhand","Apple Chancery","Tradition",Georgia,serif;
   --display:"Tradition",Georgia,serif;
+  --material-light-y:50%;
+  --material-overlay-opacity:0.18;
+  --material-text-light:0.09;
+  --material-text-dark:0.22;
+  --material-light-offset:0.62px;
+  --material-shadow-offset:-0.7px;
+  --material-edge-top:0.1;
+  --material-edge-bottom:0.06;
 }
 
 html{
@@ -1258,6 +1271,76 @@ html[data-palette] .faq-trigger:focus-visible{
   background:color-mix(in srgb,var(--ink) 8%,transparent);
 }
 
+/* Quiet paper tooth plus a scroll-reactive grazing light on printed panels. */
+html[data-material="print"] body::after{
+  content:"";
+  position:fixed;
+  z-index:1000;
+  inset:0;
+  pointer-events:none;
+  background:url("uploads/material/paper-grain.webp") repeat;
+  background-size:28rem 28rem;
+  mix-blend-mode:soft-light;
+  opacity:0.105;
+}
+
+html[data-material="print"] :is(
+  .itinerary-item,
+  .flight-editorial,
+  .hotel-card
+){
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  box-shadow:
+    inset 0 0.8px rgb(255 255 255 / var(--material-edge-top)),
+    inset 0 -0.8px rgb(255 255 255 / var(--material-edge-bottom)),
+    inset 0 1.2px rgb(48 10 7 / 0.1),
+    inset 0 -1.2px rgb(48 10 7 / 0.14),
+    inset 0.65px 0 rgb(255 255 255 / 0.035),
+    inset -0.65px 0 rgb(48 10 7 / 0.08);
+}
+
+html[data-material="print"] :is(
+  .itinerary-item,
+  .flight-editorial,
+  .hotel-card
+)::after{
+  content:"";
+  position:absolute;
+  z-index:3;
+  inset:1px;
+  pointer-events:none;
+  background-image:
+    radial-gradient(ellipse 96% 19% at 50% var(--material-light-y),rgb(255 255 255 / 0.3),rgb(255 255 255 / 0.07) 44%,rgb(51 9 7 / 0.08) 53%,transparent 76%),
+    url("uploads/material/card-stock.webp");
+  background-position:center,0 0;
+  background-size:100% 100%,30rem 30rem;
+  background-repeat:no-repeat,repeat;
+  mix-blend-mode:soft-light;
+  opacity:var(--material-overlay-opacity);
+  transition:opacity 140ms linear;
+}
+
+html[data-material="print"] :is(
+  .eyebrow,
+  .hero-title,
+  .section-title,
+  .itinerary-event,
+  .flight-primary h3,
+  .flight-origin h3,
+  .flight-ticket-meta strong,
+  .hotel-card h4,
+  .atlas-index h3,
+  .atlas-entry h4,
+  .faq-question,
+  .trip-note strong
+){
+  text-shadow:
+    0 var(--material-light-offset) 0 rgb(255 255 255 / var(--material-text-light)),
+    0 var(--material-shadow-offset) 0 rgb(47 9 7 / var(--material-text-dark));
+}
+
 @media (max-width: 760px){
   .header-inner{
     align-items:center;
@@ -1458,6 +1541,14 @@ html[data-palette] .faq-trigger:focus-visible{
     transition-duration:0.01ms !important;
     animation-duration:0.01ms !important;
     animation-iteration-count:1 !important;
+  }
+
+  html[data-material="print"] :is(
+    .itinerary-item,
+    .flight-editorial,
+    .hotel-card
+  )::after{
+    background-image:url("uploads/material/card-stock.webp");
   }
 }
 </style>
@@ -1854,6 +1945,55 @@ class Component extends DCLogic {
         answer.setAttribute('aria-hidden', String(isOpen));
       });
     });
+
+    const materialSurfaces = Array.from(root.querySelectorAll('.itinerary-item, .flight-editorial, .hotel-card'));
+    const materialType = Array.from(root.querySelectorAll('.eyebrow, .hero-title, .section-title, .itinerary-event, .flight-primary h3, .flight-origin h3, .flight-ticket-meta strong, .hotel-card h4, .atlas-index h3, .atlas-entry h4, .faq-question, .trip-note strong'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let materialFrame = 0;
+
+    const updateMaterialLight = () => {
+      materialFrame = 0;
+      const viewportHeight = Math.max(window.innerHeight, 1);
+      const setLight = (element, isSurface) => {
+        const rect = element.getBoundingClientRect();
+        const center = rect.top + rect.height * 0.5;
+        const proximity = Math.max(0, 1 - Math.abs(center - viewportHeight * 0.5) / (viewportHeight * 0.78));
+        const travel = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
+        const lightDirection = travel < 0.5 ? 1 : -1;
+        const lightOffset = lightDirection * (0.52 + proximity * 0.24);
+        element.style.setProperty('--material-text-light', (0.065 + proximity * 0.085).toFixed(3));
+        element.style.setProperty('--material-text-dark', (0.17 + proximity * 0.13).toFixed(3));
+        element.style.setProperty('--material-light-offset', `${lightOffset.toFixed(2)}px`);
+        element.style.setProperty('--material-shadow-offset', `${(-lightOffset * 1.08).toFixed(2)}px`);
+        if (isSurface) {
+          element.style.setProperty('--material-light-y', `${Math.round(12 + travel * 76)}%`);
+          element.style.setProperty('--material-overlay-opacity', (0.14 + proximity * 0.14).toFixed(3));
+          element.style.setProperty('--material-edge-top', (0.055 + (1 - travel) * 0.12).toFixed(3));
+          element.style.setProperty('--material-edge-bottom', (0.055 + travel * 0.12).toFixed(3));
+        }
+      };
+      materialSurfaces.forEach((element) => setLight(element, true));
+      materialType.forEach((element) => setLight(element, false));
+    };
+
+    const scheduleMaterialLight = () => {
+      if (!materialFrame) materialFrame = window.requestAnimationFrame(updateMaterialLight);
+    };
+
+    updateMaterialLight();
+    if (!reduceMotion) {
+      window.addEventListener('scroll', scheduleMaterialLight, { passive: true });
+      window.addEventListener('resize', scheduleMaterialLight, { passive: true });
+      this.materialCleanup = () => {
+        window.removeEventListener('scroll', scheduleMaterialLight);
+        window.removeEventListener('resize', scheduleMaterialLight);
+        if (materialFrame) window.cancelAnimationFrame(materialFrame);
+      };
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.materialCleanup) this.materialCleanup();
   }
 }
 </script>
