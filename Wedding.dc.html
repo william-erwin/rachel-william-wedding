@@ -83,6 +83,9 @@
   --material-shadow-offset:-0.7px;
   --material-edge-top:0.1;
   --material-edge-bottom:0.06;
+  --art-light-x:-0.28px;
+  --art-light-y:0.72px;
+  --art-light-alpha:0.16;
 }
 
 html{
@@ -1341,6 +1344,37 @@ html[data-material="print"] :is(
     0 var(--material-shadow-offset) 0 rgb(47 9 7 / var(--material-text-dark));
 }
 
+html[data-material="print"] :is(
+  .intro-art,
+  .itinerary-image,
+  .section-icon,
+  .trip-note-icon
+){
+  filter:
+    drop-shadow(var(--art-light-x) var(--art-light-y) 0 rgb(255 246 231 / var(--art-light-alpha)));
+}
+
+html[data-material="print"][data-palette] :is(
+  .intro-art,
+  .itinerary-image,
+  .section-icon,
+  .trip-note-icon
+){
+  filter:
+    var(--art-filter)
+    drop-shadow(var(--art-light-x) var(--art-light-y) 0 rgb(255 246 231 / var(--art-light-alpha)));
+}
+
+html[data-material="print"] .atlas-map img{
+  filter:drop-shadow(-0.22px 0.44px 0 rgb(255 246 231 / 0.1));
+}
+
+html[data-material="print"][data-palette] .atlas-map img{
+  filter:
+    var(--art-filter)
+    drop-shadow(-0.22px 0.44px 0 rgb(255 246 231 / 0.1));
+}
+
 @media (max-width: 760px){
   .header-inner{
     align-items:center;
@@ -1948,7 +1982,9 @@ class Component extends DCLogic {
 
     const materialSurfaces = Array.from(root.querySelectorAll('.itinerary-item, .flight-editorial, .hotel-card'));
     const materialType = Array.from(root.querySelectorAll('.eyebrow, .hero-title, .section-title, .itinerary-event, .flight-primary h3, .flight-origin h3, .flight-ticket-meta strong, .hotel-card h4, .atlas-index h3, .atlas-entry h4, .faq-question, .trip-note strong'));
+    const materialArt = Array.from(root.querySelectorAll('.intro-art, .itinerary-image, .section-icon, .trip-note-icon'));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const artLightInput = { active: false, x: -0.22, y: 0.64 };
     let materialFrame = 0;
 
     const updateMaterialLight = () => {
@@ -1974,6 +2010,21 @@ class Component extends DCLogic {
       };
       materialSurfaces.forEach((element) => setLight(element, true));
       materialType.forEach((element) => setLight(element, false));
+      materialArt.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const center = rect.top + rect.height * 0.5;
+        const proximity = Math.max(0, 1 - Math.abs(center - viewportHeight * 0.5) / (viewportHeight * 0.82));
+        const travel = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
+        const direction = travel < 0.5 ? 1 : -1;
+        const scrollY = direction * (0.68 + proximity * 0.32);
+        const sourceX = artLightInput.active ? artLightInput.x * 0.72 : -0.24;
+        const sourceY = artLightInput.active ? artLightInput.y * 0.48 + scrollY * 0.72 : scrollY;
+        const vectorLength = Math.max(Math.hypot(sourceX, sourceY), 0.001);
+        const rimWidth = 0.58 + proximity * 0.52;
+        element.style.setProperty('--art-light-x', `${(sourceX / vectorLength * rimWidth).toFixed(2)}px`);
+        element.style.setProperty('--art-light-y', `${(sourceY / vectorLength * rimWidth).toFixed(2)}px`);
+        element.style.setProperty('--art-light-alpha', (0.12 + proximity * 0.18).toFixed(3));
+      });
     };
 
     const scheduleMaterialLight = () => {
@@ -1982,11 +2033,29 @@ class Component extends DCLogic {
 
     updateMaterialLight();
     if (!reduceMotion) {
+      const updatePointerLight = (event) => {
+        if (event.pointerType && event.pointerType !== 'mouse') return;
+        artLightInput.active = true;
+        artLightInput.x = Math.max(-1, Math.min(1, event.clientX / Math.max(window.innerWidth, 1) * 2 - 1));
+        artLightInput.y = Math.max(-1, Math.min(1, event.clientY / Math.max(window.innerHeight, 1) * 2 - 1));
+        scheduleMaterialLight();
+      };
+      const updateOrientationLight = (event) => {
+        if (event.gamma == null || event.beta == null) return;
+        artLightInput.active = true;
+        artLightInput.x += (Math.max(-1, Math.min(1, event.gamma / 32)) - artLightInput.x) * 0.18;
+        artLightInput.y += (Math.max(-1, Math.min(1, (event.beta - 45) / 38)) - artLightInput.y) * 0.18;
+        scheduleMaterialLight();
+      };
       window.addEventListener('scroll', scheduleMaterialLight, { passive: true });
       window.addEventListener('resize', scheduleMaterialLight, { passive: true });
+      window.addEventListener('pointermove', updatePointerLight, { passive: true });
+      window.addEventListener('deviceorientation', updateOrientationLight, { passive: true });
       this.materialCleanup = () => {
         window.removeEventListener('scroll', scheduleMaterialLight);
         window.removeEventListener('resize', scheduleMaterialLight);
+        window.removeEventListener('pointermove', updatePointerLight);
+        window.removeEventListener('deviceorientation', updateOrientationLight);
         if (materialFrame) window.cancelAnimationFrame(materialFrame);
       };
     }
