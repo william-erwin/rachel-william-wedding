@@ -11,6 +11,21 @@
 <link rel="preload" href="fonts/1786GLCFournier-Normal.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="fonts/1786GLCFournier-Italic.ttf" as="font" type="font/ttf" crossorigin>
 <script src="./support.js"></script>
+<script>
+(() => {
+  const palette = new URLSearchParams(window.location.search).get("palette");
+  const palettes = {
+    redpink: "#a72b28",
+    orangewhite: "#f26a05",
+    brickvermilion: "#722824"
+  };
+
+  if (palettes[palette]) {
+    document.documentElement.dataset.palette = palette;
+    document.querySelector('meta[name="theme-color"]').content = palettes[palette];
+  }
+})();
+</script>
 </head>
 <body>
 <x-dc>
@@ -35,11 +50,19 @@
   --line:#766d5f;
   --paper:#fbfaf7;
   --paper-deep:#f0efec;
+  --solid:#17130f;
+  --accent:#111110;
+  --panel:transparent;
+  --art-filter:none;
+  --rule-strong:rgba(52,45,34,0.9);
+  --rule-medium:rgba(52,45,34,0.44);
+  --rule-light:rgba(52,45,34,0.38);
+  --rule-detail:rgba(52,45,34,0.72);
   --gutter:clamp(1.25rem,5vw,4.45rem);
   --first-fold-reserve:clamp(12rem,24vh,13.75rem);
   --rule:1px solid var(--line);
-  --ink-rule-horizontal:repeating-linear-gradient(90deg,rgba(52,45,34,0.9) 0 1px,rgba(52,45,34,0.44) 1px 3px,transparent 3px 5px,rgba(52,45,34,0.72) 5px 6px,transparent 6px 9px,rgba(52,45,34,0.38) 9px 11px,transparent 11px 14px);
-  --ink-rule-vertical:repeating-linear-gradient(0deg,rgba(52,45,34,0.9) 0 1px,rgba(52,45,34,0.44) 1px 3px,transparent 3px 5px,rgba(52,45,34,0.72) 5px 6px,transparent 6px 9px,rgba(52,45,34,0.38) 9px 11px,transparent 11px 14px);
+  --ink-rule-horizontal:repeating-linear-gradient(90deg,var(--rule-strong) 0 1px,var(--rule-medium) 1px 3px,transparent 3px 5px,var(--rule-detail) 5px 6px,transparent 6px 9px,var(--rule-light) 9px 11px,transparent 11px 14px);
+  --ink-rule-vertical:repeating-linear-gradient(0deg,var(--rule-strong) 0 1px,var(--rule-medium) 1px 3px,transparent 3px 5px,var(--rule-detail) 5px 6px,transparent 6px 9px,var(--rule-light) 9px 11px,transparent 11px 14px);
   --serif:"Fournier","Miller",Georgia,"Times New Roman",serif;
   --fournier:"Fournier","Miller",Georgia,serif;
   --caps:"Fournier Caps","Fournier","Miller",Georgia,serif;
@@ -95,7 +118,15 @@ x-dc{
 
 a{ color:inherit; }
 img{ display:block; max-width:100%; height:auto; }
-::selection{ background:#111110; color:#fbfaf7; }
+::selection{ background:var(--ink); color:var(--paper); }
+
+.palette-filters{
+  position:absolute;
+  width:0;
+  height:0;
+  overflow:hidden;
+  pointer-events:none;
+}
 
 a:focus-visible,
 button:focus-visible{
@@ -180,7 +211,7 @@ main{
   font-size:clamp(4.75rem,10vw,8.75rem);
   line-height:1.05;
   text-transform:capitalize;
-  color:#000;
+  color:var(--ink);
 }
 
 .invitation-details{
@@ -193,7 +224,7 @@ main{
   text-transform:uppercase;
   text-align:center;
   text-wrap:pretty;
-  color:#000;
+  color:var(--ink);
   font-feature-settings:"kern" 1,"liga" 0;
 }
 
@@ -219,7 +250,7 @@ main{
   text-transform:uppercase;
   text-align:center;
   white-space:nowrap;
-  color:#000;
+  color:var(--ink);
 }
 
 .intro{
@@ -251,7 +282,7 @@ main{
   line-height:1.62;
   letter-spacing:-0.012em;
   text-transform:uppercase;
-  color:#000;
+  color:var(--ink);
 }
 
 .section-kicker{
@@ -275,7 +306,7 @@ main{
   line-height:0.98;
   letter-spacing:0;
   text-transform:none;
-  color:#000;
+  color:var(--ink);
   text-align:center;
 }
 
@@ -303,6 +334,7 @@ main{
   background-position:left top,left bottom,left top,right top;
   background-size:100% 1px,100% 1px,1px 100%,1px 100%;
   background-repeat:no-repeat;
+  background-color:var(--panel);
   text-align:left;
 }
 
@@ -325,13 +357,13 @@ main{
   line-height:1.32;
   letter-spacing:0;
   font-weight:600;
-  color:#000;
+  color:var(--ink);
   -webkit-text-stroke:0.18px currentColor;
   text-shadow:0.18px 0 0 currentColor;
 }
 
 .copy-emphasis{
-  color:#000;
+  color:var(--ink);
   font-style:italic;
   font-weight:400;
   font-size:1.34em;
@@ -342,7 +374,7 @@ main{
 }
 
 .detail-emphasis{
-  color:#000;
+  color:var(--ink);
   font-style:italic;
   font-size:1.42em;
   letter-spacing:-0.06em;
@@ -455,6 +487,7 @@ main{
   background-position:left top,left bottom,left top,right top;
   background-size:100% 1px,100% 1px,1px 100%,1px 100%;
   background-repeat:no-repeat;
+  background-color:var(--panel);
   text-align:left;
 }
 
@@ -496,7 +529,7 @@ main{
   line-height:1.04;
   letter-spacing:-0.02em;
   text-transform:uppercase;
-  color:#000;
+  color:var(--ink);
   -webkit-text-stroke:0.12px currentColor;
 }
 
@@ -552,7 +585,7 @@ main{
   font-weight:600;
   line-height:1.25;
   letter-spacing:0;
-  color:#000;
+  color:var(--ink);
   -webkit-text-stroke:0.16px currentColor;
   text-shadow:0.16px 0 0 currentColor;
 }
@@ -592,7 +625,7 @@ main{
   line-height:1.25;
   letter-spacing:0;
   text-transform:uppercase;
-  color:#000;
+  color:var(--ink);
   -webkit-text-stroke:0.16px currentColor;
   text-shadow:0.16px 0 0 currentColor;
 }
@@ -637,7 +670,7 @@ main{
   font-weight:400;
   line-height:1.05;
   letter-spacing:-0.035em;
-  color:#000;
+  color:var(--ink);
 }
 
 .flight-mexico-note p{
@@ -692,7 +725,7 @@ main{
 .trip-note strong{
   font-weight:700;
   letter-spacing:0.015em;
-  color:#000;
+  color:var(--ink);
   -webkit-text-stroke:0.12px currentColor;
 }
 
@@ -711,6 +744,7 @@ main{
   background-position:left top,left bottom,left top,right top;
   background-size:100% 1px,100% 1px,1px 100%,1px 100%;
   background-repeat:no-repeat;
+  background-color:var(--panel);
 }
 
 .hotel-card.wide{
@@ -725,7 +759,7 @@ main{
   line-height:1.18;
   letter-spacing:0;
   text-transform:uppercase;
-  color:#000;
+  color:var(--ink);
   font-feature-settings:"kern" 1,"liga" 0;
 }
 
@@ -783,21 +817,21 @@ main{
   background-size:100% 1px,100% 1px,1px 100%,1px 100%;
   background-repeat:no-repeat;
   text-decoration:none;
-  color:#000;
+  color:var(--ink);
   cursor:pointer;
   transition:background-color 0.18s ease,color 0.18s ease,transform 0.18s ease;
 }
 
 .hotel-button:hover,
 .hotel-button:focus-visible{
-  background-color:#17130f;
+  background-color:var(--solid);
   background-image:none;
   color:var(--paper);
   transform:translateY(-1px);
 }
 
 .hotel-button:focus-visible{
-  outline:1px solid #17130f;
+  outline:1px solid var(--solid);
   outline-offset:3px;
 }
 
@@ -835,9 +869,9 @@ main{
   display:flex;
   align-items:center;
   justify-content:center;
-  border:1px solid #17130f;
+  border:1px solid var(--solid);
   border-radius:50%;
-  background:#17130f;
+  background:var(--solid);
   color:var(--paper);
   font-family:var(--fournier);
   font-size:0.6875rem;
@@ -881,7 +915,7 @@ main{
   font-weight:400;
   line-height:1;
   letter-spacing:-0.045em;
-  color:#000;
+  color:var(--ink);
 }
 
 .atlas-list{
@@ -911,7 +945,7 @@ main{
   font-style:italic;
   line-height:1;
   letter-spacing:-0.04em;
-  color:#000;
+  color:var(--ink);
 }
 
 .atlas-entry-head{
@@ -929,7 +963,7 @@ main{
   line-height:1.2;
   letter-spacing:0;
   text-transform:uppercase;
-  color:#000;
+  color:var(--ink);
 }
 
 .atlas-entry a{
@@ -954,7 +988,7 @@ main{
 }
 
 .inline-link{
-  color:#000;
+  color:var(--ink);
   text-decoration:underline;
   text-decoration-thickness:1px;
   text-underline-offset:0.18em;
@@ -1028,7 +1062,7 @@ main{
   letter-spacing:0;
   text-transform:uppercase;
   text-align:center;
-  color:#000;
+  color:var(--ink);
 }
 
 .faq-answer{
@@ -1114,6 +1148,113 @@ main{
   letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--ink-mute);
+}
+
+html[data-palette="redpink"]{
+  --paper:#a72b28;
+  --paper-deep:#a72b28;
+  --ink:#fff8ee;
+  --ink-soft:#fff8ee;
+  --ink-mute:#fff8ee;
+  --line:#ff8a63;
+  --solid:#fff8ee;
+  --accent:#ff8a63;
+  --panel:#b6312d;
+  --rule-strong:rgba(255,138,99,0.92);
+  --rule-medium:rgba(255,138,99,0.56);
+  --rule-light:rgba(255,138,99,0.42);
+  --rule-detail:rgba(255,138,99,0.76);
+  --art-filter:url("#duotone-redpink");
+}
+
+html[data-palette="redpink"] :is(
+  .hero-title
+){
+  color:var(--accent);
+}
+
+html[data-palette="redpink"] .map-marker{
+  border-color:var(--accent);
+  background:var(--accent);
+}
+
+html[data-palette="orangewhite"]{
+  --paper:#f26a05;
+  --paper-deep:#f26a05;
+  --ink:#fff8ee;
+  --ink-soft:#fff8ee;
+  --ink-mute:#fff8ee;
+  --line:#fff8ee;
+  --solid:#fff8ee;
+  --accent:#fff8ee;
+  --panel:#f8790b;
+  --rule-strong:rgba(255,248,238,0.92);
+  --rule-medium:rgba(255,248,238,0.56);
+  --rule-light:rgba(255,248,238,0.42);
+  --rule-detail:rgba(255,248,238,0.76);
+  --art-filter:url("#duotone-orangewhite");
+}
+
+html[data-palette="brickvermilion"]{
+  --paper:#722824;
+  --paper-deep:#722824;
+  --ink:#fff8ee;
+  --ink-soft:#fff8ee;
+  --ink-mute:#fff8ee;
+  --line:#ff6847;
+  --solid:#fff8ee;
+  --accent:#ff6847;
+  --panel:#7b302b;
+  --rule-strong:rgba(255,104,71,0.92);
+  --rule-medium:rgba(255,104,71,0.56);
+  --rule-light:rgba(255,104,71,0.42);
+  --rule-detail:rgba(255,104,71,0.76);
+  --art-filter:url("#duotone-brickvermilion");
+}
+
+html[data-palette="brickvermilion"] :is(
+  .hero-title
+){
+  color:var(--accent);
+}
+
+html[data-palette="brickvermilion"] .map-marker{
+  border-color:var(--accent);
+  background:var(--accent);
+}
+
+html[data-palette] .site-header{
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+}
+
+html[data-palette] :is(
+  .monogram img,
+  .intro-art,
+  .itinerary-image,
+  .section-icon,
+  .trip-note-icon,
+  .atlas-map img,
+  .footer-monogram
+){
+  filter:var(--art-filter);
+  mix-blend-mode:normal;
+}
+
+html[data-palette] .map-marker{
+  border-color:var(--ink);
+  background:var(--ink);
+  color:var(--paper);
+  box-shadow:0 0 0 2px var(--paper);
+}
+
+html[data-palette] .hotel-button:hover,
+html[data-palette] .hotel-button:focus-visible{
+  background-color:var(--ink);
+  color:var(--paper);
+}
+
+html[data-palette] .faq-trigger:focus-visible{
+  background:color-mix(in srgb,var(--ink) 8%,transparent);
 }
 
 @media (max-width: 760px){
@@ -1320,6 +1461,38 @@ main{
 }
 </style>
 </helmet>
+
+<svg class="palette-filters" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="duotone-redpink" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1 0.561"></feFuncR>
+        <feFuncG type="table" tableValues="0.541 0.200"></feFuncG>
+        <feFuncB type="table" tableValues="0.388 0.180"></feFuncB>
+        <feFuncA type="table" tableValues="0 1"></feFuncA>
+      </feComponentTransfer>
+    </filter>
+    <filter id="duotone-orangewhite" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1 0.949"></feFuncR>
+        <feFuncG type="table" tableValues="0.973 0.416"></feFuncG>
+        <feFuncB type="table" tableValues="0.933 0.020"></feFuncB>
+        <feFuncA type="table" tableValues="0 1"></feFuncA>
+      </feComponentTransfer>
+    </filter>
+    <filter id="duotone-brickvermilion" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1 0.447"></feFuncR>
+        <feFuncG type="table" tableValues="0.408 0.157"></feFuncG>
+        <feFuncB type="table" tableValues="0.278 0.141"></feFuncB>
+        <feFuncA type="table" tableValues="0 1"></feFuncA>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+</svg>
 
 <header class="site-header">
   <div class="header-inner">
