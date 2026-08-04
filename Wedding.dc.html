@@ -223,18 +223,9 @@ main{
   letter-spacing:-0.055em;
   text-transform:uppercase;
   text-align:center;
-  text-wrap:pretty;
+  text-wrap:balance;
   color:var(--ink);
   font-feature-settings:"kern" 1,"liga" 0;
-}
-
-.invitation-phrase{
-  white-space:nowrap;
-}
-
-.invitation-line{
-  display:block;
-  white-space:nowrap;
 }
 
 .scroll-note{
@@ -1285,7 +1276,7 @@ html[data-palette] .faq-trigger:focus-visible{
 
   .invitation-details{
     width:calc(100% - 1.5rem);
-    max-width:23rem;
+    max-width:34rem;
     font-size:clamp(0.82rem,4vw,1.08rem);
     line-height:1.26;
     letter-spacing:-0.035em;
@@ -1418,8 +1409,8 @@ html[data-palette] .faq-trigger:focus-visible{
   }
 
   .invitation-details{
-    width:calc(100% - 1rem);
-    max-width:19.5rem;
+    width:calc(100% - 1.25rem);
+    max-width:34rem;
   }
 
   .flight-primary{
@@ -1517,11 +1508,7 @@ html[data-palette] .faq-trigger:focus-visible{
     <p class="eyebrow" data-reveal>The Wedding Of</p>
     <h1 class="hero-title" data-reveal>Rachel &amp; William</h1>
     <p class="invitation-details" data-reveal>
-      <span class="invitation-line">Saturday, <span class="detail-emphasis">May the eighth, 2027</span></span>
-      <span class="invitation-line">At <span class="detail-emphasis">five o'clock</span> in the evening</span>
-      <span class="invitation-line">In the garden, at</span>
-      <span class="invitation-line detail-emphasis">Sierra Casa Nevada</span>
-      <span class="invitation-line detail-emphasis">San Miguel de Allende</span>
+      Saturday, <span class="detail-emphasis">May the eighth, 2027</span> at <span class="detail-emphasis">five o'clock</span> in the evening in the garden, at <span class="detail-emphasis">Sierra Casa Nevada</span>, <span class="detail-emphasis">San Miguel de Allende</span>
     </p>
     <p class="scroll-note">Scroll for everything you'll need</p>
   </section>
