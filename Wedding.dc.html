@@ -759,18 +759,19 @@ main{
 }
 
 .hotel-card h4{
-  margin:0 0 0.45rem;
+  margin:0 0 0.9rem;
   font-family:var(--fournier);
-  font-weight:400;
+  font-weight:700;
   font-size:clamp(1.08rem,1.5vw,1.28rem);
   line-height:1.18;
   letter-spacing:0;
   text-transform:uppercase;
   color:var(--ink);
   font-feature-settings:"kern" 1,"liga" 0;
+  -webkit-text-stroke:0.14px currentColor;
+  text-shadow:0.14px 0 0 currentColor;
 }
 
-.hotel-type,
 .hotel-link{
   margin:0 0 0.8rem;
   font-family:var(--fournier);
@@ -780,16 +781,7 @@ main{
   color:var(--ink-mute);
 }
 
-.hotel-type{
-  font-size:0.75rem;
-  font-style:italic;
-  line-height:1.2;
-  letter-spacing:-0.012em;
-  text-transform:none;
-  color:var(--ink-soft);
-}
-
-.hotel-card p:not(.hotel-type):not(.hotel-link){
+.hotel-card p:not(.hotel-link){
   margin:0 auto 1.05rem;
   max-width:24rem;
   min-height:2.84em;
@@ -1758,35 +1750,30 @@ html[data-material="print"][data-palette] .atlas-map img{
     <div class="travel-grid" data-reveal>
       <article class="hotel-card">
         <h4>Rosewood</h4>
-        <p class="hotel-type">Five Star / Centro</p>
         <p>Historic hacienda, lush courtyards, and a rooftop view of La Parroquia.</p>
         <p class="hotel-link"><a class="hotel-button" href="https://www.rosewoodhotels.com/en/san-miguel-de-allende" target="_blank" rel="noopener">Book Online</a></p>
       </article>
 
       <article class="hotel-card">
         <h4>Numu</h4>
-        <p class="hotel-type">Our Room Block</p>
         <p>Designer hotel with a rooftop pool and our room block.</p>
         <p class="hotel-link"><a class="hotel-button" href="https://www.hyatt.com/unbound-collection/en-US/bjxub-numu" target="_blank" rel="noopener">Book Online</a></p>
       </article>
 
       <article class="hotel-card">
         <h4>Premier San Miguel</h4>
-        <p class="hotel-type">Private Houses / Zona Centro</p>
         <p>Private homes across San Miguel, from two-bedrooms to larger estates.</p>
         <p class="hotel-link"><a class="hotel-button" href="https://premiersanmiguel.com/" target="_blank" rel="noopener">Book Online</a></p>
       </article>
 
       <article class="hotel-card">
         <h4>Orchid House</h4>
-        <p class="hotel-type">Boutique / Centro</p>
         <p>An intimate 300-year-old boutique hotel steps from La Parroquia.</p>
         <p class="hotel-link"><a class="hotel-button" href="https://orchidhousehotels.com/san-miguel-de-allende" target="_blank" rel="noopener">Book Online</a></p>
       </article>
 
       <article class="hotel-card wide">
         <h4>Airbnb</h4>
-        <p class="hotel-type">Private Rental / Citywide</p>
         <p>More space, a kitchen, or a house for the whole group.</p>
         <p class="hotel-link"><a class="hotel-button" href="https://www.airbnb.com/s/San-Miguel-de-Allende--Mexico/homes" target="_blank" rel="noopener">Search Airbnb</a></p>
       </article>
