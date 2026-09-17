@@ -7,9 +7,10 @@
 <meta name="description" content="Wedding weekend details for Rachel and William in San Miguel de Allende, May 7-9, 2027.">
 <title>Rachel &amp; William | San Miguel de Allende</title>
 <link rel="preload" href="fonts/MonsieurLaDoulaise.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="fonts/1786GLCFournier-Caps.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="fonts/1786GLCFournier-Normal.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="fonts/1786GLCFournier-Italic.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/MillerText.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="fonts/GraphikRegular.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="fonts/TrueSans-RegularWeb.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/TrueSans-MediumExtendedWeb.woff2" as="font" type="font/woff2" crossorigin>
 <script src="./support.js"></script>
 <script>
 (() => {
@@ -26,9 +27,6 @@
     document.querySelector('meta[name="theme-color"]').content = palettes[palette];
   }
 
-  if (params.get("material") !== "flat") {
-    document.documentElement.dataset.material = "print";
-  }
 })();
 </script>
 </head>
@@ -39,25 +37,22 @@
 @font-face { font-family:"Tradition"; src:url("fonts/Tradition-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"Tradition"; src:url("fonts/Tradition-RegularItalic.woff2") format("woff2"); font-weight:400; font-style:italic; font-display:swap; }
 @font-face { font-family:"Miller"; src:url("fonts/MillerText.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Graphik"; src:url("fonts/GraphikRegular.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"TrueSans"; src:url("fonts/TrueSans-RegularWeb.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"TrueSans"; src:url("fonts/TrueSans-MediumExtendedWeb.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
 @font-face { font-family:"Spread"; src:url("fonts/Spread-RegularWeb.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"TAY Big Bird"; src:url("fonts/TAYBigBird.woff") format("woff"); font-weight:400; font-style:normal; font-display:swap; }
-@font-face { font-family:"Fournier"; src:url("fonts/1786GLCFournier-Normal.ttf") format("truetype"); font-weight:400; font-style:normal; font-display:swap; }
-@font-face { font-family:"Fournier"; src:url("fonts/1786GLCFournier-Italic.ttf") format("truetype"); font-weight:400; font-style:italic; font-display:swap; }
-@font-face { font-family:"Fournier Caps"; src:url("fonts/1786GLCFournier-Caps.ttf") format("truetype"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"Monsieur La Doulaise"; src:url("fonts/MonsieurLaDoulaise.ttf") format("truetype"); font-weight:400; font-style:normal; font-display:swap; }
 
 :root{
   --ink:#111110;
-  --ink-soft:#3a3a37;
-  --ink-mute:#6f6f68;
+  --ink-soft:#292927;
+  --ink-mute:#555550;
   --line:#766d5f;
   --paper:#fbfaf7;
   --paper-deep:#f0efec;
   --solid:#17130f;
   --accent:#111110;
-  --panel:transparent;
   --art-filter:none;
   --rule-strong:rgba(52,45,34,0.9);
   --rule-medium:rgba(52,45,34,0.44);
@@ -68,24 +63,14 @@
   --rule:1px solid var(--line);
   --ink-rule-horizontal:repeating-linear-gradient(90deg,var(--rule-strong) 0 1px,var(--rule-medium) 1px 3px,transparent 3px 5px,var(--rule-detail) 5px 6px,transparent 6px 9px,var(--rule-light) 9px 11px,transparent 11px 14px);
   --ink-rule-vertical:repeating-linear-gradient(0deg,var(--rule-strong) 0 1px,var(--rule-medium) 1px 3px,transparent 3px 5px,var(--rule-detail) 5px 6px,transparent 6px 9px,var(--rule-light) 9px 11px,transparent 11px 14px);
-  --serif:"Fournier","Miller",Georgia,"Times New Roman",serif;
-  --fournier:"Fournier","Miller",Georgia,serif;
-  --caps:"Fournier Caps","Fournier","Miller",Georgia,serif;
-  --bird:"TAY Big Bird","Fournier Caps","Miller",Georgia,serif;
+  --serif:"TrueSans","Helvetica Neue",Arial,sans-serif;
+  --fournier:"TrueSans","Helvetica Neue",Arial,sans-serif;
+  --caps:"Miller",Georgia,"Times New Roman",serif;
+  --bird:"TAY Big Bird","Tradition","Miller",Georgia,serif;
+  --body:"Graphik","Helvetica Neue",Arial,sans-serif;
   --nav:"TrueSans","Helvetica Neue",Arial,sans-serif;
   --script:"Monsieur La Doulaise","Snell Roundhand","Apple Chancery","Tradition",Georgia,serif;
   --display:"Tradition",Georgia,serif;
-  --material-light-y:50%;
-  --material-overlay-opacity:0.18;
-  --material-text-light:0.09;
-  --material-text-dark:0.22;
-  --material-light-offset:0.62px;
-  --material-shadow-offset:-0.7px;
-  --material-edge-top:0.1;
-  --material-edge-bottom:0.06;
-  --art-light-x:-0.28px;
-  --art-light-y:0.72px;
-  --art-light-alpha:0.16;
 }
 
 html{
@@ -102,17 +87,34 @@ body{
   margin:0;
   background:var(--paper);
   color:var(--ink);
-  font-family:var(--fournier);
+  font-family:var(--body);
+  font-weight:400;
+  font-style:normal;
   font-size:16px;
-  line-height:1.7;
-  font-feature-settings:"kern" 1,"liga" 1,"onum" 1;
+  line-height:1.6;
+  letter-spacing:0.01em;
+  font-feature-settings:"kern" 1,"liga" 1,"lnum" 1,"onum" 0,"smcp" 0,"c2sc" 0;
+  font-variant-numeric:lining-nums;
+  font-synthesis:none;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
+  text-shadow:none;
+  -webkit-text-stroke:0;
   width:100%;
   height:auto !important;
   min-height:100%;
   overflow-x:hidden;
+}
+
+body :is(h1,h2,h3,h4,h5,h6,p,span,a,strong,em,li,button,label){
+  text-shadow:none;
+  -webkit-text-stroke:0;
+  filter:none;
+}
+
+#guide{
+  display:none;
 }
 
 #dc-root,
@@ -154,8 +156,7 @@ button:focus-visible{
   position:sticky;
   top:0;
   z-index:20;
-  background:color-mix(in srgb,var(--paper) 90%,transparent);
-  backdrop-filter:blur(8px);
+  background:transparent;
 }
 
 .header-inner{
@@ -192,56 +193,81 @@ main{
   background-position:left bottom;
   background-size:100% 1px;
   background-repeat:no-repeat;
-  padding-block:clamp(7rem,16vw,14.25rem);
+  padding-block:clamp(5.5rem,11vw,9.5rem);
   text-align:center;
+}
+
+section#faqs{
+  display:none !important;
 }
 
 .hero{
   position:relative;
   box-sizing:border-box;
-  min-height:max(31rem,calc(100svh - var(--first-fold-reserve)));
+  min-width:0;
+  max-width:100%;
+  min-height:max(36rem,calc(100svh - var(--first-fold-reserve)));
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
-  padding-block:clamp(1.5rem,3vh,2.25rem);
+  justify-content:flex-start;
+  padding-top:clamp(2.4rem,5.6vh,4rem);
+  padding-bottom:clamp(5rem,12vh,7rem);
   text-align:center;
 }
 
 .eyebrow{
   margin:0;
-  font-family:var(--caps);
-  font-size:0.6875rem;
-  line-height:1.2;
+  font-family:"Miller",Georgia,"Times New Roman",serif;
+  font-size:0.8rem;
+  font-weight:400;
+  line-height:1.3;
   letter-spacing:0.2em;
   text-transform:uppercase;
   color:var(--ink-soft);
 }
 
 .hero-title{
-  margin:2rem auto 1.05rem;
-  padding-block:0.12em 0.18em;
-  max-width:1062px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+  left:clamp(-1.75rem,-2vw,-0.5rem);
+  margin:0.35rem auto 0.6rem;
+  padding:0.3em 0.06em 0.16em;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  box-sizing:border-box;
   font-family:var(--script);
   font-weight:400;
-  font-size:clamp(4.75rem,10vw,8.75rem);
-  line-height:1.05;
+  font-size:clamp(6.25rem,16.75vw,14.25rem);
+  line-height:0.79;
+  letter-spacing:0;
   text-transform:capitalize;
   color:var(--ink);
 }
 
+.hero-title span{
+  display:block;
+  white-space:nowrap;
+}
+
 .invitation-details{
-  margin:0;
-  max-width:47rem;
-  font-family:var(--caps);
-  font-size:clamp(1rem,1.8vw,1.45rem);
-  line-height:1.24;
-  letter-spacing:-0.055em;
+  margin:0 auto;
+  min-width:0;
+  max-width:46rem;
+  font-family:"Miller",Georgia,"Times New Roman",serif;
+  font-weight:400;
+  font-size:clamp(0.9rem,1.15vw,1rem);
+  line-height:1.65;
+  letter-spacing:0.075em;
   text-transform:uppercase;
   text-align:center;
   text-wrap:balance;
   color:var(--ink);
-  font-feature-settings:"kern" 1,"liga" 0;
+  font-feature-settings:"kern" 1,"liga" 1,"lnum" 1;
+  transform:translateY(clamp(2.5rem,6vh,3.25rem));
 }
 
 .scroll-note{
@@ -250,14 +276,15 @@ main{
   inset-inline:0;
   margin:0 auto;
   width:min(calc(100% - 2rem),30rem);
-  font-family:var(--caps);
-  font-size:0.5625rem;
-  line-height:1.35;
-  letter-spacing:0.08em;
+  font-family:var(--nav);
+  font-size:0.625rem;
+  font-weight:500;
+  line-height:1.4;
+  letter-spacing:0.16em;
   text-transform:uppercase;
   text-align:center;
   white-space:nowrap;
-  color:var(--ink);
+  color:var(--ink-mute);
 }
 
 .intro{
@@ -281,45 +308,34 @@ main{
   width:min(100%,43.85rem);
 }
 
-.intro-copy{
-  margin:0;
-  max-width:43.85rem;
-  font-family:var(--fournier);
-  font-size:1.125rem;
-  line-height:1.62;
-  letter-spacing:-0.012em;
-  text-transform:uppercase;
-  color:var(--ink);
-}
-
 .section-kicker{
   display:flex;
   justify-content:center;
   align-items:baseline;
   gap:1rem;
   margin-bottom:1.5rem;
-  font-family:var(--serif);
+  font-family:var(--caps);
   font-size:0.6875rem;
-  letter-spacing:0.22em;
+  letter-spacing:0.18em;
   text-transform:uppercase;
   color:var(--ink-mute);
 }
 
 .section-title{
   margin:0 0 clamp(2.5rem,5.5vw,4.25rem);
-  font-family:var(--script);
-  font-weight:400;
-  font-size:clamp(3.4rem,6.25vw,5rem);
-  line-height:0.98;
-  letter-spacing:0;
-  text-transform:none;
+  font-family:var(--display);
+  font-weight:600;
+  font-synthesis:weight;
+  font-size:clamp(1.5rem,2.6vw,2.15rem);
+  line-height:1.08;
+  letter-spacing:0.075em;
+  text-transform:uppercase;
   color:var(--ink);
   text-align:center;
 }
 
 .script-title{
   font-family:var(--script);
-  font-size:clamp(3.4rem,6.25vw,5rem);
   letter-spacing:0;
   text-transform:none;
 }
@@ -328,136 +344,316 @@ main{
   width:min(100%,43.5rem);
   margin:0 auto;
   display:grid;
+  grid-auto-rows:1fr;
   gap:clamp(0.65rem,1.3vw,0.9rem);
+}
+
+.itinerary-followup{
+  margin:clamp(1.35rem,2.5vw,1.9rem) auto 0;
+  font-family:var(--nav);
+  font-size:0.6875rem;
+  font-weight:500;
+  line-height:1.35;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
 }
 
 .itinerary-item{
   display:grid;
-  grid-template-columns:minmax(0,1fr) 11.5rem;
+  grid-template-columns:9rem minmax(0,1fr);
   gap:clamp(1.75rem,3vw,2.35rem);
-  align-items:start;
-  padding:clamp(1.7rem,3vw,2.25rem) clamp(1.35rem,3vw,2.15rem);
+  align-items:center;
+  padding:clamp(1.15rem,2.1vw,1.5rem) clamp(1.35rem,3vw,2.15rem);
   background-image:var(--ink-rule-horizontal),var(--ink-rule-horizontal),var(--ink-rule-vertical),var(--ink-rule-vertical);
   background-position:left top,left bottom,left top,right top;
   background-size:100% 1px,100% 1px,1px 100%,1px 100%;
   background-repeat:no-repeat;
-  background-color:var(--panel);
   text-align:left;
 }
 
 .itinerary-copy{
   min-width:0;
-  padding-top:0.35rem;
+  grid-column:2;
+  grid-row:1;
 }
 
 .itinerary-heading{
   margin:0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  column-gap:1rem;
+  align-items:center;
   font-weight:400;
   text-transform:uppercase;
-  font-feature-settings:"kern" 1,"liga" 0;
+  font-feature-settings:"kern" 1,"liga" 1,"lnum" 1;
 }
 
 .itinerary-event{
   display:block;
-  font-family:var(--fournier);
-  font-size:1.125rem;
-  line-height:1.32;
-  letter-spacing:0;
-  font-weight:600;
+  text-align:left;
+  font-family:var(--display);
+  font-size:1.35rem;
+  line-height:1.12;
+  letter-spacing:0.015em;
+  font-weight:800;
+  font-synthesis:weight;
+  font-style:normal;
   color:var(--ink);
-  -webkit-text-stroke:0.18px currentColor;
-  text-shadow:0.18px 0 0 currentColor;
+}
+
+.itinerary-date{
+  font-family:var(--display);
+  font-size:clamp(1rem,1.25vw,1.125rem);
+  font-weight:700;
+  font-synthesis:weight;
+  line-height:1.2;
+  letter-spacing:0.04em;
+  text-align:right;
+  white-space:nowrap;
+  color:var(--ink);
 }
 
 .copy-emphasis{
   color:var(--ink);
-  font-style:italic;
-  font-weight:400;
-  font-size:1.34em;
-  letter-spacing:-0.052em;
-  text-transform:none;
-  -webkit-text-stroke:0;
-  text-shadow:none;
+  font-style:normal;
+  font-weight:500;
+  font-size:1em;
+  letter-spacing:inherit;
+  text-transform:inherit;
 }
 
 .detail-emphasis{
   color:var(--ink);
-  font-style:italic;
-  font-size:1.42em;
-  letter-spacing:-0.06em;
-  text-transform:none;
+  font-style:normal;
+  font-weight:500;
+  font-size:1em;
+  letter-spacing:inherit;
+  text-transform:inherit;
 }
 
 .invitation-details .detail-emphasis{
-  font-family:var(--fournier);
-  font-size:1.42em;
-  letter-spacing:-0.068em;
+  font-family:inherit;
+  font-style:normal;
+  font-weight:inherit;
+  font-size:inherit;
+  letter-spacing:inherit;
+  text-transform:inherit;
+  color:inherit;
+  white-space:nowrap;
 }
 
-.itinerary-meta .detail-emphasis{
-  font-size:1.34em;
-  letter-spacing:-0.06em;
+.invitation-line{
+  display:block;
+  white-space:nowrap;
+}
+
+.calendar-add{
+  position:relative;
+  z-index:2;
+  flex:1 1 auto;
+  width:100%;
+  margin:0;
+  padding-block:1rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:3rem;
+  transform:translateY(clamp(2.5rem,12vh,4rem));
+}
+
+.calendar-add-trigger{
+  appearance:none;
+  margin:0;
+  border:1px solid color-mix(in srgb,var(--ink) 54%,transparent);
+  border-radius:0;
+  background:transparent;
+  padding:0.82rem 1.3rem 0.75rem;
+  font-family:var(--nav);
+  font-size:clamp(0.625rem,0.82vw,0.7rem);
+  font-weight:500;
+  font-style:normal;
+  line-height:1.2;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink);
+  cursor:pointer;
+  touch-action:manipulation;
+  transition:background-color 0.18s ease,color 0.18s ease,border-color 0.18s ease;
+}
+
+.calendar-add-trigger span{
+  display:block;
+}
+
+.calendar-add-trigger[aria-expanded="true"],
+.calendar-add-trigger:hover,
+.calendar-add-trigger:focus-visible{
+  border-color:var(--ink);
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.calendar-add.is-open .calendar-add-trigger{
+  display:none;
+}
+
+.calendar-add-trigger:focus-visible{
+  outline:1px dotted var(--ink);
+  outline-offset:0.2rem;
+}
+
+.calendar-add-menu{
+  position:static;
+  transform:none;
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-direction:row;
+  align-items:stretch;
+  min-width:max-content;
+  border:1px solid color-mix(in srgb,var(--ink) 54%,transparent);
+  background:var(--paper);
+}
+
+.calendar-add-menu[hidden]{
+  display:none !important;
+}
+
+.calendar-add-menu li{
+  margin:0;
+  padding:0;
+}
+
+.calendar-add-menu li + li{
+  border-left:1px solid color-mix(in srgb,var(--ink) 34%,transparent);
+}
+
+.calendar-add-menu a{
+  display:block;
+  padding:0.82rem 0.95rem 0.75rem;
+  font-family:var(--nav);
+  font-size:0.625rem;
+  font-weight:500;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink);
+  white-space:nowrap;
+}
+
+.calendar-add-menu a:hover,
+.calendar-add-menu a:focus-visible{
+  outline:0;
+  background:var(--ink);
+  color:var(--paper);
+}
+
+@media (max-width: 760px){
+  .calendar-add{
+    padding-block:0.75rem;
+    transform:translateY(clamp(1.5rem,8vh,2.5rem));
+  }
+
+  .calendar-add-trigger{
+    font-size:0.625rem;
+    letter-spacing:0.1em;
+  }
 }
 
 .itinerary-meta{
   display:block;
-  margin-top:0;
-  font-family:var(--fournier);
-  font-size:1rem;
-  line-height:1.46;
-  letter-spacing:-0.012em;
+  grid-column:1 / -1;
+  margin-top:0.55rem;
+  font-family:var(--body);
+  font-size:clamp(0.9375rem,1vw,1rem);
+  line-height:1.5;
+  letter-spacing:0.01em;
   font-weight:400;
+  font-style:normal;
   color:var(--ink-soft);
+  text-align:left;
+  text-transform:none;
   white-space:nowrap;
 }
 
-.itinerary-copy p:last-child{
-  margin:1.05rem 0 0;
-  max-width:26rem;
-  font-family:var(--fournier);
-  font-size:1rem;
-  line-height:1.46;
-  letter-spacing:-0.012em;
+.itinerary-optional{
+  grid-column:1 / -1;
+  display:block;
+  margin-top:0.45rem;
+  font-family:var(--nav);
+  font-size:0.6875rem;
+  font-weight:500;
+  line-height:1.35;
+  letter-spacing:0.12em;
+  text-align:left;
   text-transform:uppercase;
-  color:var(--ink-soft);
-  font-feature-settings:"kern" 1,"liga" 0;
-  text-wrap:pretty;
+  color:var(--ink-mute);
 }
 
 .itinerary-image{
-  width:var(--itinerary-art-width,100%);
-  height:auto;
+  width:auto;
+  height:var(--itinerary-art-height,8rem);
+  max-width:100%;
   object-fit:contain;
   object-position:center;
   justify-self:center;
+  grid-column:1;
+  grid-row:1;
 }
 
 .itinerary-image.welcome-art{
-  --itinerary-art-width:7rem;
+  --itinerary-art-height:7.75rem;
 }
 
 .itinerary-image.ceremony-art{
-  --itinerary-art-width:8.75rem;
+  --itinerary-art-height:9rem;
 }
 
-.itinerary-image.farewell-art{
-  --itinerary-art-width:7.2rem;
+.itinerary-pool-art{
+  width:7.75rem;
+  display:grid;
+  gap:0.48rem;
+  justify-self:center;
+  grid-column:1;
+  grid-row:1;
+}
+
+.itinerary-pool-art span{
+  display:block;
+  height:0.55rem;
+  border-top:1px solid var(--accent);
+  border-radius:50%;
+}
+
+.itinerary-pool-art span:nth-child(2){
+  width:82%;
+  justify-self:center;
+}
+
+.itinerary-pool-art span:nth-child(3){
+  width:62%;
+  justify-self:center;
 }
 
 .single-column{
-  max-width:43.85rem;
+  max-width:34rem;
   margin:0 auto;
 }
 
 .single-column p{
   margin:0;
-  font-family:var(--fournier);
-  font-size:clamp(1.02rem,1.28vw,1.15rem);
-  line-height:1.58;
-  letter-spacing:-0.006em;
-  text-transform:uppercase;
+  font-family:var(--body);
+  font-size:clamp(1.0625rem,1.2vw,1.125rem);
+  font-weight:400;
+  font-style:normal;
+  line-height:1.62;
+  letter-spacing:0;
+  text-transform:none;
   color:var(--ink-soft);
-  font-feature-settings:"kern" 1,"liga" 0;
+  font-feature-settings:"kern" 1,"liga" 1,"lnum" 1;
   text-wrap:pretty;
 }
 
@@ -494,7 +690,6 @@ main{
   background-position:left top,left bottom,left top,right top;
   background-size:100% 1px,100% 1px,1px 100%,1px 100%;
   background-repeat:no-repeat;
-  background-color:var(--panel);
   text-align:left;
 }
 
@@ -507,54 +702,57 @@ main{
 
 .flight-overview-label,
 .flight-origin-label,
-.flight-origin-route,
-.flight-mexico-label{
+.flight-origin-route{
   margin:0;
   font-family:var(--fournier);
-  font-size:0.55rem;
+  font-size:0.625rem;
+  font-weight:500;
+  font-style:normal;
   line-height:1.35;
-  letter-spacing:0.11em;
+  letter-spacing:0.14em;
   text-transform:uppercase;
   color:var(--ink-mute);
 }
 
-.flight-overview-label,
-.flight-mexico-label{
-  font-size:0.75rem;
-  font-style:italic;
-  line-height:1.2;
-  letter-spacing:-0.015em;
-  text-transform:none;
-  color:var(--ink-soft);
+.flight-overview-label{
+  font-size:0.625rem;
+  font-weight:500;
+  font-style:normal;
+  line-height:1.3;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
 }
 
 .flight-primary h3{
   margin:0.65rem 0 1.25rem;
-  font-family:var(--fournier);
-  font-size:clamp(1.55rem,2.6vw,2.25rem);
-  font-weight:600;
-  line-height:1.04;
-  letter-spacing:-0.02em;
+  font-family:var(--display);
+  font-size:clamp(1.7rem,2.6vw,2.25rem);
+  font-weight:700;
+  font-synthesis:weight;
+  font-style:normal;
+  line-height:1.05;
+  letter-spacing:0.025em;
   text-transform:uppercase;
   color:var(--ink);
-  -webkit-text-stroke:0.12px currentColor;
 }
 
 .flight-primary p,
-.flight-origin-copy,
-.flight-mexico-note p{
+.flight-origin-copy{
   margin:0;
-  font-family:var(--fournier);
-  line-height:1.5;
-  letter-spacing:0.008em;
-  text-transform:uppercase;
+  font-family:var(--body);
+  font-weight:400;
+  font-style:normal;
+  line-height:1.58;
+  letter-spacing:0;
+  text-transform:none;
   color:var(--ink-soft);
   text-wrap:pretty;
 }
 
 .flight-primary p{
   max-width:34rem;
-  font-size:clamp(0.825rem,1.05vw,0.925rem);
+  font-size:clamp(0.9375rem,1vw,1rem);
 }
 
 .flight-ticket-meta{
@@ -579,22 +777,22 @@ main{
 
 .flight-ticket-meta span{
   margin-bottom:0.18rem;
-  font-size:clamp(0.75rem,0.9vw,0.825rem);
-  font-style:italic;
-  line-height:1.2;
-  letter-spacing:-0.012em;
-  text-transform:none;
-  color:var(--ink-soft);
+  font-size:0.5625rem;
+  font-weight:500;
+  font-style:normal;
+  line-height:1.3;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
 }
 
 .flight-ticket-meta strong{
-  font-size:1rem;
-  font-weight:600;
+  font-size:0.95rem;
+  font-weight:500;
+  font-style:normal;
   line-height:1.25;
-  letter-spacing:0;
+  letter-spacing:0.04em;
   color:var(--ink);
-  -webkit-text-stroke:0.16px currentColor;
-  text-shadow:0.16px 0 0 currentColor;
 }
 
 .flight-origins{
@@ -609,8 +807,8 @@ main{
   min-width:0;
   padding:clamp(1.15rem,2.2vw,1.55rem) clamp(1.5rem,2.8vw,2.25rem);
   display:grid;
-  grid-template-columns:minmax(6.5rem,0.8fr) minmax(0,1.2fr);
-  gap:1rem;
+  grid-template-columns:1fr;
+  gap:0.7rem;
   align-items:start;
   background-image:var(--ink-rule-horizontal);
   background-position:left top;
@@ -624,17 +822,16 @@ main{
 }
 
 .flight-origin h3{
-  margin:0.22rem 0 0.25rem;
-  font-family:var(--fournier);
-  font-size:1rem;
+  margin:0.22rem 0 0;
+  font-family:var(--display);
+  font-size:1.4rem;
   font-style:normal;
-  font-weight:600;
-  line-height:1.25;
-  letter-spacing:0;
+  font-weight:700;
+  font-synthesis:weight;
+  line-height:1.1;
+  letter-spacing:0.025em;
   text-transform:uppercase;
   color:var(--ink);
-  -webkit-text-stroke:0.16px currentColor;
-  text-shadow:0.16px 0 0 currentColor;
 }
 
 .flight-origin-route{
@@ -643,38 +840,61 @@ main{
 
 .flight-origin-copy{
   padding-top:0.05rem;
-  font-size:clamp(0.7rem,0.82vw,0.775rem);
+  font-size:clamp(0.9rem,0.9vw,0.9375rem);
 }
 
-.flight-mexico-note{
-  grid-column:1 / -1;
+.flight-tips{
+  margin-top:clamp(2.25rem,4.5vw,3.5rem);
+  padding:clamp(1.5rem,3vw,2rem) clamp(1.5rem,3.5vw,2.75rem);
   display:grid;
-  grid-template-columns:minmax(12rem,0.38fr) minmax(0,1fr);
-  align-items:center;
-  background-image:var(--ink-rule-horizontal);
-  background-position:left top;
-  background-size:100% 1px;
+  grid-template-columns:minmax(10rem,0.55fr) minmax(0,1.45fr);
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:start;
+  background-image:var(--ink-rule-horizontal),var(--ink-rule-horizontal),var(--ink-rule-vertical),var(--ink-rule-vertical);
+  background-position:left top,left bottom,left top,right top;
+  background-size:100% 1px,100% 1px,1px 100%,1px 100%;
   background-repeat:no-repeat;
+  text-align:left;
 }
 
-.flight-mexico-heading,
-.flight-mexico-note p{
-  padding:clamp(1.15rem,2.2vw,1.65rem) clamp(1.5rem,3.2vw,2.5rem);
+.flight-tips h3{
+  margin:0;
+  font-family:var(--display);
+  font-size:1.4rem;
+  font-weight:700;
+  font-synthesis:weight;
+  line-height:1.1;
+  letter-spacing:0.025em;
+  text-transform:uppercase;
+  color:var(--ink);
 }
 
-.flight-mexico-heading{
-  align-self:stretch;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+.flight-tips ul{
+  margin:0;
+  padding-left:1.2rem;
+  display:grid;
+  gap:0.65rem;
 }
 
-.flight-mexico-note p{
-  font-size:clamp(0.72rem,0.88vw,0.8rem);
-  background-image:var(--ink-rule-vertical);
-  background-position:left top;
-  background-size:1px 100%;
-  background-repeat:no-repeat;
+.flight-tips li{
+  padding-left:0.2rem;
+  font-family:var(--body);
+  font-size:clamp(0.9375rem,1vw,1rem);
+  font-weight:400;
+  line-height:1.58;
+  letter-spacing:0;
+  color:var(--ink-soft);
+}
+
+.flight-tips li::marker{
+  color:var(--ink-mute);
+}
+
+@media (max-width: 760px){
+  .flight-tips{
+    grid-template-columns:1fr;
+    gap:1rem;
+  }
 }
 
 .trip-notes{
@@ -709,20 +929,21 @@ main{
   flex:0 1 auto;
   max-width:none;
   margin:0;
-  font-family:var(--fournier);
-  font-size:clamp(0.875rem,1.2vw,0.975rem);
-  line-height:1.5;
-  letter-spacing:0.008em;
-  text-transform:uppercase;
+  font-family:var(--body);
+  font-size:clamp(1rem,1vw,1.0375rem);
+  font-weight:400;
+  font-style:normal;
+  line-height:1.6;
+  letter-spacing:0;
+  text-transform:none;
   text-align:left;
   color:var(--ink-soft);
 }
 
 .trip-note strong{
-  font-weight:700;
-  letter-spacing:0.015em;
+  font-weight:500;
+  letter-spacing:inherit;
   color:var(--ink);
-  -webkit-text-stroke:0.12px currentColor;
 }
 
 .travel-grid{
@@ -740,7 +961,6 @@ main{
   background-position:left top,left bottom,left top,right top;
   background-size:100% 1px,100% 1px,1px 100%,1px 100%;
   background-repeat:no-repeat;
-  background-color:var(--panel);
 }
 
 .hotel-card.wide{
@@ -749,23 +969,24 @@ main{
 
 .hotel-card h4{
   margin:0 0 0.9rem;
-  font-family:var(--fournier);
+  font-family:var(--display);
   font-weight:700;
-  font-size:clamp(1.08rem,1.5vw,1.28rem);
-  line-height:1.18;
-  letter-spacing:0;
+  font-synthesis:weight;
+  font-style:normal;
+  font-size:clamp(1.2rem,1.7vw,1.45rem);
+  line-height:1.1;
+  letter-spacing:0.025em;
   text-transform:uppercase;
   color:var(--ink);
-  font-feature-settings:"kern" 1,"liga" 0;
-  -webkit-text-stroke:0.14px currentColor;
-  text-shadow:0.14px 0 0 currentColor;
+  font-feature-settings:"kern" 1,"liga" 1;
 }
 
 .hotel-link{
   margin:0 0 0.8rem;
   font-family:var(--fournier);
   font-size:0.625rem;
-  letter-spacing:0.08em;
+  font-weight:500;
+  letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--ink-mute);
 }
@@ -774,13 +995,15 @@ main{
   margin:0 auto 1.05rem;
   max-width:24rem;
   min-height:2.84em;
-  font-family:var(--fournier);
-  font-size:0.875rem;
-  line-height:1.42;
-  letter-spacing:0.012em;
-  text-transform:uppercase;
+  font-family:var(--body);
+  font-size:clamp(1rem,1vw,1.0375rem);
+  font-weight:400;
+  font-style:normal;
+  line-height:1.6;
+  letter-spacing:0;
+  text-transform:none;
   color:var(--ink-soft);
-  font-feature-settings:"kern" 1,"liga" 0;
+  font-feature-settings:"kern" 1,"liga" 1;
   text-wrap:balance;
 }
 
@@ -797,30 +1020,34 @@ main{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-height:2.5rem;
-  padding:0 1rem;
-  border:0;
-  background-image:var(--ink-rule-horizontal),var(--ink-rule-horizontal),var(--ink-rule-vertical),var(--ink-rule-vertical);
-  background-position:left top,left bottom,left top,right top;
-  background-size:100% 1px,100% 1px,1px 100%,1px 100%;
-  background-repeat:no-repeat;
+  min-height:0;
+  padding:0.82rem 1.3rem 0.75rem;
+  border:1px solid color-mix(in srgb,var(--ink) 54%,transparent);
+  border-radius:0;
+  background:transparent;
+  font-family:var(--nav);
+  font-size:clamp(0.625rem,0.82vw,0.7rem);
+  font-weight:500;
+  font-style:normal;
+  line-height:1.2;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
   text-decoration:none;
   color:var(--ink);
   cursor:pointer;
-  transition:background-color 0.18s ease,color 0.18s ease,transform 0.18s ease;
+  transition:background-color 0.18s ease,color 0.18s ease,border-color 0.18s ease;
 }
 
 .hotel-button:hover,
 .hotel-button:focus-visible{
-  background-color:var(--solid);
-  background-image:none;
+  border-color:var(--ink);
+  background-color:var(--ink);
   color:var(--paper);
-  transform:translateY(-1px);
 }
 
 .hotel-button:focus-visible{
-  outline:1px solid var(--solid);
-  outline-offset:3px;
+  outline:1px dotted var(--ink);
+  outline-offset:0.2rem;
 }
 
 .city-atlas{
@@ -863,9 +1090,8 @@ main{
   color:var(--paper);
   font-family:var(--fournier);
   font-size:0.6875rem;
-  font-weight:600;
+  font-weight:500;
   line-height:1;
-  box-shadow:0 0 0 2px var(--paper),0 1px 3px rgba(23,19,15,0.18);
 }
 
 .marker-1{ left:54%; top:42%; }
@@ -898,11 +1124,12 @@ main{
 .atlas-index h3{
   margin:0 0 clamp(1.4rem,3vw,2rem);
   font-family:var(--fournier);
-  font-size:clamp(1.45rem,2.4vw,2rem);
-  font-style:italic;
-  font-weight:400;
-  line-height:1;
-  letter-spacing:-0.045em;
+  font-size:clamp(1.25rem,2vw,1.65rem);
+  font-style:normal;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
   color:var(--ink);
 }
 
@@ -929,10 +1156,11 @@ main{
 
 .atlas-number{
   font-family:var(--fournier);
-  font-size:1.35rem;
-  font-style:italic;
+  font-size:0.95rem;
+  font-style:normal;
+  font-weight:500;
   line-height:1;
-  letter-spacing:-0.04em;
+  letter-spacing:0.04em;
   color:var(--ink);
 }
 
@@ -946,10 +1174,11 @@ main{
 .atlas-entry h4{
   margin:0;
   font-family:var(--fournier);
-  font-size:0.95rem;
-  font-weight:600;
+  font-size:0.875rem;
+  font-weight:500;
+  font-style:normal;
   line-height:1.2;
-  letter-spacing:0;
+  letter-spacing:0.04em;
   text-transform:uppercase;
   color:var(--ink);
 }
@@ -967,10 +1196,12 @@ main{
 
 .atlas-entry p{
   margin:0.22rem 0 0;
-  font-family:var(--fournier);
-  font-size:0.75rem;
-  line-height:1.42;
-  letter-spacing:0.006em;
+  font-family:var(--body);
+  font-size:0.96875rem;
+  font-weight:400;
+  font-style:normal;
+  line-height:1.5;
+  letter-spacing:0.025em;
   text-transform:uppercase;
   color:var(--ink-soft);
 }
@@ -982,10 +1213,6 @@ main{
   text-underline-offset:0.18em;
 }
 
-.faqs .section-title{
-  font-family:var(--script);
-  font-size:clamp(3.4rem,6.25vw,5rem);
-}
 
 .faq-list{
   width:min(100%,44rem);
@@ -1071,26 +1298,238 @@ main{
   margin:0 auto clamp(1.5rem,3vw,2.25rem);
   max-width:36rem;
   padding-inline:3rem;
-  font-family:var(--fournier);
-  font-size:1.05rem;
-  line-height:1.58;
-  letter-spacing:-0.006em;
+  font-family:var(--body);
+  font-size:clamp(1.0625rem,1.12vw,1.125rem);
+  font-weight:400;
+  font-style:normal;
+  line-height:1.62;
+  letter-spacing:0;
   color:var(--ink-soft);
   text-align:center;
   text-wrap:pretty;
 }
 
+.faq-answer p strong{
+  font-weight:500;
+  color:var(--ink);
+}
+
+.rsvp-note{
+  padding-block:clamp(4rem,8vw,6rem);
+}
+
+.rsvp-note .section-title{
+  margin:0 auto clamp(1.75rem,3vw,2.5rem);
+  max-width:24em;
+  text-wrap:balance;
+}
+
+.rsvp-kicker{
+  margin:clamp(1.75rem,3vw,2.25rem) auto 0;
+  max-width:28rem;
+  font-family:var(--nav);
+  font-size:0.625rem;
+  font-weight:500;
+  line-height:1.35;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+}
+
+.rsvp-kicker[hidden]{
+  display:none !important;
+}
+
+.rsvp-form{
+  width:min(100%,46rem);
+  margin:0 auto;
+}
+
+.rsvp-form input[name="_honey"]{
+  display:none !important;
+}
+
+.rsvp-choices{
+  width:min(100%,36rem);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0.75rem;
+}
+
+.rsvp-choices[hidden]{
+  display:none !important;
+}
+
+.rsvp-choice{
+  width:100%;
+  margin:0;
+  min-height:0;
+  padding:0.82rem 1.3rem 0.75rem;
+  border:1px solid color-mix(in srgb,var(--ink) 54%,transparent);
+  border-radius:0;
+  background-color:transparent;
+  font-family:var(--nav);
+  font-size:clamp(0.625rem,0.82vw,0.7rem);
+  font-weight:500;
+  font-style:normal;
+  line-height:1.2;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  color:var(--ink);
+  cursor:pointer;
+  transition:background-color 0.18s ease,color 0.18s ease,border-color 0.18s ease;
+}
+
+.rsvp-choice:hover,
+.rsvp-choice:focus-visible{
+  border-color:var(--ink);
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.rsvp-choice:focus-visible{
+  outline:1px dotted var(--ink);
+  outline-offset:0.2rem;
+}
+
+.rsvp-choice[aria-checked="true"]{
+  border-color:var(--ink);
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.rsvp-fields{
+  width:min(100%,30rem);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0.75rem;
+}
+
+.rsvp-details{
+  margin-top:1.5rem;
+}
+
+.rsvp-details[hidden]{
+  display:none !important;
+}
+
+.rsvp-step-heading{
+  margin:0 auto 1.25rem;
+  font:400 1rem/1.45 var(--nav);
+  color:var(--ink);
+}
+
+.rsvp-field{
+  display:grid;
+  gap:0.45rem;
+  text-align:left;
+}
+
+.rsvp-field > span:first-child{
+  font-family:var(--nav);
+  font-size:0.5625rem;
+  font-weight:500;
+  line-height:1.3;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--ink);
+}
+
+.rsvp-field-control{
+  position:relative;
+  display:block;
+}
+
+.rsvp-field input{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid color-mix(in srgb,var(--ink) 48%,transparent);
+  border-radius:0;
+  background:transparent;
+  min-height:3.5rem;
+  padding:0.85rem 11.25rem 0.85rem 0.9rem;
+  font:400 1rem/1.3 var(--nav);
+  color:var(--ink);
+}
+
+.rsvp-field input:focus{
+  outline:1px solid var(--ink);
+  outline-offset:0;
+}
+
+.rsvp-submit{
+  position:absolute;
+  top:0.35rem;
+  right:0.35rem;
+  bottom:0.35rem;
+  margin:0;
+  border:0;
+  border-radius:0;
+  background:var(--ink);
+  padding:0.65rem 1rem 0.58rem;
+  font-family:var(--nav);
+  font-size:0.6875rem;
+  font-weight:500;
+  line-height:1.2;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--paper);
+  cursor:pointer;
+}
+
+.rsvp-back{
+  display:block;
+  margin:0.8rem auto 0;
+  border:0;
+  background:transparent;
+  padding:0.25rem;
+  font:500 0.625rem/1.3 var(--nav);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  cursor:pointer;
+}
+
+.rsvp-back:hover,
+.rsvp-back:focus-visible{
+  color:var(--ink);
+}
+
+.rsvp-submit:disabled{
+  cursor:not-allowed;
+  opacity:0.28;
+}
+
+.rsvp-confirm{
+  margin:1.5rem auto 0;
+  max-width:32rem;
+  min-height:1.5em;
+  font-family:var(--nav);
+  font-size:0.95rem;
+  font-weight:400;
+  line-height:1.5;
+  letter-spacing:0.02em;
+  color:var(--ink-soft);
+}
+
+.rsvp-form.is-complete :is(.rsvp-choices,.rsvp-details){
+  display:none;
+}
+
 .closing{
   text-align:center;
-  padding-block:clamp(6rem,14vw,12rem);
+  padding-block:clamp(5rem,10vw,9rem);
 }
 
 .closing p{
   margin:0 0 2rem;
-  font-family:var(--serif);
+  font-family:var(--caps);
   font-size:0.6875rem;
-  font-weight:500;
-  letter-spacing:0.34em;
+  font-weight:400;
+  letter-spacing:0.18em;
   text-transform:uppercase;
   color:var(--ink-mute);
 }
@@ -1102,6 +1541,7 @@ main{
   font-weight:400;
   font-size:clamp(2.5rem,5vw,4rem);
   line-height:0.98;
+  letter-spacing:0;
   color:var(--ink);
   text-wrap:balance;
 }
@@ -1142,12 +1582,11 @@ html[data-palette="redpink"]{
   --paper:#a72b28;
   --paper-deep:#a72b28;
   --ink:#fff8ee;
-  --ink-soft:#fff8ee;
-  --ink-mute:#fff8ee;
+  --ink-soft:color-mix(in srgb,#fff8ee 55%,#ff8a63 45%);
+  --ink-mute:color-mix(in srgb,#ff8a63 82%,#fff8ee 18%);
   --line:#ff8a63;
   --solid:#fff8ee;
   --accent:#ff8a63;
-  --panel:#b6312d;
   --rule-strong:rgba(255,138,99,0.92);
   --rule-medium:rgba(255,138,99,0.56);
   --rule-light:rgba(255,138,99,0.42);
@@ -1161,11 +1600,6 @@ html[data-palette="redpink"] :is(
   color:var(--accent);
 }
 
-html[data-palette="redpink"] .scroll-note{
-  color:var(--accent);
-  opacity:0.72;
-}
-
 html[data-palette="redpink"] .map-marker{
   border-color:var(--accent);
   background:var(--accent);
@@ -1175,12 +1609,11 @@ html[data-palette="orangewhite"]{
   --paper:#f26a05;
   --paper-deep:#f26a05;
   --ink:#fff8ee;
-  --ink-soft:#fff8ee;
-  --ink-mute:#fff8ee;
+  --ink-soft:rgba(255,248,238,0.9);
+  --ink-mute:rgba(255,248,238,0.78);
   --line:#fff8ee;
   --solid:#fff8ee;
   --accent:#fff8ee;
-  --panel:#f8790b;
   --rule-strong:rgba(255,248,238,0.92);
   --rule-medium:rgba(255,248,238,0.56);
   --rule-light:rgba(255,248,238,0.42);
@@ -1192,12 +1625,11 @@ html[data-palette="brickvermilion"]{
   --paper:#722824;
   --paper-deep:#722824;
   --ink:#fff8ee;
-  --ink-soft:#fff8ee;
-  --ink-mute:#fff8ee;
+  --ink-soft:color-mix(in srgb,#fff8ee 55%,#ff6847 45%);
+  --ink-mute:color-mix(in srgb,#ff6847 82%,#fff8ee 18%);
   --line:#ff6847;
   --solid:#fff8ee;
   --accent:#ff6847;
-  --panel:#7b302b;
   --rule-strong:rgba(255,104,71,0.92);
   --rule-medium:rgba(255,104,71,0.56);
   --rule-light:rgba(255,104,71,0.42);
@@ -1211,18 +1643,9 @@ html[data-palette="brickvermilion"] :is(
   color:var(--accent);
 }
 
-html[data-palette="brickvermilion"] .scroll-note{
-  color:var(--accent);
-  opacity:0.72;
-}
-
 html[data-palette="brickvermilion"] .map-marker{
   border-color:var(--accent);
   background:var(--accent);
-}
-
-html[data-palette] .site-header{
-  background:color-mix(in srgb,var(--paper) 92%,transparent);
 }
 
 html[data-palette] :is(
@@ -1242,7 +1665,6 @@ html[data-palette] .map-marker{
   border-color:var(--ink);
   background:var(--ink);
   color:var(--paper);
-  box-shadow:0 0 0 2px var(--paper);
 }
 
 html[data-palette] .hotel-button:hover,
@@ -1251,109 +1673,9 @@ html[data-palette] .hotel-button:focus-visible{
   color:var(--paper);
 }
 
-html[data-palette] .faq-trigger:focus-visible{
+html[data-palette] .faq-trigger:focus-visible,
+html[data-palette] .rsvp-choice:focus-visible{
   background:color-mix(in srgb,var(--ink) 8%,transparent);
-}
-
-/* Quiet paper tooth plus a scroll-reactive grazing light on printed panels. */
-html[data-material="print"] body::after{
-  content:"";
-  position:fixed;
-  z-index:1000;
-  inset:0;
-  pointer-events:none;
-  background:url("uploads/material/paper-grain.webp") repeat;
-  background-size:28rem 28rem;
-  mix-blend-mode:soft-light;
-  opacity:0.105;
-}
-
-html[data-material="print"] :is(
-  .itinerary-item,
-  .flight-editorial,
-  .hotel-card
-){
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  box-shadow:
-    inset 0 0.8px rgb(255 255 255 / var(--material-edge-top)),
-    inset 0 -0.8px rgb(255 255 255 / var(--material-edge-bottom)),
-    inset 0 1.2px rgb(48 10 7 / 0.1),
-    inset 0 -1.2px rgb(48 10 7 / 0.14),
-    inset 0.65px 0 rgb(255 255 255 / 0.035),
-    inset -0.65px 0 rgb(48 10 7 / 0.08);
-}
-
-html[data-material="print"] :is(
-  .itinerary-item,
-  .flight-editorial,
-  .hotel-card
-)::after{
-  content:"";
-  position:absolute;
-  z-index:3;
-  inset:1px;
-  pointer-events:none;
-  background-image:
-    radial-gradient(ellipse 96% 19% at 50% var(--material-light-y),rgb(255 255 255 / 0.3),rgb(255 255 255 / 0.07) 44%,rgb(51 9 7 / 0.08) 53%,transparent 76%),
-    url("uploads/material/card-stock.webp");
-  background-position:center,0 0;
-  background-size:100% 100%,30rem 30rem;
-  background-repeat:no-repeat,repeat;
-  mix-blend-mode:soft-light;
-  opacity:var(--material-overlay-opacity);
-  transition:opacity 140ms linear;
-}
-
-html[data-material="print"] :is(
-  .eyebrow,
-  .hero-title,
-  .section-title,
-  .itinerary-event,
-  .flight-primary h3,
-  .flight-origin h3,
-  .flight-ticket-meta strong,
-  .hotel-card h4,
-  .atlas-index h3,
-  .atlas-entry h4,
-  .faq-question,
-  .trip-note strong
-){
-  text-shadow:
-    0 var(--material-light-offset) 0 rgb(255 255 255 / var(--material-text-light)),
-    0 var(--material-shadow-offset) 0 rgb(47 9 7 / var(--material-text-dark));
-}
-
-html[data-material="print"] :is(
-  .intro-art,
-  .itinerary-image,
-  .section-icon,
-  .trip-note-icon
-){
-  filter:
-    drop-shadow(var(--art-light-x) var(--art-light-y) 0 rgb(255 246 231 / var(--art-light-alpha)));
-}
-
-html[data-material="print"][data-palette] :is(
-  .intro-art,
-  .itinerary-image,
-  .section-icon,
-  .trip-note-icon
-){
-  filter:
-    var(--art-filter)
-    drop-shadow(var(--art-light-x) var(--art-light-y) 0 rgb(255 246 231 / var(--art-light-alpha)));
-}
-
-html[data-material="print"] .atlas-map img{
-  filter:drop-shadow(-0.22px 0.44px 0 rgb(255 246 231 / 0.1));
-}
-
-html[data-material="print"][data-palette] .atlas-map img{
-  filter:
-    var(--art-filter)
-    drop-shadow(-0.22px 0.44px 0 rgb(255 246 231 / 0.1));
 }
 
 @media (max-width: 760px){
@@ -1361,44 +1683,62 @@ html[data-material="print"][data-palette] .atlas-map img{
     align-items:center;
   }
 
+  .hero{
+    padding-top:clamp(1.85rem,5.5vh,3.25rem);
+    padding-bottom:clamp(4.75rem,12vh,6rem);
+  }
+
   .hero-title{
-    font-size:clamp(4rem,19vw,6.5rem);
-    line-height:0.88;
-    margin-block:1.35rem 0.9rem;
+    font-size:clamp(6rem,24vw,9.75rem);
+    line-height:0.78;
+    margin-block:0.35rem 0.85rem;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    margin-inline:auto;
+    padding:0.27em 0.04em 0.13em;
+    box-sizing:border-box;
   }
 
   .eyebrow{
-    font-size:0.72rem;
-    letter-spacing:0.15em;
+    font-size:0.75rem;
+    letter-spacing:0.18em;
   }
 
   .invitation-details{
     width:calc(100% - 1.5rem);
-    max-width:34rem;
-    font-size:clamp(0.82rem,4vw,1.08rem);
-    line-height:1.26;
-    letter-spacing:-0.035em;
+    max-width:min(34rem,100%);
+    margin-top:0.65rem;
+    font-size:clamp(0.875rem,3vw,0.9375rem);
+    line-height:1.65;
+    letter-spacing:0.06em;
+    padding-inline:0.35rem;
+    box-sizing:border-box;
+    transform:translateY(clamp(1.5rem,5vh,2.25rem));
   }
 
   .scroll-note{
     bottom:0.45rem;
     width:calc(100% - 1.5rem);
-    font-size:0.5rem;
-    letter-spacing:0.055em;
-  }
-
-  .intro-copy{
-    font-size:0.95rem;
+    font-size:0.5625rem;
+    letter-spacing:0.14em;
   }
 
   .itinerary-item{
     grid-template-columns:1fr;
-    gap:1.5rem;
+    gap:1.15rem;
     text-align:center;
   }
 
-  .itinerary-copy p:last-child{
-    margin-inline:auto;
+  .itinerary-copy{
+    grid-column:1;
+    grid-row:2;
+  }
+
+  .itinerary-image,
+  .itinerary-pool-art{
+    grid-column:1;
+    grid-row:1;
   }
 
   .itinerary-meta{
@@ -1416,25 +1756,13 @@ html[data-material="print"][data-palette] .atlas-map img{
   }
 
   .flight-origin{
-    grid-template-columns:1fr;
-    gap:0.7rem;
     padding:1.35rem 1.5rem 1.45rem;
   }
 
   .flight-origin-copy{
     max-width:30rem;
-    font-size:0.825rem;
-    line-height:1.45;
-  }
-
-  .flight-mexico-note{
-    grid-template-columns:1fr;
-  }
-
-  .flight-mexico-note p{
-    background-image:var(--ink-rule-horizontal);
-    background-position:left top;
-    background-size:100% 1px;
+    font-size:0.9375rem;
+    line-height:1.6;
   }
 
   .trip-note{
@@ -1442,12 +1770,8 @@ html[data-material="print"][data-palette] .atlas-map img{
     padding-inline:0.5rem;
   }
 
-  .itinerary-image,
-  .itinerary-image.welcome-art,
-  .itinerary-image.ceremony-art,
-  .itinerary-image.farewell-art{
-    width:min(var(--itinerary-art-width,12rem),70vw);
-    height:auto;
+  .itinerary-image{
+    height:min(calc(var(--itinerary-art-height,8rem) * 1.15),38vw);
     margin-inline:auto;
   }
 
@@ -1483,13 +1807,12 @@ html[data-material="print"][data-palette] .atlas-map img{
 
   .faq-answer p{
     padding-inline:2.25rem;
-    font-size:1rem;
+    font-size:1.025rem;
   }
 
-  .hotel-button{
-    min-height:2.75rem;
-    padding-inline:1.05rem;
-    font-size:0.6875rem;
+  .rsvp-choices,
+  .rsvp-fields{
+    grid-template-columns:1fr;
   }
 }
 
@@ -1499,16 +1822,20 @@ html[data-material="print"][data-palette] .atlas-map img{
   }
 
   .section{
-    padding-block:6rem;
+    padding-block:4.75rem;
+  }
+
+  .rsvp-note{
+    padding-block:4rem;
   }
 
   .hero-title{
-    font-size:clamp(3.75rem,18.5vw,4.875rem);
+    font-size:clamp(5.5rem,25vw,6.75rem);
   }
 
   .invitation-details{
     width:calc(100% - 1.25rem);
-    max-width:34rem;
+    max-width:min(34rem,100%);
   }
 
   .flight-primary{
@@ -1528,7 +1855,7 @@ html[data-material="print"][data-palette] .atlas-map img{
   }
 
   .trip-note p{
-    font-size:0.825rem;
+    font-size:1rem;
   }
 
   .faq-trigger{
@@ -1542,7 +1869,7 @@ html[data-material="print"][data-palette] .atlas-map img{
 
   .faq-answer p{
     padding-inline:1rem;
-    font-size:0.95rem;
+    font-size:1.0625rem;
   }
 }
 
@@ -1556,14 +1883,6 @@ html[data-material="print"][data-palette] .atlas-map img{
     transition-duration:0.01ms !important;
     animation-duration:0.01ms !important;
     animation-iteration-count:1 !important;
-  }
-
-  html[data-material="print"] :is(
-    .itinerary-item,
-    .flight-editorial,
-    .hotel-card
-  )::after{
-    background-image:url("uploads/material/card-stock.webp");
   }
 }
 </style>
@@ -1612,49 +1931,87 @@ html[data-material="print"][data-palette] .atlas-map img{
 <main>
   <section id="home" class="hero">
     <p class="eyebrow" data-reveal>The Wedding Of</p>
-    <h1 class="hero-title" data-reveal>Rachel &amp; William</h1>
+    <h1 class="hero-title" data-reveal><span>Rachel</span><span>&amp;&nbsp;William</span></h1>
     <p class="invitation-details" data-reveal>
-      Saturday, <span class="detail-emphasis">May the eighth, 2027</span> at <span class="detail-emphasis">five o'clock</span> in the evening in the garden, at <span class="detail-emphasis">Sierra Casa Nevada</span>, <span class="detail-emphasis">San Miguel de Allende</span>
+      <span class="invitation-line">Saturday, May the eighth, 2027</span>
+      <span class="invitation-line">in the garden at Belmond Casa de Sierra Nevada</span>
+      <span class="invitation-line">San Miguel de Allende, Mexico</span>
     </p>
-    <p class="scroll-note">Scroll for everything you'll need</p>
+    <div class="calendar-add" data-reveal>
+      <button class="calendar-add-trigger" type="button" aria-expanded="false" aria-haspopup="menu" aria-controls="calendar-add-menu">
+        <span>Add to calendar</span>
+      </button>
+      <ul class="calendar-add-menu" id="calendar-add-menu" role="menu" hidden>
+        <li role="none"><a role="menuitem" href="calendar/wedding.ics">Apple</a></li>
+        <li role="none"><a role="menuitem" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=The%20Wedding%20of%20Rachel%20%26%20William&amp;dates=20270508T230000Z%2F20270509T050000Z&amp;location=Sierra%20Casa%20Nevada%2C%20San%20Miguel%20de%20Allende&amp;details=Ceremony%20in%20the%20garden%20at%20five%20o%27clock%20in%20the%20evening." target="_blank" rel="noopener noreferrer">Google</a></li>
+        <li role="none"><a role="menuitem" href="https://outlook.live.com/calendar/0/deeplink/compose?rru=addevent&amp;subject=The%20Wedding%20of%20Rachel%20%26%20William&amp;startdt=2027-05-08T23%3A00%3A00Z&amp;enddt=2027-05-09T05%3A00%3A00Z&amp;location=Sierra%20Casa%20Nevada%2C%20San%20Miguel%20de%20Allende&amp;body=Ceremony%20in%20the%20garden%20at%20five%20o%27clock%20in%20the%20evening." target="_blank" rel="noopener noreferrer">Outlook</a></li>
+      </ul>
+    </div>
+    <p class="scroll-note">Scroll for weekend details</p>
   </section>
 
   <section class="intro section">
     <div class="intro-inner">
       <img class="intro-art" src="uploads/figma/wedding-intro-clean.png" width="1574" height="656" alt="" decoding="async" fetchpriority="high">
-      <p class="intro-copy" data-reveal>
-        <span class="copy-emphasis">Two years together</span> have taught us that the best evenings are the ones <span class="copy-emphasis">you never want to end.</span> This is our attempt at one. Everything you need to be there with us lives on this page: <span class="copy-emphasis">where to sleep</span>, <span class="copy-emphasis">when to arrive</span>, and the handful of things worth knowing before you pack.
-      </p>
     </div>
   </section>
 
+  <section id="rsvp-note" class="section rsvp-note">
+    <h2 class="section-title" data-reveal>Already know your schedule? Help us plan.</h2>
+    <form class="rsvp-form" id="guest-intent-form" action="https://formsubmit.co/wprathererwin@gmail.com" method="POST" data-endpoint="https://formsubmit.co/ajax/wprathererwin@gmail.com" data-reveal>
+      <input type="hidden" name="_subject" value="Wedding website response">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden>
+      <input type="hidden" name="response" id="guest-response" value="">
+      <div class="rsvp-choices" role="radiogroup" aria-label="Can you join us?">
+        <button class="rsvp-choice" type="button" role="radio" aria-checked="false" data-intent="no">I can't :(</button>
+        <button class="rsvp-choice" type="button" role="radio" aria-checked="false" data-intent="yes">Yes! I'm in</button>
+        <button class="rsvp-choice" type="button" role="radio" aria-checked="false" data-intent="later">I need more time</button>
+      </div>
+      <p class="rsvp-kicker">A note for now &mdash; not the formal RSVP</p>
+      <div class="rsvp-details" hidden>
+        <p class="rsvp-step-heading">Who is responding?</p>
+        <div class="rsvp-fields">
+          <label class="rsvp-field">
+            <span>Name(s)</span>
+            <span class="rsvp-field-control">
+              <input type="text" name="name" autocomplete="name" required>
+              <button class="rsvp-submit" type="submit" disabled>Send my response</button>
+            </span>
+          </label>
+        </div>
+        <button class="rsvp-back" type="button">Change response</button>
+      </div>
+      <p class="rsvp-confirm" aria-live="polite"></p>
+    </form>
+  </section>
+
   <section id="itinerary" class="section">
-    <h2 class="section-title script-title" data-reveal>Itinerary</h2>
+    <h2 class="section-title" data-reveal>Weekend Itinerary</h2>
     <div class="itinerary-list" data-reveal>
       <article class="itinerary-item">
         <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Welcome Drinks</span><span class="itinerary-meta"><span class="detail-emphasis">May 7</span>, Evening, <span class="detail-emphasis">Downtown San Miguel</span></span></h3>
-          <p>An easy first night with the faces you know and the ones you don't. Come straight from the airport.</p>
+          <h3 class="itinerary-heading"><span class="itinerary-event">Sun &amp; Swim</span><span class="itinerary-date">May 7</span><span class="itinerary-meta">Afternoon, Sierra Casa Nevada</span><span class="itinerary-optional">Optional</span></h3>
+        </div>
+        <div class="itinerary-pool-art" aria-hidden="true"><span></span><span></span><span></span></div>
+      </article>
+
+      <article class="itinerary-item">
+        <div class="itinerary-copy">
+          <h3 class="itinerary-heading"><span class="itinerary-event">Welcome Party</span><span class="itinerary-date">May 7</span><span class="itinerary-meta">Evening, Downtown San Miguel</span></h3>
         </div>
         <img class="itinerary-image welcome-art" src="uploads/figma/itinerary-welcome.png" width="558" height="741" alt="" loading="lazy" decoding="async">
       </article>
 
       <article class="itinerary-item">
         <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Ceremony &amp; Reception</span><span class="itinerary-meta"><span class="detail-emphasis">May 8</span>, Afternoon, <span class="detail-emphasis">Sierra Casa Nevada</span></span></h3>
-          <p>Vows at golden hour, dinner under the tent, and a long night outside. Dress warmly.</p>
+          <h3 class="itinerary-heading"><span class="itinerary-event">Ceremony &amp; Reception</span><span class="itinerary-date">May 8</span><span class="itinerary-meta">Evening, Sierra Casa Nevada</span></h3>
         </div>
         <img class="itinerary-image ceremony-art" src="uploads/figma/itinerary-ceremony.png" width="525" height="699" alt="" loading="lazy" decoding="async">
       </article>
 
-      <article class="itinerary-item">
-        <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Farewell "Morning"</span><span class="itinerary-meta"><span class="detail-emphasis">May 9</span>, Noon, <span class="detail-emphasis">Sierra Casa Nevada</span></span></h3>
-          <p>Coffee, one last round of stories, and a slow goodbye. Optional, but worth it.</p>
-        </div>
-        <img class="itinerary-image farewell-art" src="uploads/figma/itinerary-farewell.png" width="558" height="741" alt="" loading="lazy" decoding="async">
-      </article>
     </div>
+    <p class="itinerary-followup" data-reveal>Details to follow.</p>
   </section>
 
   <section id="flights" class="section">
@@ -1666,52 +2023,46 @@ html[data-material="print"][data-palette] .atlas-map img{
         <div class="flight-primary">
           <span class="flight-overview-label">Recommended Arrival</span>
           <h3>Fly into Querétaro</h3>
-          <p>QRO is the easiest arrival. Most U.S. routes connect through Dallas/Fort Worth, then it is about one hour by car to San Miguel. Check León/Bajío (BJX) only when the schedule is clearly better.</p>
+          <p>QRO is our primary recommendation. It is about a 1-1.5-hour drive to San Miguel, with straightforward connections through DFW or IAH. Volaris offers limited direct flights from Los Angeles to QRO on Tuesdays, Thursdays, and Sundays.</p>
           <div class="flight-ticket-meta" aria-label="Recommended flight details">
             <div><span>Airport</span><strong>QRO</strong></div>
-            <div><span>Airport to San Miguel</span><strong>1 Hour</strong></div>
-            <div><span>Usual Connection</span><strong>DFW</strong></div>
+            <div><span>Drive to San Miguel</span><strong>1-1.5 Hours</strong></div>
+            <div><span>Easy Connections</span><strong>DFW / IAH</strong></div>
           </div>
         </div>
 
         <div class="flight-origins">
           <article class="flight-origin">
             <div>
-              <h3>New York</h3>
-              <span class="flight-origin-route">NYC / QRO OR BJX</span>
+              <span class="flight-origin-route">BJX</span>
+              <h3>León / Bajío</h3>
             </div>
-            <p class="flight-origin-copy">American through Dallas/Fort Worth. Compare BJX only when the timing is materially better.</p>
+            <p class="flight-origin-copy">Another good option. It is a 1-1.5 hour drive to San Miguel, though traffic can make the journey longer.</p>
           </article>
 
           <article class="flight-origin">
             <div>
-              <h3>Los Angeles</h3>
-              <span class="flight-origin-route">LAX OR TIJ / QRO OR BJX</span>
+              <span class="flight-origin-route">MEX</span>
+              <h3>Mexico City</h3>
             </div>
-            <p class="flight-origin-copy">For the budget route, train or drive to CBX, cross into TIJ, and fly nonstop to QRO or BJX. Often the simplest option.</p>
-          </article>
-
-          <article class="flight-origin">
-            <div>
-              <h3>Detroit</h3>
-              <span class="flight-origin-route">DTW / QRO OR BJX</span>
-            </div>
-            <p class="flight-origin-copy">American through Dallas/Fort Worth or United through Houston. QRO first; BJX as the alternate.</p>
+            <p class="flight-origin-copy">It is a 4 hour drive to San Miguel. Best if you plan for a CDMX trip before the wedding.</p>
           </article>
         </div>
-
-        <aside class="flight-mexico-note">
-          <div class="flight-mexico-heading">
-            <span class="flight-mexico-label">Want Time in Mexico City?</span>
-          </div>
-          <p>Fly into MEX, stay one or two nights, then drive to San Miguel. The transfer is three-plus hours, so choose it for the city, not convenience.</p>
-        </aside>
       </div>
+
+      <aside class="flight-tips" aria-labelledby="flight-tips-title">
+        <h3 id="flight-tips-title">Travel Tips</h3>
+        <ul>
+          <li>Check your passport expiration date. Six months of validity beyond your return date is recommended.</li>
+          <li>For those wanting to spend a couple of days in Mexico City before or after the wedding, it is about a 40 minute flight from QRO or a four hour drive from San Miguel.</li>
+          <li>To attend the full weekend, plan to travel Thursday through Sunday.</li>
+        </ul>
+      </aside>
 
       <div class="trip-notes">
         <div class="trip-note">
           <img class="trip-note-icon" src="uploads/figma/getting-around-icon.png" width="480" height="291" alt="" loading="lazy" decoding="async">
-          <p><strong>Reserve your ride.</strong> QRO is about an hour from San Miguel. Arrange a driver.</p>
+          <p><strong>Airport &amp; general transportation.</strong> Email Maritza at <a class="inline-link" href="mailto:contact@tripsanmiguel.com">contact@tripsanmiguel.com</a> with your flight information to request a price. SUVs and vans are available. You can also book through <a class="inline-link" href="https://transportartemexico.com/#1979a3f6-b49a-4f5a-a10d-a658ca763f06" target="_blank" rel="noopener">TransportArte Mexico</a> or ask your hotel to arrange a car.</p>
         </div>
       </div>
     </div>
@@ -1732,7 +2083,7 @@ html[data-material="print"][data-palette] .atlas-map img{
     <img class="section-icon travel-icon" src="uploads/figma/travel-icon.png" width="441" height="426" alt="" loading="lazy" decoding="async">
     <h2 class="section-title" data-reveal>Where to Stay</h2>
     <div class="single-column" data-reveal>
-      <p>We're holding a <span class="copy-emphasis">room block at Numu.</span> Book early, as it releases on May 8, 2027. Reference <span class="copy-emphasis">"The Chambers May Wedding"</span> for the group rate. A few more options are listed below.</p>
+      <p>We're holding rooms at <span class="copy-emphasis">Numu.</span> Book early. Reference <span class="copy-emphasis">&ldquo;the Erwin Matthews Wedding.&rdquo;</span> A few more options are listed below.</p>
     </div>
 
     <div class="travel-grid" data-reveal>
@@ -1745,7 +2096,7 @@ html[data-material="print"][data-palette] .atlas-map img{
       <article class="hotel-card">
         <h4>Numu</h4>
         <p>Designer hotel with a rooftop pool and our room block.</p>
-        <p class="hotel-link"><a class="hotel-button" href="https://www.hyatt.com/unbound-collection/en-US/bjxub-numu" target="_blank" rel="noopener">Book Online</a></p>
+        <p class="hotel-link"><a class="hotel-button" href="https://www.hyatt.com/events/en-US/group-booking/BJXUB/G-RAWI" target="_blank" rel="noopener">Book Room Block</a></p>
       </article>
 
       <article class="hotel-card">
@@ -1755,12 +2106,18 @@ html[data-material="print"][data-palette] .atlas-map img{
       </article>
 
       <article class="hotel-card">
+        <h4>Casa Hoyos</h4>
+        <p>A 16-room boutique hotel pairing colonial architecture with contemporary Mexican design.</p>
+        <p class="hotel-link"><a class="hotel-button" href="https://www.casahoyos.mx/es" target="_blank" rel="noopener">Book Online</a></p>
+      </article>
+
+      <article class="hotel-card">
         <h4>Orchid House</h4>
         <p>An intimate 300-year-old boutique hotel steps from La Parroquia.</p>
         <p class="hotel-link"><a class="hotel-button" href="https://orchidhousehotels.com/san-miguel-de-allende" target="_blank" rel="noopener">Book Online</a></p>
       </article>
 
-      <article class="hotel-card wide">
+      <article class="hotel-card">
         <h4>Airbnb</h4>
         <p>More space, a kitchen, or a house for the whole group.</p>
         <p class="hotel-link"><a class="hotel-button" href="https://www.airbnb.com/s/San-Miguel-de-Allende--Mexico/homes" target="_blank" rel="noopener">Search Airbnb</a></p>
@@ -1768,7 +2125,7 @@ html[data-material="print"][data-palette] .atlas-map img{
     </div>
   </section>
 
-  <section id="guide" class="section city-guide">
+  <section id="guide" class="section city-guide" hidden>
     <div class="section-kicker"><span>05</span><span>While You're Here</span></div>
     <h2 class="section-title" data-reveal>What to Do</h2>
     <div class="city-atlas">
@@ -1849,7 +2206,7 @@ html[data-material="print"][data-palette] .atlas-map img{
     </div>
   </section>
 
-  <section id="faqs" class="section faqs">
+  <section id="faqs" class="section faqs" hidden>
     <div class="section-kicker"><span>06</span><span>Good To Know</span></div>
     <h2 class="section-title" data-reveal>Questions</h2>
     <div class="faq-list" data-reveal>
@@ -1933,13 +2290,15 @@ class Component extends DCLogic {
     const scrollToHash = () => {
       if (!window.location.hash) return;
       const target = root.querySelector(window.location.hash);
-      if (target) target.scrollIntoView({ block: 'start' });
+      if (target && !target.hasAttribute('hidden') && !target.closest('[hidden]')) {
+        target.scrollIntoView({ block: 'start' });
+      }
     };
     [0, 120, 400, 900].forEach((delay) => window.setTimeout(scrollToHash, delay));
     root.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
         const target = root.querySelector(link.getAttribute('href'));
-        if (!target) return;
+        if (!target || target.hasAttribute('hidden') || target.closest('[hidden]')) return;
         event.preventDefault();
         history.pushState(null, '', link.getAttribute('href'));
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1955,89 +2314,178 @@ class Component extends DCLogic {
       });
     });
 
-    const materialSurfaces = Array.from(root.querySelectorAll('.itinerary-item, .flight-editorial, .hotel-card'));
-    const materialType = Array.from(root.querySelectorAll('.eyebrow, .hero-title, .section-title, .itinerary-event, .flight-primary h3, .flight-origin h3, .flight-ticket-meta strong, .hotel-card h4, .atlas-index h3, .atlas-entry h4, .faq-question, .trip-note strong'));
-    const materialArt = Array.from(root.querySelectorAll('.intro-art, .itinerary-image, .section-icon, .trip-note-icon'));
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const artLightInput = { active: false, x: -0.22, y: 0.64 };
-    let materialFrame = 0;
-
-    const updateMaterialLight = () => {
-      materialFrame = 0;
-      const viewportHeight = Math.max(window.innerHeight, 1);
-      const setLight = (element, isSurface) => {
-        const rect = element.getBoundingClientRect();
-        const center = rect.top + rect.height * 0.5;
-        const proximity = Math.max(0, 1 - Math.abs(center - viewportHeight * 0.5) / (viewportHeight * 0.78));
-        const travel = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
-        const lightDirection = travel < 0.5 ? 1 : -1;
-        const lightOffset = lightDirection * (0.52 + proximity * 0.24);
-        element.style.setProperty('--material-text-light', (0.065 + proximity * 0.085).toFixed(3));
-        element.style.setProperty('--material-text-dark', (0.17 + proximity * 0.13).toFixed(3));
-        element.style.setProperty('--material-light-offset', `${lightOffset.toFixed(2)}px`);
-        element.style.setProperty('--material-shadow-offset', `${(-lightOffset * 1.08).toFixed(2)}px`);
-        if (isSurface) {
-          element.style.setProperty('--material-light-y', `${Math.round(12 + travel * 76)}%`);
-          element.style.setProperty('--material-overlay-opacity', (0.14 + proximity * 0.14).toFixed(3));
-          element.style.setProperty('--material-edge-top', (0.055 + (1 - travel) * 0.12).toFixed(3));
-          element.style.setProperty('--material-edge-bottom', (0.055 + travel * 0.12).toFixed(3));
-        }
-      };
-      materialSurfaces.forEach((element) => setLight(element, true));
-      materialType.forEach((element) => setLight(element, false));
-      materialArt.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        const center = rect.top + rect.height * 0.5;
-        const proximity = Math.max(0, 1 - Math.abs(center - viewportHeight * 0.5) / (viewportHeight * 0.82));
-        const travel = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
-        const direction = travel < 0.5 ? 1 : -1;
-        const scrollY = direction * (0.68 + proximity * 0.32);
-        const sourceX = artLightInput.active ? artLightInput.x * 0.72 : -0.24;
-        const sourceY = artLightInput.active ? artLightInput.y * 0.48 + scrollY * 0.72 : scrollY;
-        const vectorLength = Math.max(Math.hypot(sourceX, sourceY), 0.001);
-        const rimWidth = 0.58 + proximity * 0.52;
-        element.style.setProperty('--art-light-x', `${(sourceX / vectorLength * rimWidth).toFixed(2)}px`);
-        element.style.setProperty('--art-light-y', `${(sourceY / vectorLength * rimWidth).toFixed(2)}px`);
-        element.style.setProperty('--art-light-alpha', (0.12 + proximity * 0.18).toFixed(3));
-      });
-    };
-
-    const scheduleMaterialLight = () => {
-      if (!materialFrame) materialFrame = window.requestAnimationFrame(updateMaterialLight);
-    };
-
-    updateMaterialLight();
-    if (!reduceMotion) {
-      const updatePointerLight = (event) => {
-        if (event.pointerType && event.pointerType !== 'mouse') return;
-        artLightInput.active = true;
-        artLightInput.x = Math.max(-1, Math.min(1, event.clientX / Math.max(window.innerWidth, 1) * 2 - 1));
-        artLightInput.y = Math.max(-1, Math.min(1, event.clientY / Math.max(window.innerHeight, 1) * 2 - 1));
-        scheduleMaterialLight();
-      };
-      const updateOrientationLight = (event) => {
-        if (event.gamma == null || event.beta == null) return;
-        artLightInput.active = true;
-        artLightInput.x += (Math.max(-1, Math.min(1, event.gamma / 32)) - artLightInput.x) * 0.18;
-        artLightInput.y += (Math.max(-1, Math.min(1, (event.beta - 45) / 38)) - artLightInput.y) * 0.18;
-        scheduleMaterialLight();
-      };
-      window.addEventListener('scroll', scheduleMaterialLight, { passive: true });
-      window.addEventListener('resize', scheduleMaterialLight, { passive: true });
-      window.addEventListener('pointermove', updatePointerLight, { passive: true });
-      window.addEventListener('deviceorientation', updateOrientationLight, { passive: true });
-      this.materialCleanup = () => {
-        window.removeEventListener('scroll', scheduleMaterialLight);
-        window.removeEventListener('resize', scheduleMaterialLight);
-        window.removeEventListener('pointermove', updatePointerLight);
-        window.removeEventListener('deviceorientation', updateOrientationLight);
-        if (materialFrame) window.cancelAnimationFrame(materialFrame);
-      };
+    const calendar = root.querySelector('.calendar-add');
+    if (calendar) {
+      const trigger = calendar.querySelector('.calendar-add-trigger');
+      const menu = calendar.querySelector('.calendar-add-menu');
+      const items = Array.from(calendar.querySelectorAll('[role="menuitem"]'));
+      if (trigger && menu) {
+        const setOpen = (open) => {
+          trigger.setAttribute('aria-expanded', String(open));
+          menu.hidden = !open;
+          calendar.classList.toggle('is-open', open);
+        };
+        const close = (restoreFocus) => {
+          if (trigger.getAttribute('aria-expanded') !== 'true') return;
+          setOpen(false);
+          if (restoreFocus) trigger.focus();
+        };
+        setOpen(false);
+        trigger.addEventListener('click', () => {
+          setOpen(trigger.getAttribute('aria-expanded') !== 'true');
+        });
+        trigger.addEventListener('keydown', (event) => {
+          if (event.key === 'Tab' && event.shiftKey) close(false);
+          if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+          event.preventDefault();
+          setOpen(true);
+          (event.key === 'ArrowUp' ? items[items.length - 1] : items[0])?.focus();
+        });
+        menu.addEventListener('keydown', (event) => {
+          const index = items.indexOf(document.activeElement);
+          if (event.key === 'Tab' && !event.shiftKey && document.activeElement === items[items.length - 1]) {
+            close(false);
+            return;
+          }
+          if (index < 0) return;
+          if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            items[(index + 1) % items.length].focus();
+          } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            items[(index - 1 + items.length) % items.length].focus();
+          } else if (event.key === 'Home') {
+            event.preventDefault();
+            items[0].focus();
+          } else if (event.key === 'End') {
+            event.preventDefault();
+            items[items.length - 1].focus();
+          }
+        });
+        items.forEach((item) => {
+          item.addEventListener('click', () => close(false));
+        });
+        const onPointerDown = (event) => {
+          if (!calendar.contains(event.target)) close(false);
+        };
+        const onKeyDown = (event) => {
+          if (event.key === 'Escape') close(true);
+        };
+        document.addEventListener('pointerdown', onPointerDown);
+        document.addEventListener('keydown', onKeyDown);
+        this.calendarCleanup = () => {
+          document.removeEventListener('pointerdown', onPointerDown);
+          document.removeEventListener('keydown', onKeyDown);
+        };
+      }
     }
+
+    const intentCopy = {
+      no: "We'll miss you. Thank you for telling us.",
+      yes: "Wonderful. We can't wait to celebrate with you.",
+      later: "Of course. Take the time you need."
+    };
+    const intentRoot = root.querySelector('#rsvp-note');
+    if (intentRoot) {
+      const form = intentRoot.querySelector('#guest-intent-form');
+      const choicesRoot = intentRoot.querySelector('.rsvp-choices');
+      const choices = Array.from(intentRoot.querySelectorAll('[data-intent]'));
+      const kicker = intentRoot.querySelector('.rsvp-kicker');
+      const details = intentRoot.querySelector('.rsvp-details');
+      const stepHeading = intentRoot.querySelector('.rsvp-step-heading');
+      const nameInput = intentRoot.querySelector('input[name="name"]');
+      const back = intentRoot.querySelector('.rsvp-back');
+      const confirm = intentRoot.querySelector('.rsvp-confirm');
+      const responseInput = intentRoot.querySelector('#guest-response');
+      const submit = intentRoot.querySelector('.rsvp-submit');
+      const updateSubmitState = () => {
+        if (submit) submit.disabled = !nameInput?.value.trim();
+      };
+      const stepCopy = {
+        no: "Thank you for letting us know. Who is responding?",
+        yes: "Wonderful. Who should we count in?",
+        later: "No rush. Who should we follow up with?"
+      };
+      const applyIntent = (value) => {
+        choices.forEach((choice) => {
+          choice.setAttribute('aria-checked', String(choice.getAttribute('data-intent') === value));
+        });
+        if (responseInput) responseInput.value = intentCopy[value] ? `${choices.find((choice) => choice.getAttribute('data-intent') === value)?.textContent || value}` : '';
+        if (stepHeading) stepHeading.textContent = stepCopy[value] || 'Who is responding?';
+        if (choicesRoot) choicesRoot.hidden = true;
+        if (kicker) kicker.hidden = true;
+        if (details) details.hidden = false;
+        if (confirm) confirm.textContent = '';
+        updateSubmitState();
+        window.requestAnimationFrame(() => nameInput?.focus());
+      };
+      choices.forEach((choice, index) => {
+        choice.addEventListener('click', () => {
+          const value = choice.getAttribute('data-intent');
+          applyIntent(value);
+        });
+        choice.addEventListener('keydown', (event) => {
+          if (!['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft'].includes(event.key)) return;
+          event.preventDefault();
+          const delta = (event.key === 'ArrowDown' || event.key === 'ArrowRight') ? 1 : -1;
+          choices[(index + delta + choices.length) % choices.length].focus();
+        });
+      });
+      choices.forEach((choice) => choice.setAttribute('aria-checked', 'false'));
+      if (responseInput) responseInput.value = '';
+      if (choicesRoot) choicesRoot.hidden = false;
+      if (kicker) kicker.hidden = false;
+      if (details) details.hidden = true;
+      updateSubmitState();
+      nameInput?.addEventListener('input', updateSubmitState);
+      if (back) {
+        back.addEventListener('click', () => {
+          choices.forEach((choice) => choice.setAttribute('aria-checked', 'false'));
+          if (responseInput) responseInput.value = '';
+          if (details) details.hidden = true;
+          if (choicesRoot) choicesRoot.hidden = false;
+          if (kicker) kicker.hidden = false;
+          if (confirm) confirm.textContent = '';
+          if (nameInput) nameInput.value = '';
+          updateSubmitState();
+          choices[0]?.focus();
+        });
+      }
+
+      if (form && submit && confirm) {
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          if (!form.reportValidity() || !responseInput?.value) return;
+
+          const originalLabel = submit.textContent;
+          submit.disabled = true;
+          submit.textContent = 'Sending…';
+          confirm.textContent = '';
+
+          try {
+            const response = await fetch(form.dataset.endpoint, {
+              method: 'POST',
+              headers: { Accept: 'application/json' },
+              body: new FormData(form)
+            });
+            if (!response.ok) throw new Error('Unable to send response');
+
+            form.classList.add('is-complete');
+            const selectedIntent = choices.find((choice) => choice.getAttribute('aria-checked') === 'true')?.getAttribute('data-intent');
+            confirm.textContent = intentCopy[selectedIntent] || 'Thank you. Your response has been sent.';
+          } catch (error) {
+            confirm.textContent = "We couldn't send that just now. Please try again.";
+            updateSubmitState();
+            submit.textContent = originalLabel;
+          }
+        });
+      }
+    }
+
   }
 
   componentWillUnmount() {
-    if (this.materialCleanup) this.materialCleanup();
+    if (this.calendarCleanup) this.calendarCleanup();
   }
 }
 </script>
