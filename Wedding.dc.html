@@ -171,7 +171,7 @@ button:focus-visible{
 .monogram{
   display:inline-flex;
   align-items:center;
-  width:clamp(2.7rem,4vw,3.35rem);
+  width:clamp(3.4rem,5vw,4.2rem);
   text-decoration:none;
 }
 
@@ -288,7 +288,6 @@ section#faqs{
 }
 
 .intro{
-  min-height:550px;
   display:flex;
   justify-content:center;
   align-items:flex-start;
@@ -296,7 +295,8 @@ section#faqs{
 }
 
 .intro-inner{
-  max-width:46.5rem;
+  width:100%;
+  max-width:60rem;
   margin-inline:auto;
   display:flex;
   flex-direction:column;
@@ -305,7 +305,8 @@ section#faqs{
 }
 
 .intro-art{
-  width:min(100%,43.85rem);
+  width:min(calc(100% + var(--gutter)),55rem);
+  max-width:none;
 }
 
 .section-kicker{
@@ -604,6 +605,10 @@ section#faqs{
   grid-row:1;
 }
 
+.itinerary-image{
+  transform:scale(1.2);
+}
+
 .itinerary-image.welcome-art{
   --itinerary-art-height:7.75rem;
 }
@@ -612,30 +617,8 @@ section#faqs{
   --itinerary-art-height:9rem;
 }
 
-.itinerary-pool-art{
-  width:7.75rem;
-  display:grid;
-  gap:0.48rem;
-  justify-self:center;
-  grid-column:1;
-  grid-row:1;
-}
-
-.itinerary-pool-art span{
-  display:block;
-  height:0.55rem;
-  border-top:1px solid var(--accent);
-  border-radius:50%;
-}
-
-.itinerary-pool-art span:nth-child(2){
-  width:82%;
-  justify-self:center;
-}
-
-.itinerary-pool-art span:nth-child(3){
-  width:62%;
-  justify-self:center;
+.itinerary-image.pool-art{
+  --itinerary-art-height:6.5rem;
 }
 
 .single-column{
@@ -662,19 +645,19 @@ section#faqs{
 }
 
 .section-icon{
-  width:10.1rem;
+  width:clamp(14rem,22vw,16rem);
   height:auto;
   margin:0 auto 1.75rem;
 }
 
 .section-icon.walking-icon{
-  width:clamp(7rem,11vw,8.25rem);
+  width:clamp(11rem,17vw,13rem);
   margin-bottom:1.85rem;
   mix-blend-mode:multiply;
 }
 
 .section-icon.travel-icon{
-  width:clamp(6.5rem,11vw,8rem);
+  width:clamp(10rem,16vw,12rem);
   margin-bottom:1.9rem;
 }
 
@@ -920,7 +903,7 @@ section#faqs{
 
 .trip-note-icon{
   flex:0 0 auto;
-  width:clamp(3.25rem,5vw,4rem);
+  width:clamp(4.75rem,7vw,5.5rem);
   height:auto;
   margin:0;
 }
@@ -1350,7 +1333,7 @@ section#faqs{
 }
 
 .rsvp-choices{
-  width:min(100%,36rem);
+  width:min(100%,42rem);
   margin:0 auto;
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -1364,13 +1347,13 @@ section#faqs{
 .rsvp-choice{
   width:100%;
   margin:0;
-  min-height:0;
+  min-height:3rem;
   padding:0.82rem 1.3rem 0.75rem;
   border:1px solid color-mix(in srgb,var(--ink) 54%,transparent);
   border-radius:0;
   background-color:transparent;
   font-family:var(--nav);
-  font-size:clamp(0.625rem,0.82vw,0.7rem);
+  font-size:0.875rem;
   font-weight:500;
   font-style:normal;
   line-height:1.2;
@@ -1563,7 +1546,7 @@ section#faqs{
 }
 
 .footer-monogram{
-  width:clamp(2.7rem,4vw,3.35rem);
+  width:clamp(3.4rem,5vw,4.2rem);
   height:auto;
   margin:0 auto 0.7rem;
 }
@@ -1735,8 +1718,7 @@ html[data-palette] .rsvp-choice:focus-visible{
     grid-row:2;
   }
 
-  .itinerary-image,
-  .itinerary-pool-art{
+  .itinerary-image{
     grid-column:1;
     grid-row:1;
   }
@@ -1993,7 +1975,7 @@ html[data-palette] .rsvp-choice:focus-visible{
         <div class="itinerary-copy">
           <h3 class="itinerary-heading"><span class="itinerary-event">Sun &amp; Swim</span><span class="itinerary-date">May 7</span><span class="itinerary-meta">Afternoon, Sierra Casa Nevada</span><span class="itinerary-optional">Optional</span></h3>
         </div>
-        <div class="itinerary-pool-art" aria-hidden="true"><span></span><span></span><span></span></div>
+        <img class="itinerary-image pool-art" src="uploads/figma/itinerary-pool.png" width="1352" height="1226" alt="" loading="lazy" decoding="async">
       </article>
 
       <article class="itinerary-item">
@@ -2023,10 +2005,10 @@ html[data-palette] .rsvp-choice:focus-visible{
         <div class="flight-primary">
           <span class="flight-overview-label">Recommended Arrival</span>
           <h3>Fly into Querétaro</h3>
-          <p>QRO is our primary recommendation. It is about a 1-1.5-hour drive to San Miguel, with straightforward connections through DFW or IAH. Volaris offers limited direct flights from Los Angeles to QRO on Tuesdays, Thursdays, and Sundays.</p>
+          <p>QRO is our primary recommendation. It is about a 1-hour drive to San Miguel, with straightforward connections through DFW or IAH. Volaris offers limited direct flights from Los Angeles to QRO on Tuesdays, Thursdays, and Sundays.</p>
           <div class="flight-ticket-meta" aria-label="Recommended flight details">
             <div><span>Airport</span><strong>QRO</strong></div>
-            <div><span>Drive to San Miguel</span><strong>1-1.5 Hours</strong></div>
+            <div><span>Drive to San Miguel</span><strong>1 Hour</strong></div>
             <div><span>Easy Connections</span><strong>DFW / IAH</strong></div>
           </div>
         </div>
@@ -2045,7 +2027,7 @@ html[data-palette] .rsvp-choice:focus-visible{
               <span class="flight-origin-route">MEX</span>
               <h3>Mexico City</h3>
             </div>
-            <p class="flight-origin-copy">It is a 4 hour drive to San Miguel. Best if you plan for a CDMX trip before the wedding.</p>
+            <p class="flight-origin-copy">Spend a few days exploring Mexico City before the wedding. From there, take a 30-minute flight to Querétaro, followed by a 1-hour drive to San Miguel. You can also drive directly from Mexico City in about 4 hours.</p>
           </article>
         </div>
       </div>
@@ -2054,7 +2036,7 @@ html[data-palette] .rsvp-choice:focus-visible{
         <h3 id="flight-tips-title">Travel Tips</h3>
         <ul>
           <li>Check your passport expiration date. Six months of validity beyond your return date is recommended.</li>
-          <li>For those wanting to spend a couple of days in Mexico City before or after the wedding, it is about a 40 minute flight from QRO or a four hour drive from San Miguel.</li>
+          <li>For those wanting to spend a couple of days in Mexico City before or after the wedding, it is about a 30-minute flight from QRO or a four hour drive from San Miguel.</li>
           <li>To attend the full weekend, plan to travel Thursday through Sunday.</li>
         </ul>
       </aside>
@@ -2073,7 +2055,7 @@ html[data-palette] .rsvp-choice:focus-visible{
     <img class="section-icon walking-icon" src="uploads/figma/walking-pair-icon.png" width="720" height="720" alt="" loading="lazy" decoding="async">
     <h2 class="section-title" data-reveal>Getting Around</h2>
     <div class="single-column" data-reveal>
-      <p><span class="copy-emphasis">San Miguel is made for walking.</span> The historic center is compact and easy to explore on foot. The streets are cobblestone and the hills are real, so bring comfortable shoes.</p>
+      <p><span class="copy-emphasis">Stay in Centro, the heart of San Miguel.</span> Choose accommodations within an easy walk of the wedding venues, and check the walking route before booking. The streets are cobblestone and the hills are real, so bring comfortable shoes.</p>
       <p><span class="copy-emphasis">Use a taxi or Uber for the climb.</span> Rent a car only if you are planning day trips beyond San Miguel. All wedding events are within a couple of walkable blocks.</p>
     </div>
   </section>
@@ -2083,7 +2065,8 @@ html[data-palette] .rsvp-choice:focus-visible{
     <img class="section-icon travel-icon" src="uploads/figma/travel-icon.png" width="441" height="426" alt="" loading="lazy" decoding="async">
     <h2 class="section-title" data-reveal>Where to Stay</h2>
     <div class="single-column" data-reveal>
-      <p>We're holding rooms at <span class="copy-emphasis">Numu.</span> Book early. Reference <span class="copy-emphasis">&ldquo;the Erwin Matthews Wedding.&rdquo;</span> A few more options are listed below.</p>
+      <p><span class="copy-emphasis">Please book in Centro, the heart of San Miguel.</span> Check the property location before reserving, as some listings are a 30-minute drive outside the city center.</p>
+      <p>We're holding rooms at <span class="copy-emphasis">Numu.</span> Book early. Reference <span class="copy-emphasis">&ldquo;Rachel and Will&rsquo;s wedding.&rdquo;</span> A few more options are listed below.</p>
     </div>
 
     <div class="travel-grid" data-reveal>
@@ -2398,8 +2381,9 @@ class Component extends DCLogic {
       const confirm = intentRoot.querySelector('.rsvp-confirm');
       const responseInput = intentRoot.querySelector('#guest-response');
       const submit = intentRoot.querySelector('.rsvp-submit');
+      let isSubmitting = false;
       const updateSubmitState = () => {
-        if (submit) submit.disabled = !nameInput?.value.trim();
+        if (submit) submit.disabled = isSubmitting || form?.classList.contains('is-complete') || !nameInput?.value.trim();
       };
       const stepCopy = {
         no: "Thank you for letting us know. Who is responding?",
@@ -2455,28 +2439,46 @@ class Component extends DCLogic {
       if (form && submit && confirm) {
         form.addEventListener('submit', async (event) => {
           event.preventDefault();
-          if (!form.reportValidity() || !responseInput?.value) return;
+          if (isSubmitting || form.classList.contains('is-complete')) return;
+          if (nameInput) nameInput.value = nameInput.value.trim();
+          if (!form.reportValidity() || !nameInput?.value || !responseInput?.value) return;
 
+          const formData = new FormData(form);
+          const selectedIntent = choices.find((choice) => choice.getAttribute('aria-checked') === 'true')?.getAttribute('data-intent');
           const originalLabel = submit.textContent;
+          isSubmitting = true;
+          if (nameInput) nameInput.readOnly = true;
+          if (back) back.disabled = true;
           submit.disabled = true;
           submit.textContent = 'Sending…';
           confirm.textContent = '';
+          const controller = new AbortController();
+          const timeout = window.setTimeout(() => controller.abort(), 20000);
 
           try {
             const response = await fetch(form.dataset.endpoint, {
               method: 'POST',
               headers: { Accept: 'application/json' },
-              body: new FormData(form)
+              body: formData,
+              signal: controller.signal
             });
             if (!response.ok) throw new Error('Unable to send response');
+            const result = await response.json();
+            if (result.success !== true && result.success !== 'true') throw new Error('Response was not accepted');
 
             form.classList.add('is-complete');
-            const selectedIntent = choices.find((choice) => choice.getAttribute('aria-checked') === 'true')?.getAttribute('data-intent');
             confirm.textContent = intentCopy[selectedIntent] || 'Thank you. Your response has been sent.';
           } catch (error) {
-            confirm.textContent = "We couldn't send that just now. Please try again.";
-            updateSubmitState();
+            confirm.textContent = error.name === 'AbortError'
+              ? "We couldn't confirm your response was sent. Please try again."
+              : "We couldn't send that just now. Please try again.";
+          } finally {
+            window.clearTimeout(timeout);
+            isSubmitting = false;
+            if (nameInput) nameInput.readOnly = false;
+            if (back) back.disabled = false;
             submit.textContent = originalLabel;
+            updateSubmitState();
           }
         });
       }
