@@ -623,6 +623,9 @@ section#faqs{
 }
 
 .itinerary-date{
+  grid-column:2;
+  grid-row:1 / span 2;
+  align-self:start;
   font-family:"Arketa",Georgia,serif;
   font-size:clamp(1rem,1.25vw,1.125rem);
   font-weight:500;
@@ -799,8 +802,8 @@ section#faqs{
 
 .itinerary-meta{
   display:block;
-  grid-column:1 / -1;
-  margin-top:0.55rem;
+  grid-column:1;
+  margin-top:0.3rem;
   font-family:"Arketa",Georgia,"Times New Roman",serif;
   font-size:var(--reading-size);
   line-height:1.75;
@@ -2072,7 +2075,7 @@ html[data-palette] .rsvp-choice:focus-visible{
   .itinerary-heading{
     grid-template-columns:minmax(0,1fr);
     justify-items:center;
-    row-gap:0.7rem;
+    row-gap:0.5rem;
   }
 
   .itinerary-event,
@@ -2087,7 +2090,7 @@ html[data-palette] .rsvp-choice:focus-visible{
     text-wrap:balance;
   }
 
-  .itinerary-date{grid-row:1;}
+  .itinerary-date{grid-column:1;grid-row:1;}
   .itinerary-event{grid-row:2;}
 
   .itinerary-date span{
@@ -2464,21 +2467,21 @@ html[data-palette] .rsvp-choice:focus-visible{
     <div class="itinerary-list" data-reveal>
       <article class="itinerary-item">
         <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Sun &amp; Swim</span><span class="itinerary-date"><span>Friday,</span> <span>May 7</span></span><span class="itinerary-meta">Afternoon, Casa de Sierra Nevada</span><span class="itinerary-optional">Optional</span></h3>
+          <h3 class="itinerary-heading"><span class="itinerary-event">Sun &amp; Swim</span><span class="itinerary-date"><span>Friday</span> <span>May 7</span></span><span class="itinerary-meta">Afternoon, Casa de Sierra Nevada</span><span class="itinerary-optional">Optional</span></h3>
         </div>
         <img class="itinerary-image pool-art" src="uploads/figma/itinerary-pool.png" width="1352" height="1226" alt="" loading="lazy" decoding="async">
       </article>
 
       <article class="itinerary-item">
         <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Welcome Party</span><span class="itinerary-date"><span>Friday,</span> <span>May 7</span></span><span class="itinerary-meta">Evening, Downtown San Miguel</span></h3>
+          <h3 class="itinerary-heading"><span class="itinerary-event">Welcome Party</span><span class="itinerary-date"><span>Friday</span> <span>May 7</span></span><span class="itinerary-meta">Evening, Downtown San Miguel</span></h3>
         </div>
         <img class="itinerary-image welcome-art" src="uploads/figma/itinerary-welcome.png" width="558" height="741" alt="" loading="lazy" decoding="async">
       </article>
 
       <article class="itinerary-item">
         <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Ceremony &amp; Reception</span><span class="itinerary-date"><span>Saturday,</span> <span>May 8</span></span><span class="itinerary-meta">Evening, Casa de Sierra Nevada</span></h3>
+          <h3 class="itinerary-heading"><span class="itinerary-event">Ceremony &amp; Reception</span><span class="itinerary-date"><span>Saturday</span> <span>May 8</span></span><span class="itinerary-meta">Evening, Casa de Sierra Nevada</span></h3>
         </div>
         <img class="itinerary-image ceremony-art" src="uploads/figma/itinerary-ceremony.png" width="525" height="699" alt="" loading="lazy" decoding="async">
       </article>
