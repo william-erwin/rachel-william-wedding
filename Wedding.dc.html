@@ -1594,7 +1594,8 @@ section#faqs{
   padding-block:clamp(4rem,8vw,6rem);
 }
 
-.rsvp-note .section-title{
+.rsvp-note .section-title,
+.rsvp-confirm{
   font-family:"Arketa",Georgia,"Times New Roman",serif;
   font-weight:500;
   font-size:clamp(0.85rem,1.05vw,0.9375rem);
@@ -1610,7 +1611,6 @@ section#faqs{
 
 .rsvp-note .section-title span{
   display:block;
-  white-space:nowrap;
 }
 
 .rsvp-kicker{
@@ -1705,12 +1705,6 @@ section#faqs{
   display:none !important;
 }
 
-.rsvp-step-heading{
-  margin:0 auto 1.25rem;
-  font:400 1rem/1.45 var(--nav);
-  color:var(--ink);
-}
-
 .rsvp-field{
   display:grid;
   gap:0.45rem;
@@ -1794,14 +1788,11 @@ section#faqs{
 
 .rsvp-confirm{
   margin:1.5rem auto 0;
-  max-width:32rem;
-  min-height:1.5em;
-  font-family:var(--nav);
-  font-size:0.95rem;
-  font-weight:400;
-  line-height:1.5;
-  letter-spacing:0.02em;
-  color:var(--ink-soft);
+}
+
+.rsvp-confirm:empty{
+  margin:0;
+  min-height:0;
 }
 
 .rsvp-form.is-complete :is(.rsvp-choices,.rsvp-details){
@@ -2281,7 +2272,8 @@ html[data-palette] .rsvp-choice:focus-visible{
   .itinerary-date{font-size:max(0.78125rem,calc(0.9rem * var(--mobile-type-scale)));}
   .itinerary-meta{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
   .hotel-card h4{font-size:max(0.78125rem,calc(1.1rem * var(--mobile-type-scale)));}
-  .rsvp-note .section-title{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
+  .rsvp-note .section-title,
+  .rsvp-confirm{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
   .invitation-details{font-size:0.8125rem;}
 
   .save-weekend-text{font-size:calc(clamp(5.5rem,13.2vw,11rem) * var(--mobile-type-scale));}
@@ -2292,8 +2284,6 @@ html[data-palette] .rsvp-choice:focus-visible{
   .flight-tips h3{font-size:calc(1.4rem * var(--mobile-type-scale));}
   .flight-ticket-meta strong{font-size:calc(0.95rem * var(--mobile-type-scale));}
   .rsvp-choice{font-size:calc(0.875rem * var(--mobile-type-scale));}
-  .rsvp-step-heading{font-size:calc(1rem * var(--mobile-type-scale));}
-  .rsvp-confirm{font-size:calc(0.95rem * var(--mobile-type-scale));}
 }
 
 @media (max-width: 420px){
@@ -2422,8 +2412,8 @@ html[data-palette] .rsvp-choice:focus-visible{
   </section>
 
   <section id="rsvp-note" class="section rsvp-note">
-    <h2 class="section-title" data-reveal><span>Help us plan ahead</span></h2>
-    <form class="rsvp-form" id="guest-intent-form" action="https://formsubmit.co/wprathererwin@gmail.com" method="POST" data-endpoint="https://formsubmit.co/ajax/wprathererwin@gmail.com" data-reveal>
+    <h2 class="section-title" id="rsvp-heading" aria-live="polite" data-reveal><span>Help us plan ahead</span></h2>
+    <form class="rsvp-form" id="guest-intent-form" aria-labelledby="rsvp-heading" action="https://formsubmit.co/wprathererwin@gmail.com" method="POST" data-endpoint="https://formsubmit.co/ajax/wprathererwin@gmail.com" data-reveal>
       <input type="hidden" name="_subject" value="Wedding website response">
       <input type="hidden" name="_template" value="table">
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden>
@@ -2435,7 +2425,6 @@ html[data-palette] .rsvp-choice:focus-visible{
       </div>
       <p class="rsvp-kicker">A note for now &mdash; not the formal RSVP</p>
       <div class="rsvp-details" hidden>
-        <p class="rsvp-step-heading">Who is responding?</p>
         <div class="rsvp-fields">
           <label class="rsvp-field">
             <span>Name(s)</span>
@@ -2870,7 +2859,8 @@ class Component extends DCLogic {
       const choices = Array.from(intentRoot.querySelectorAll('[data-intent]'));
       const kicker = intentRoot.querySelector('.rsvp-kicker');
       const details = intentRoot.querySelector('.rsvp-details');
-      const stepHeading = intentRoot.querySelector('.rsvp-step-heading');
+      const heading = intentRoot.querySelector('#rsvp-heading span');
+      const initialHeading = heading?.textContent || 'Help us plan ahead';
       const nameInput = intentRoot.querySelector('input[name="name"]');
       const back = intentRoot.querySelector('.rsvp-back');
       const confirm = intentRoot.querySelector('.rsvp-confirm');
@@ -2890,7 +2880,7 @@ class Component extends DCLogic {
           choice.setAttribute('aria-checked', String(choice.getAttribute('data-intent') === value));
         });
         if (responseInput) responseInput.value = intentCopy[value] ? `${choices.find((choice) => choice.getAttribute('data-intent') === value)?.textContent || value}` : '';
-        if (stepHeading) stepHeading.textContent = stepCopy[value] || 'Who is responding?';
+        if (heading) heading.textContent = stepCopy[value] || 'Who is responding?';
         if (choicesRoot) choicesRoot.hidden = true;
         if (kicker) kicker.hidden = true;
         if (details) details.hidden = false;
@@ -2926,6 +2916,7 @@ class Component extends DCLogic {
           if (kicker) kicker.hidden = false;
           if (confirm) confirm.textContent = '';
           if (nameInput) nameInput.value = '';
+          if (heading) heading.textContent = initialHeading;
           updateSubmitState();
           choices[0]?.focus();
         });
@@ -2962,7 +2953,9 @@ class Component extends DCLogic {
             if (result.success !== true && result.success !== 'true') throw new Error('Response was not accepted');
 
             form.classList.add('is-complete');
-            confirm.textContent = intentCopy[selectedIntent] || 'Thank you. Your response has been sent.';
+            const message = intentCopy[selectedIntent] || 'Thank you. Your response has been sent.';
+            if (heading) heading.textContent = message;
+            else confirm.textContent = message;
           } catch (error) {
             confirm.textContent = error.name === 'AbortError'
               ? "We couldn't confirm your response was sent. Please try again."
