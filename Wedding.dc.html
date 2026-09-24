@@ -1142,14 +1142,16 @@ section#faqs{
 @media (max-width: 760px){
   .flight-tips{
     grid-template-columns:1fr;
-    gap:1rem;
+    gap:1.75rem;
+    margin-top:3.5rem;
+    padding-block:2rem;
     background-image:none;
     text-align:center;
   }
   .flight-tips ul{
     padding:0;
     list-style:none;
-    gap:1.25rem;
+    gap:2rem;
   }
   .flight-tips li{
     padding:0;
@@ -1989,7 +1991,7 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .section{
-    padding-block:3.5rem;
+    padding-block:4.5rem;
   }
 
   .intro.section{
@@ -2118,7 +2120,7 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .flight-origin{
-    padding:1.35rem 1.5rem 1.45rem;
+    padding:2.5rem 1.5rem;
   }
 
   .flight-origin-copy{
@@ -2128,8 +2130,8 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .trip-note{
-    gap:0.75rem;
-    padding-inline:0.5rem;
+    gap:1.5rem;
+    padding:3rem 0.5rem;
   }
 
   .itinerary-image{
@@ -2238,6 +2240,17 @@ html[data-palette] .rsvp-choice:focus-visible{
     padding-inline:clamp(1rem,5vw,1.5rem);
   }
   .trip-note{padding-inline:clamp(1rem,5vw,1.5rem);}
+  .flight-primary{padding-block:3rem;}
+  .flight-origin{gap:1rem;}
+  .flight-ticket-meta{padding-top:2.5rem;}
+  .hotel-card{padding-block:2.5rem;}
+  .travel-grid{row-gap:1.25rem;}
+  .single-column p + p{margin-top:2.5rem;}
+  .flight-primary p,
+  .flight-origin-copy,
+  .flight-tips li,
+  .trip-note p{line-height:1.75;}
+
   .invitation-panel .hero-title.hero-initials{
     font-size:clamp(6rem,34vw,16rem);
   }
@@ -2289,7 +2302,7 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .flight-primary{
-    padding:1.75rem var(--mobile-copy-inset);
+    padding:3rem var(--mobile-copy-inset);
   }
 
   .flight-ticket-meta{
