@@ -26,3 +26,6 @@
   .color-editor-row{grid-template-columns:minmax(0,1fr) 44px 100px;gap:8px;}
   .color-editor input[type="color"]{width:44px;height:44px;}
   .color-editor input[type="text"]{width:100px;min-height:44px;font-size:16px;}
+
+.color-editor-toggle{top:max(12px,env(safe-area-inset-top,0px));}
+.color-editor{top:calc(max(12px,env(safe-area-inset-top,0px)) + 54px);max-height:calc(100dvh - max(12px,env(safe-area-inset-top,0px)) - 70px);}

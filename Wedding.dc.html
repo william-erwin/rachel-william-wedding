@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#fbfaf7">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#706b55">
 <meta name="description" content="Wedding weekend details for Rachel and William in San Miguel de Allende, May 7-9, 2027.">
 <title>Rachel &amp; William | San Miguel de Allende</title>
 <link rel="preload" href="fonts/OOArketaTrial-Regular.otf" as="font" type="font/otf" crossorigin>
@@ -29,7 +29,6 @@
 
   if (palettes[palette]) {
     document.documentElement.dataset.palette = palette;
-    document.querySelector('meta[name="theme-color"]').content = palettes[palette];
   }
 
 })();
@@ -352,6 +351,8 @@ section#faqs{
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
+  padding-top:max(calc(var(--frame-inset) + var(--corner-size) + 0.75rem),env(safe-area-inset-top,0px));
+  padding-bottom:max(calc(var(--frame-inset) + var(--corner-size) + 0.75rem),env(safe-area-inset-bottom,0px));
 }
 .invitation-panel::before,
 .response-panel::before{
@@ -2194,6 +2195,23 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 }
 
+/* Scale the reading hierarchy together on phones; keep controls large enough to tap. */
+@media (max-width:760px){
+  .single-column p,
+  .faq-answer p{font-size:0.875rem;}
+  .hotel-card p:not(.hotel-link),
+  .trip-note p{font-size:0.84375rem;}
+  .flight-primary p,
+  .flight-tips li{font-size:0.84375rem;}
+  .flight-origin-copy{font-size:0.8125rem;}
+  .itinerary-event{font-size:1.2rem;}
+  .itinerary-date{font-size:0.9rem;}
+  .itinerary-meta{font-size:0.8125rem;}
+  .hotel-card h4{font-size:1.1rem;}
+  .rsvp-note .section-title{font-size:0.8125rem;}
+  .invitation-details{font-size:0.8125rem;}
+}
+
 @media (max-width: 420px){
   :root{
     --gutter:1rem;
@@ -2219,9 +2237,7 @@ html[data-palette] .rsvp-choice:focus-visible{
     align-items:center;
   }
 
-  .trip-note p{
-    font-size:0.9375rem;
-  }
+
 
   .faq-trigger{
     min-height:3.5rem;
@@ -2234,7 +2250,7 @@ html[data-palette] .rsvp-choice:focus-visible{
 
   .faq-answer p{
     padding-inline:1rem;
-    font-size:1rem;
+    font-size:0.875rem;
   }
 }
 
