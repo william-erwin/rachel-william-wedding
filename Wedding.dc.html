@@ -926,6 +926,7 @@ section#faqs{
 }
 
 .flight-editorial{
+  --flight-panel-padding:clamp(2rem,4.25vw,3.5rem);
   display:grid;
   grid-template-columns:minmax(0,1.2fr) minmax(19rem,0.8fr);
   background-image:var(--ink-rule-horizontal),var(--ink-rule-horizontal),var(--ink-rule-vertical),var(--ink-rule-vertical);
@@ -937,7 +938,7 @@ section#faqs{
 
 .flight-primary{
   position:relative;
-  padding:clamp(2rem,4.25vw,3.5rem);
+  padding:var(--flight-panel-padding);
   display:flex;
   flex-direction:column;
 }
@@ -1061,6 +1062,10 @@ section#faqs{
 
 .flight-origin:first-child{
   background-image:none;
+}
+
+@media (min-width:761px){
+  .flight-origin:first-child{padding-top:var(--flight-panel-padding);}
 }
 
 .flight-origin h3{
