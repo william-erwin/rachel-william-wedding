@@ -2197,6 +2197,7 @@ html[data-palette] .rsvp-choice:focus-visible{
 
 /* Scale the reading hierarchy together on phones; keep controls large enough to tap. */
 @media (max-width:760px){
+  main{--mobile-type-scale:0.9;}
   .invitation-panel .hero-title.hero-initials{
     font-size:clamp(5.5rem,32vw,15rem);
   }
@@ -2210,18 +2211,28 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .single-column p,
-  .faq-answer p{font-size:0.875rem;}
+  .faq-answer p{font-size:max(0.78125rem,calc(0.875rem * var(--mobile-type-scale)));}
   .hotel-card p:not(.hotel-link),
-  .trip-note p{font-size:0.84375rem;}
+  .trip-note p{font-size:max(0.78125rem,calc(0.84375rem * var(--mobile-type-scale)));}
   .flight-primary p,
-  .flight-tips li{font-size:0.84375rem;}
-  .flight-origin-copy{font-size:0.8125rem;}
-  .itinerary-event{font-size:1.2rem;}
-  .itinerary-date{font-size:0.9rem;}
-  .itinerary-meta{font-size:0.8125rem;}
-  .hotel-card h4{font-size:1.1rem;}
-  .rsvp-note .section-title{font-size:0.8125rem;}
+  .flight-tips li{font-size:max(0.78125rem,calc(0.84375rem * var(--mobile-type-scale)));}
+  .flight-origin-copy{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
+  .itinerary-event{font-size:max(0.78125rem,calc(1.2rem * var(--mobile-type-scale)));}
+  .itinerary-date{font-size:max(0.78125rem,calc(0.9rem * var(--mobile-type-scale)));}
+  .itinerary-meta{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
+  .hotel-card h4{font-size:max(0.78125rem,calc(1.1rem * var(--mobile-type-scale)));}
+  .rsvp-note .section-title{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
   .invitation-details{font-size:0.8125rem;}
+
+  .save-weekend-text{font-size:calc(clamp(5.5rem,13.2vw,11rem) * var(--mobile-type-scale));}
+  .section-title{font-size:calc(clamp(4.2rem,7.28vw,6.02rem) * var(--mobile-type-scale));}
+  .flight-primary h3{font-size:calc(clamp(1.7rem,2.6vw,2.25rem) * var(--mobile-type-scale));}
+  .flight-origin h3,
+  .flight-tips h3{font-size:calc(1.4rem * var(--mobile-type-scale));}
+  .flight-ticket-meta strong{font-size:calc(0.95rem * var(--mobile-type-scale));}
+  .rsvp-choice{font-size:calc(0.875rem * var(--mobile-type-scale));}
+  .rsvp-step-heading{font-size:calc(1rem * var(--mobile-type-scale));}
+  .rsvp-confirm{font-size:calc(0.95rem * var(--mobile-type-scale));}
 }
 
 @media (max-width: 420px){
@@ -2241,9 +2252,7 @@ html[data-palette] .rsvp-choice:focus-visible{
     gap:0.55rem;
   }
 
-  .flight-ticket-meta strong{
-    font-size:0.925rem;
-  }
+
 
   .trip-note{
     align-items:center;
@@ -2262,7 +2271,6 @@ html[data-palette] .rsvp-choice:focus-visible{
 
   .faq-answer p{
     padding-inline:1rem;
-    font-size:0.875rem;
   }
 }
 
