@@ -6,8 +6,9 @@
 <meta name="theme-color" content="#fbfaf7">
 <meta name="description" content="Wedding weekend details for Rachel and William in San Miguel de Allende, May 7-9, 2027.">
 <title>Rachel &amp; William | San Miguel de Allende</title>
+<link rel="preload" href="fonts/OOArketaTrial-Regular.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="fonts/PoWLimerickDemo-Circle.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/MonsieurLaDoulaise.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="fonts/MillerText.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="fonts/GraphikRegular.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="fonts/TrueSans-RegularWeb.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/TrueSans-MediumExtendedWeb.woff2" as="font" type="font/woff2" crossorigin>
@@ -34,9 +35,13 @@
 <x-dc>
 <helmet>
 <style>
+@font-face { font-family:"Miss Fajardose"; src:url("fonts/MissFajardose-Regular.ttf") format("truetype"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Arketa"; src:url("fonts/OOArketaTrial-Medium.otf") format("opentype"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"Arketa"; src:url("fonts/OOArketaTrial-Regular.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Arketa"; src:url("fonts/OOArketaTrial-Bold.otf") format("opentype"); font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family:"PoW Limerick"; src:url("fonts/PoWLimerickDemo-Circle.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"Tradition"; src:url("fonts/Tradition-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"Tradition"; src:url("fonts/Tradition-RegularItalic.woff2") format("woff2"); font-weight:400; font-style:italic; font-display:swap; }
-@font-face { font-family:"Miller"; src:url("fonts/MillerText.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"Graphik"; src:url("fonts/GraphikRegular.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"TrueSans"; src:url("fonts/TrueSans-RegularWeb.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:"TrueSans"; src:url("fonts/TrueSans-MediumExtendedWeb.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
@@ -46,7 +51,7 @@
 
 :root{
   --ink:#111110;
-  --ink-soft:#292927;
+  --ink-soft:var(--ink);
   --ink-mute:#555550;
   --line:#766d5f;
   --paper:#fbfaf7;
@@ -61,13 +66,13 @@
   --gutter:clamp(1.25rem,5vw,4.45rem);
   --first-fold-reserve:clamp(12rem,24vh,13.75rem);
   --rule:1px solid var(--line);
-  --ink-rule-horizontal:repeating-linear-gradient(90deg,var(--rule-strong) 0 1px,var(--rule-medium) 1px 3px,transparent 3px 5px,var(--rule-detail) 5px 6px,transparent 6px 9px,var(--rule-light) 9px 11px,transparent 11px 14px);
-  --ink-rule-vertical:repeating-linear-gradient(0deg,var(--rule-strong) 0 1px,var(--rule-medium) 1px 3px,transparent 3px 5px,var(--rule-detail) 5px 6px,transparent 6px 9px,var(--rule-light) 9px 11px,transparent 11px 14px);
-  --serif:"TrueSans","Helvetica Neue",Arial,sans-serif;
-  --fournier:"TrueSans","Helvetica Neue",Arial,sans-serif;
-  --caps:"Miller",Georgia,"Times New Roman",serif;
-  --bird:"TAY Big Bird","Tradition","Miller",Georgia,serif;
-  --body:"Graphik","Helvetica Neue",Arial,sans-serif;
+  --ink-rule-horizontal:radial-gradient(circle,var(--rule-medium) 0 0.8px,transparent 1px);
+  --ink-rule-vertical:var(--ink-rule-horizontal);
+  --serif:"Arketa",Georgia,"Times New Roman",serif;
+  --fournier:"Arketa",Georgia,"Times New Roman",serif;
+  --caps:"Arketa",Georgia,"Times New Roman",serif;
+  --bird:"TAY Big Bird","Tradition","Arketa",Georgia,serif;
+  --body:"Arketa",Georgia,"Times New Roman",serif;
   --nav:"TrueSans","Helvetica Neue",Arial,sans-serif;
   --script:"Monsieur La Doulaise","Snell Roundhand","Apple Chancery","Tradition",Georgia,serif;
   --display:"Tradition",Georgia,serif;
@@ -105,6 +110,8 @@ body{
   height:auto !important;
   min-height:100%;
   overflow-x:hidden;
+
+  text-transform:uppercase;
 }
 
 body :is(h1,h2,h3,h4,h5,h6,p,span,a,strong,em,li,button,label){
@@ -171,7 +178,7 @@ button:focus-visible{
 .monogram{
   display:inline-flex;
   align-items:center;
-  width:clamp(2.7rem,4vw,3.35rem);
+  width:clamp(3.4rem,5vw,4.2rem);
   text-decoration:none;
 }
 
@@ -191,10 +198,55 @@ main{
   border-bottom:0;
   background-image:var(--ink-rule-horizontal);
   background-position:left bottom;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
   padding-block:clamp(5.5rem,11vw,9.5rem);
   text-align:center;
+}
+
+/* Decorative marks reuse the monogram's Limerick cross without adding spoken text. */
+.section,
+:is(.itinerary-item,.flight-editorial,.flight-tips,.hotel-card){
+  position:relative;
+}
+.section::before,
+.section::after,
+:is(.itinerary-item,.flight-editorial,.flight-tips,.hotel-card)::before,
+:is(.itinerary-item,.flight-editorial,.flight-tips,.hotel-card)::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+}
+.section::before{
+  width:2.75rem;
+  height:1.5rem;
+  left:calc(50% - 1.375rem);
+  bottom:-0.6875rem;
+  background:var(--paper);
+}
+.section::after{
+  width:1.25rem;
+  height:1.25rem;
+  left:calc(50% - 0.625rem);
+  bottom:-0.5625rem;
+  background:var(--accent);
+  mask:url("uploads/material/limerick-cross.svg") center / contain no-repeat;
+}
+:is(.itinerary-item,.flight-editorial,.flight-tips,.hotel-card)::before{
+  inset:-5px;
+  background:
+    radial-gradient(circle at 5px 5px,var(--paper) 7px,transparent 7.5px),
+    radial-gradient(circle at calc(100% - 5px) 5px,var(--paper) 7px,transparent 7.5px),
+    radial-gradient(circle at 5px calc(100% - 5px),var(--paper) 7px,transparent 7.5px),
+    radial-gradient(circle at calc(100% - 5px) calc(100% - 5px),var(--paper) 7px,transparent 7.5px);
+}
+:is(.itinerary-item,.flight-editorial,.flight-tips,.hotel-card)::after{
+  inset:-5px;
+  background:var(--accent);
+  mask-image:url("uploads/material/limerick-cross.svg"),url("uploads/material/limerick-cross.svg"),url("uploads/material/limerick-cross.svg"),url("uploads/material/limerick-cross.svg");
+  mask-position:left top,right top,left bottom,right bottom;
+  mask-size:10px 10px;
+  mask-repeat:no-repeat;
 }
 
 section#faqs{
@@ -218,7 +270,7 @@ section#faqs{
 
 .eyebrow{
   margin:0;
-  font-family:"Miller",Georgia,"Times New Roman",serif;
+  font-family:"Arketa",Georgia,"Times New Roman",serif;
   font-size:0.8rem;
   font-weight:400;
   line-height:1.3;
@@ -248,26 +300,87 @@ section#faqs{
   color:var(--ink);
 }
 
+.hero-title.hero-initials{
+  display:block;
+  left:0;
+  padding:0;
+  font-family:"PoW Limerick",Georgia,serif;
+  font-size:clamp(6rem,36vw,26rem);
+  line-height:1;
+  letter-spacing:-0.035em;
+  text-transform:none;
+}
+
+
+.hero-title.hero-initials > .initials-lockup{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:baseline;
+  column-gap:0;
+  letter-spacing:0;
+}
+.initials-lockup > span:first-child{text-align:right;transform:translateX(0.04em);}
+.initials-lockup > span:last-child{text-align:left;transform:translateX(-0.08em);}
+
 .hero-title span{
   display:block;
   white-space:nowrap;
 }
 
+.hero.invitation-panel{
+  width:100vw;
+  max-width:none;
+  min-height:100svh;
+  margin:0 0 0 calc(50% - 50vw);
+  justify-content:center;
+  padding:clamp(1.5rem,3vw,3rem) clamp(1rem,3vw,3rem) clamp(2.5rem,5vw,4rem);
+  background:color-mix(in srgb,var(--paper) 82%,black);
+}
+.invitation-panel .site-header{
+  position:static;
+  width:100%;
+  margin-bottom:clamp(2rem,4vw,4rem);
+}
+.invitation-panel .header-inner{padding:0;}
+.invitation-panel .hero-title.hero-initials{
+  font-size:clamp(4.5rem,29vw,26rem);
+}
+
+.save-weekend{
+  padding:clamp(6rem,12vw,11rem) var(--gutter) clamp(2.5rem,6vw,5rem);
+  text-align:center;
+}
+.save-weekend-text{
+  display:inline-block;
+  margin:0;
+  font-family:"Miss Fajardose",cursive;
+  font-size:clamp(5.5rem,13.2vw,11rem);
+  font-weight:400;
+  line-height:0.65;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--accent);
+  transform:rotate(-9deg);
+}
+.save-weekend-text span{display:block;}
+
+
+
 .invitation-details{
   margin:0 auto;
   min-width:0;
   max-width:46rem;
-  font-family:"Miller",Georgia,"Times New Roman",serif;
+  font-family:"Arketa",Georgia,"Times New Roman",serif;
   font-weight:400;
   font-size:clamp(0.9rem,1.15vw,1rem);
   line-height:1.65;
-  letter-spacing:0.075em;
+  letter-spacing:0.03em;
   text-transform:uppercase;
   text-align:center;
   text-wrap:balance;
   color:var(--ink);
   font-feature-settings:"kern" 1,"liga" 1,"lnum" 1;
-  transform:translateY(clamp(2.5rem,6vh,3.25rem));
+  transform:none;
 }
 
 .scroll-note{
@@ -288,15 +401,15 @@ section#faqs{
 }
 
 .intro{
-  min-height:550px;
-  display:flex;
+  display:none;
   justify-content:center;
   align-items:flex-start;
-  padding:clamp(3rem,6vw,4rem) 0 clamp(4rem,10vw,7.75rem);
+  padding:clamp(3rem,6vw,4rem) 0 clamp(2rem,4vw,3.5rem);
 }
 
 .intro-inner{
-  max-width:46.5rem;
+  width:100%;
+  max-width:60rem;
   margin-inline:auto;
   display:flex;
   flex-direction:column;
@@ -305,7 +418,8 @@ section#faqs{
 }
 
 .intro-art{
-  width:min(100%,43.85rem);
+  width:min(calc(100% + var(--gutter)),55rem);
+  max-width:none;
 }
 
 .section-kicker{
@@ -321,18 +435,37 @@ section#faqs{
   color:var(--ink-mute);
 }
 
+.section-kicker > span:first-child{
+  font-family:"PoW Limerick",Georgia,serif;
+  font-size:clamp(3rem,5vw,4.5rem);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:0;
+  color:var(--accent);
+  font-feature-settings:"ss18" 1;
+}
+
+
 .section-title{
   margin:0 0 clamp(2.5rem,5.5vw,4.25rem);
-  font-family:var(--display);
-  font-weight:600;
-  font-synthesis:weight;
-  font-size:clamp(1.5rem,2.6vw,2.15rem);
+  font-family:"Miss Fajardose",cursive;
+  font-weight:400;
+  font-synthesis:none;
+  font-size:clamp(4.2rem,7.28vw,6.02rem);
   line-height:1.08;
-  letter-spacing:0.075em;
-  text-transform:uppercase;
-  color:var(--ink);
+  letter-spacing:0;
+  text-transform:capitalize;
+  color:var(--accent);
   text-align:center;
 }
+
+.section-kicker.section-glyph > span{
+  font-size:clamp(6.75rem,11.25vw,10.125rem);
+  -webkit-text-stroke:0.008em var(--paper);
+  paint-order:fill stroke;
+}
+
+
 
 .script-title{
   font-family:var(--script);
@@ -367,8 +500,8 @@ section#faqs{
   padding:clamp(1.15rem,2.1vw,1.5rem) clamp(1.35rem,3vw,2.15rem);
   background-image:var(--ink-rule-horizontal),var(--ink-rule-horizontal),var(--ink-rule-vertical),var(--ink-rule-vertical);
   background-position:left top,left bottom,left top,right top;
-  background-size:100% 1px,100% 1px,1px 100%,1px 100%;
-  background-repeat:no-repeat;
+  background-size:5px 2px,5px 2px,2px 5px,2px 5px;
+  background-repeat:repeat-x,repeat-x,repeat-y,repeat-y;
   text-align:left;
 }
 
@@ -392,41 +525,48 @@ section#faqs{
 .itinerary-event{
   display:block;
   text-align:left;
-  font-family:var(--display);
+  font-family:"Arketa",Georgia,serif;
   font-size:1.35rem;
   line-height:1.12;
   letter-spacing:0.015em;
-  font-weight:800;
-  font-synthesis:weight;
+  font-weight:500;
+  font-synthesis:none;
   font-style:normal;
+  text-transform:uppercase;
   color:var(--ink);
 }
 
 .itinerary-date{
-  font-family:var(--display);
+  font-family:"Arketa",Georgia,serif;
   font-size:clamp(1rem,1.25vw,1.125rem);
-  font-weight:700;
-  font-synthesis:weight;
+  font-weight:500;
+  font-synthesis:none;
   line-height:1.2;
   letter-spacing:0.04em;
   text-align:right;
   white-space:nowrap;
   color:var(--ink);
+
+  text-transform:uppercase;
+}
+
+.itinerary-date span{
+  display:block;
 }
 
 .copy-emphasis{
-  color:var(--ink);
+  color:inherit;
   font-style:normal;
-  font-weight:500;
+  font-weight:inherit;
   font-size:1em;
   letter-spacing:inherit;
   text-transform:inherit;
 }
 
 .detail-emphasis{
-  color:var(--ink);
+  color:inherit;
   font-style:normal;
-  font-weight:500;
+  font-weight:inherit;
   font-size:1em;
   letter-spacing:inherit;
   text-transform:inherit;
@@ -445,22 +585,22 @@ section#faqs{
 
 .invitation-line{
   display:block;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .calendar-add{
   position:relative;
   z-index:2;
-  flex:1 1 auto;
+  flex:0 0 auto;
   width:100%;
-  margin:0;
-  padding-block:1rem;
+  margin:1.5rem 0 0;
+  padding:0;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  min-height:3rem;
-  transform:translateY(clamp(2.5rem,12vh,4rem));
+  min-height:0;
+  transform:none;
 }
 
 .calendar-add-trigger{
@@ -552,14 +692,22 @@ section#faqs{
 }
 
 @media (max-width: 760px){
-  .calendar-add{
-    padding-block:0.75rem;
-    transform:translateY(clamp(1.5rem,8vh,2.5rem));
-  }
-
   .calendar-add-trigger{
+    min-height:44px;
+    max-width:100%;
     font-size:0.625rem;
     letter-spacing:0.1em;
+  }
+
+  .calendar-add-menu{
+    flex-wrap:wrap;
+    justify-content:center;
+    min-width:0;
+    max-width:100%;
+  }
+
+  .calendar-add-menu a{
+    white-space:normal;
   }
 }
 
@@ -575,7 +723,7 @@ section#faqs{
   font-style:normal;
   color:var(--ink-soft);
   text-align:left;
-  text-transform:none;
+  text-transform:uppercase;
   white-space:nowrap;
 }
 
@@ -604,6 +752,10 @@ section#faqs{
   grid-row:1;
 }
 
+.itinerary-image{
+  transform:scale(1.2);
+}
+
 .itinerary-image.welcome-art{
   --itinerary-art-height:7.75rem;
 }
@@ -612,30 +764,8 @@ section#faqs{
   --itinerary-art-height:9rem;
 }
 
-.itinerary-pool-art{
-  width:7.75rem;
-  display:grid;
-  gap:0.48rem;
-  justify-self:center;
-  grid-column:1;
-  grid-row:1;
-}
-
-.itinerary-pool-art span{
-  display:block;
-  height:0.55rem;
-  border-top:1px solid var(--accent);
-  border-radius:50%;
-}
-
-.itinerary-pool-art span:nth-child(2){
-  width:82%;
-  justify-self:center;
-}
-
-.itinerary-pool-art span:nth-child(3){
-  width:62%;
-  justify-self:center;
+.itinerary-image.pool-art{
+  --itinerary-art-height:6.5rem;
 }
 
 .single-column{
@@ -649,10 +779,10 @@ section#faqs{
   font-size:clamp(1.0625rem,1.2vw,1.125rem);
   font-weight:400;
   font-style:normal;
-  line-height:1.62;
+  line-height:1.65;
   letter-spacing:0;
   text-transform:none;
-  color:var(--ink-soft);
+  color:var(--ink);
   font-feature-settings:"kern" 1,"liga" 1,"lnum" 1;
   text-wrap:pretty;
 }
@@ -662,19 +792,19 @@ section#faqs{
 }
 
 .section-icon{
-  width:10.1rem;
+  width:clamp(14rem,22vw,16rem);
   height:auto;
   margin:0 auto 1.75rem;
 }
 
 .section-icon.walking-icon{
-  width:clamp(7rem,11vw,8.25rem);
+  width:clamp(11rem,17vw,13rem);
   margin-bottom:1.85rem;
   mix-blend-mode:multiply;
 }
 
 .section-icon.travel-icon{
-  width:clamp(6.5rem,11vw,8rem);
+  width:clamp(10rem,16vw,12rem);
   margin-bottom:1.9rem;
 }
 
@@ -688,8 +818,8 @@ section#faqs{
   grid-template-columns:minmax(0,1.2fr) minmax(19rem,0.8fr);
   background-image:var(--ink-rule-horizontal),var(--ink-rule-horizontal),var(--ink-rule-vertical),var(--ink-rule-vertical);
   background-position:left top,left bottom,left top,right top;
-  background-size:100% 1px,100% 1px,1px 100%,1px 100%;
-  background-repeat:no-repeat;
+  background-size:5px 2px,5px 2px,2px 5px,2px 5px;
+  background-repeat:repeat-x,repeat-x,repeat-y,repeat-y;
   text-align:left;
 }
 
@@ -726,10 +856,10 @@ section#faqs{
 
 .flight-primary h3{
   margin:0.65rem 0 1.25rem;
-  font-family:var(--display);
+  font-family:"Arketa",Georgia,serif;
   font-size:clamp(1.7rem,2.6vw,2.25rem);
-  font-weight:700;
-  font-synthesis:weight;
+  font-weight:500;
+  font-synthesis:none;
   font-style:normal;
   line-height:1.05;
   letter-spacing:0.025em;
@@ -743,10 +873,10 @@ section#faqs{
   font-family:var(--body);
   font-weight:400;
   font-style:normal;
-  line-height:1.58;
+  line-height:1.65;
   letter-spacing:0;
   text-transform:none;
-  color:var(--ink-soft);
+  color:var(--ink);
   text-wrap:pretty;
 }
 
@@ -799,8 +929,8 @@ section#faqs{
   padding:0;
   background-image:var(--ink-rule-vertical);
   background-position:left top;
-  background-size:1px 100%;
-  background-repeat:no-repeat;
+  background-size:2px 5px;
+  background-repeat:repeat-y;
 }
 
 .flight-origin{
@@ -812,8 +942,8 @@ section#faqs{
   align-items:start;
   background-image:var(--ink-rule-horizontal);
   background-position:left top;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
   text-align:left;
 }
 
@@ -823,11 +953,11 @@ section#faqs{
 
 .flight-origin h3{
   margin:0.22rem 0 0;
-  font-family:var(--display);
+  font-family:"Arketa",Georgia,serif;
   font-size:1.4rem;
   font-style:normal;
-  font-weight:700;
-  font-synthesis:weight;
+  font-weight:500;
+  font-synthesis:none;
   line-height:1.1;
   letter-spacing:0.025em;
   text-transform:uppercase;
@@ -852,17 +982,17 @@ section#faqs{
   align-items:start;
   background-image:var(--ink-rule-horizontal),var(--ink-rule-horizontal),var(--ink-rule-vertical),var(--ink-rule-vertical);
   background-position:left top,left bottom,left top,right top;
-  background-size:100% 1px,100% 1px,1px 100%,1px 100%;
-  background-repeat:no-repeat;
+  background-size:5px 2px,5px 2px,2px 5px,2px 5px;
+  background-repeat:repeat-x,repeat-x,repeat-y,repeat-y;
   text-align:left;
 }
 
 .flight-tips h3{
   margin:0;
-  font-family:var(--display);
+  font-family:"Arketa",Georgia,serif;
   font-size:1.4rem;
-  font-weight:700;
-  font-synthesis:weight;
+  font-weight:500;
+  font-synthesis:none;
   line-height:1.1;
   letter-spacing:0.025em;
   text-transform:uppercase;
@@ -881,13 +1011,15 @@ section#faqs{
   font-family:var(--body);
   font-size:clamp(0.9375rem,1vw,1rem);
   font-weight:400;
-  line-height:1.58;
+  line-height:1.65;
   letter-spacing:0;
-  color:var(--ink-soft);
+  color:var(--ink);
+
+  text-transform:none;
 }
 
 .flight-tips li::marker{
-  color:var(--ink-mute);
+  color:var(--ink);
 }
 
 @media (max-width: 760px){
@@ -901,8 +1033,8 @@ section#faqs{
   margin-top:clamp(2.5rem,5vw,4rem);
   background-image:var(--ink-rule-horizontal);
   background-position:left top;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
 }
 
 .trip-note{
@@ -913,14 +1045,14 @@ section#faqs{
   padding:clamp(1.25rem,2.6vw,1.75rem) 0;
   background-image:var(--ink-rule-horizontal);
   background-position:left bottom;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
   text-align:center;
 }
 
 .trip-note-icon{
   flex:0 0 auto;
-  width:clamp(3.25rem,5vw,4rem);
+  width:clamp(4.75rem,7vw,5.5rem);
   height:auto;
   margin:0;
 }
@@ -933,17 +1065,17 @@ section#faqs{
   font-size:clamp(1rem,1vw,1.0375rem);
   font-weight:400;
   font-style:normal;
-  line-height:1.6;
+  line-height:1.65;
   letter-spacing:0;
   text-transform:none;
   text-align:left;
-  color:var(--ink-soft);
+  color:var(--ink);
 }
 
 .trip-note strong{
-  font-weight:500;
+  font-weight:inherit;
   letter-spacing:inherit;
-  color:var(--ink);
+  color:inherit;
 }
 
 .travel-grid{
@@ -959,8 +1091,8 @@ section#faqs{
   border:0;
   background-image:var(--ink-rule-horizontal),var(--ink-rule-horizontal),var(--ink-rule-vertical),var(--ink-rule-vertical);
   background-position:left top,left bottom,left top,right top;
-  background-size:100% 1px,100% 1px,1px 100%,1px 100%;
-  background-repeat:no-repeat;
+  background-size:5px 2px,5px 2px,2px 5px,2px 5px;
+  background-repeat:repeat-x,repeat-x,repeat-y,repeat-y;
 }
 
 .hotel-card.wide{
@@ -969,12 +1101,12 @@ section#faqs{
 
 .hotel-card h4{
   margin:0 0 0.9rem;
-  font-family:var(--display);
+  font-family:"Arketa",Georgia,serif;
   font-weight:700;
-  font-synthesis:weight;
+  font-synthesis:none;
   font-style:normal;
   font-size:clamp(1.2rem,1.7vw,1.45rem);
-  line-height:1.1;
+  line-height:1.25;
   letter-spacing:0.025em;
   text-transform:uppercase;
   color:var(--ink);
@@ -988,7 +1120,7 @@ section#faqs{
   font-weight:500;
   letter-spacing:0.12em;
   text-transform:uppercase;
-  color:var(--ink-mute);
+  color:var(--ink);
 }
 
 .hotel-card p:not(.hotel-link){
@@ -999,10 +1131,10 @@ section#faqs{
   font-size:clamp(1rem,1vw,1.0375rem);
   font-weight:400;
   font-style:normal;
-  line-height:1.6;
+  line-height:1.65;
   letter-spacing:0;
   text-transform:none;
-  color:var(--ink-soft);
+  color:var(--ink);
   font-feature-settings:"kern" 1,"liga" 1;
   text-wrap:balance;
 }
@@ -1092,6 +1224,8 @@ section#faqs{
   font-size:0.6875rem;
   font-weight:500;
   line-height:1;
+
+  text-transform:uppercase;
 }
 
 .marker-1{ left:54%; top:42%; }
@@ -1139,8 +1273,8 @@ section#faqs{
   padding:0;
   background-image:var(--ink-rule-horizontal);
   background-position:left top;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
 }
 
 .atlas-entry{
@@ -1150,8 +1284,8 @@ section#faqs{
   padding:0.95rem 0 1rem;
   background-image:var(--ink-rule-horizontal);
   background-position:left bottom;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
 }
 
 .atlas-number{
@@ -1162,6 +1296,8 @@ section#faqs{
   line-height:1;
   letter-spacing:0.04em;
   color:var(--ink);
+
+  text-transform:uppercase;
 }
 
 .atlas-entry-head{
@@ -1200,10 +1336,10 @@ section#faqs{
   font-size:0.96875rem;
   font-weight:400;
   font-style:normal;
-  line-height:1.5;
-  letter-spacing:0.025em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
+  line-height:1.65;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--ink);
 }
 
 .inline-link{
@@ -1220,16 +1356,16 @@ section#faqs{
   border-top:0;
   background-image:var(--ink-rule-horizontal);
   background-position:left top;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
 }
 
 .faq-item{
   border-bottom:0;
   background-image:var(--ink-rule-horizontal);
   background-position:left bottom;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
 }
 
 .faq-trigger{
@@ -1302,16 +1438,18 @@ section#faqs{
   font-size:clamp(1.0625rem,1.12vw,1.125rem);
   font-weight:400;
   font-style:normal;
-  line-height:1.62;
+  line-height:1.65;
   letter-spacing:0;
-  color:var(--ink-soft);
+  color:var(--ink);
   text-align:center;
   text-wrap:pretty;
+
+  text-transform:none;
 }
 
 .faq-answer p strong{
-  font-weight:500;
-  color:var(--ink);
+  font-weight:inherit;
+  color:inherit;
 }
 
 .rsvp-note{
@@ -1319,9 +1457,19 @@ section#faqs{
 }
 
 .rsvp-note .section-title{
+  font-family:"Arketa",Georgia,serif;
+  font-size:clamp(0.875rem,3.6vw,1.5rem);
+  line-height:1.55;
   margin:0 auto clamp(1.75rem,3vw,2.5rem);
   max-width:24em;
   text-wrap:balance;
+  text-transform:uppercase;
+  color:var(--ink);
+}
+
+.rsvp-note .section-title span{
+  display:block;
+  white-space:nowrap;
 }
 
 .rsvp-kicker{
@@ -1350,7 +1498,7 @@ section#faqs{
 }
 
 .rsvp-choices{
-  width:min(100%,36rem);
+  width:min(100%,42rem);
   margin:0 auto;
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -1364,13 +1512,13 @@ section#faqs{
 .rsvp-choice{
   width:100%;
   margin:0;
-  min-height:0;
+  min-height:3rem;
   padding:0.82rem 1.3rem 0.75rem;
   border:1px solid color-mix(in srgb,var(--ink) 54%,transparent);
   border-radius:0;
   background-color:transparent;
   font-family:var(--nav);
-  font-size:clamp(0.625rem,0.82vw,0.7rem);
+  font-size:0.875rem;
   font-weight:500;
   font-style:normal;
   line-height:1.2;
@@ -1546,12 +1694,42 @@ section#faqs{
   text-wrap:balance;
 }
 
+.closing-photo{
+  position:relative;
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+.closing-photo img{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  object-position:center;
+}
+.closing-photo .photo-monogram{
+  position:absolute;
+  top:50%;
+  left:2.5%;
+  width:95%;
+  margin:0;
+  padding:0;
+  font-size:clamp(4.5rem,29vw,26rem);
+  color:#fff;
+  text-align:center;
+  transform:translateY(-50%);
+  pointer-events:none;
+}
+
 .site-footer{
   border-top:0;
   background-image:var(--ink-rule-horizontal);
   background-position:left top;
-  background-size:100% 1px;
-  background-repeat:no-repeat;
+  background-size:5px 2px;
+  background-repeat:repeat-x;
   padding-block:clamp(3rem,7vw,5rem);
   text-align:center;
 }
@@ -1563,7 +1741,7 @@ section#faqs{
 }
 
 .footer-monogram{
-  width:clamp(2.7rem,4vw,3.35rem);
+  width:clamp(3.4rem,5vw,4.2rem);
   height:auto;
   margin:0 auto 0.7rem;
 }
@@ -1582,7 +1760,7 @@ html[data-palette="redpink"]{
   --paper:#a72b28;
   --paper-deep:#a72b28;
   --ink:#fff8ee;
-  --ink-soft:color-mix(in srgb,#fff8ee 55%,#ff8a63 45%);
+  --ink-soft:var(--ink);
   --ink-mute:color-mix(in srgb,#ff8a63 82%,#fff8ee 18%);
   --line:#ff8a63;
   --solid:#fff8ee;
@@ -1609,7 +1787,7 @@ html[data-palette="orangewhite"]{
   --paper:#f26a05;
   --paper-deep:#f26a05;
   --ink:#fff8ee;
-  --ink-soft:rgba(255,248,238,0.9);
+  --ink-soft:var(--ink);
   --ink-mute:rgba(255,248,238,0.78);
   --line:#fff8ee;
   --solid:#fff8ee;
@@ -1625,7 +1803,7 @@ html[data-palette="brickvermilion"]{
   --paper:#722824;
   --paper-deep:#722824;
   --ink:#fff8ee;
-  --ink-soft:color-mix(in srgb,#fff8ee 55%,#ff6847 45%);
+  --ink-soft:var(--ink);
   --ink-mute:color-mix(in srgb,#ff6847 82%,#fff8ee 18%);
   --line:#ff6847;
   --solid:#fff8ee;
@@ -1683,9 +1861,27 @@ html[data-palette] .rsvp-choice:focus-visible{
     align-items:center;
   }
 
+  .section{
+    padding-block:3.5rem;
+  }
+
+  .intro.section{
+    padding:2rem 0 1.75rem;
+  }
+
+  .rsvp-note{
+    padding-block:3rem;
+  }
+
+  .rsvp-confirm:empty{
+    margin:0;
+    min-height:0;
+  }
+
   .hero{
-    padding-top:clamp(1.85rem,5.5vh,3.25rem);
-    padding-bottom:clamp(4.75rem,12vh,6rem);
+    min-height:0;
+    padding-top:2rem;
+    padding-bottom:0;
   }
 
   .hero-title{
@@ -1706,22 +1902,29 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .invitation-details{
-    width:calc(100% - 1.5rem);
-    max-width:min(34rem,100%);
-    margin-top:0.65rem;
+    width:100%;
+    max-width:34rem;
+    margin-top:1.5rem;
     font-size:clamp(0.875rem,3vw,0.9375rem);
     line-height:1.65;
-    letter-spacing:0.06em;
-    padding-inline:0.35rem;
+    letter-spacing:0.03em;
+    padding-inline:0;
     box-sizing:border-box;
-    transform:translateY(clamp(1.5rem,5vh,2.25rem));
+    transform:none;
+  }
+
+  .invitation-venue-prefix,
+  .invitation-venue-name{
+    display:block;
   }
 
   .scroll-note{
-    bottom:0.45rem;
+    position:static;
+    margin:1.75rem auto 0;
     width:calc(100% - 1.5rem);
     font-size:0.5625rem;
     letter-spacing:0.14em;
+    white-space:normal;
   }
 
   .itinerary-item{
@@ -1735,8 +1938,7 @@ html[data-palette] .rsvp-choice:focus-visible{
     grid-row:2;
   }
 
-  .itinerary-image,
-  .itinerary-pool-art{
+  .itinerary-image{
     grid-column:1;
     grid-row:1;
   }
@@ -1752,7 +1954,8 @@ html[data-palette] .rsvp-choice:focus-visible{
   .flight-origins{
     background-image:var(--ink-rule-horizontal);
     background-position:left top;
-    background-size:100% 1px;
+    background-size:5px 2px;
+    background-repeat:repeat-x;
   }
 
   .flight-origin{
@@ -1821,21 +2024,8 @@ html[data-palette] .rsvp-choice:focus-visible{
     --gutter:1rem;
   }
 
-  .section{
-    padding-block:4.75rem;
-  }
-
-  .rsvp-note{
-    padding-block:4rem;
-  }
-
   .hero-title{
     font-size:clamp(5.5rem,25vw,6.75rem);
-  }
-
-  .invitation-details{
-    width:calc(100% - 1.25rem);
-    max-width:min(34rem,100%);
   }
 
   .flight-primary{
@@ -1920,6 +2110,10 @@ html[data-palette] .rsvp-choice:focus-visible{
   </defs>
 </svg>
 
+
+
+<main>
+  <section id="home" class="hero invitation-panel">
 <header class="site-header">
   <div class="header-inner">
     <a class="monogram" href="#home" aria-label="Rachel and William home">
@@ -1927,14 +2121,11 @@ html[data-palette] .rsvp-choice:focus-visible{
     </a>
   </div>
 </header>
-
-<main>
-  <section id="home" class="hero">
     <p class="eyebrow" data-reveal>The Wedding Of</p>
-    <h1 class="hero-title" data-reveal><span>Rachel</span><span>&amp;&nbsp;William</span></h1>
+    <h1 class="hero-title hero-initials" aria-label="Rachel and William" data-reveal><span class="initials-lockup" aria-hidden="true"><span>R</span><span>+</span><span>W</span></span></h1>
     <p class="invitation-details" data-reveal>
       <span class="invitation-line">Saturday, May the eighth, 2027</span>
-      <span class="invitation-line">in the garden at Belmond Casa de Sierra Nevada</span>
+      <span class="invitation-line"><span class="invitation-venue-name">Belmond Casa de Sierra Nevada</span></span>
       <span class="invitation-line">San Miguel de Allende, Mexico</span>
     </p>
     <div class="calendar-add" data-reveal>
@@ -1943,11 +2134,14 @@ html[data-palette] .rsvp-choice:focus-visible{
       </button>
       <ul class="calendar-add-menu" id="calendar-add-menu" role="menu" hidden>
         <li role="none"><a role="menuitem" href="calendar/wedding.ics">Apple</a></li>
-        <li role="none"><a role="menuitem" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=The%20Wedding%20of%20Rachel%20%26%20William&amp;dates=20270508T230000Z%2F20270509T050000Z&amp;location=Sierra%20Casa%20Nevada%2C%20San%20Miguel%20de%20Allende&amp;details=Ceremony%20in%20the%20garden%20at%20five%20o%27clock%20in%20the%20evening." target="_blank" rel="noopener noreferrer">Google</a></li>
-        <li role="none"><a role="menuitem" href="https://outlook.live.com/calendar/0/deeplink/compose?rru=addevent&amp;subject=The%20Wedding%20of%20Rachel%20%26%20William&amp;startdt=2027-05-08T23%3A00%3A00Z&amp;enddt=2027-05-09T05%3A00%3A00Z&amp;location=Sierra%20Casa%20Nevada%2C%20San%20Miguel%20de%20Allende&amp;body=Ceremony%20in%20the%20garden%20at%20five%20o%27clock%20in%20the%20evening." target="_blank" rel="noopener noreferrer">Outlook</a></li>
+        <li role="none"><a role="menuitem" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=The%20Wedding%20of%20Rachel%20%26%20William&amp;dates=20270507T010000Z%2F20270510T060000Z&amp;location=San%20Miguel%20de%20Allende%2C%20Mexico&amp;details=Wedding%20weekend%20in%20San%20Miguel%20de%20Allende.%20Thursday%20night%20through%20Sunday." target="_blank" rel="noopener noreferrer">Google</a></li>
+        <li role="none"><a role="menuitem" href="https://outlook.live.com/calendar/0/deeplink/compose?rru=addevent&amp;subject=The%20Wedding%20of%20Rachel%20%26%20William&amp;startdt=2027-05-07T01%3A00%3A00Z&amp;enddt=2027-05-10T06%3A00%3A00Z&amp;location=San%20Miguel%20de%20Allende%2C%20Mexico&amp;body=Wedding%20weekend%20in%20San%20Miguel%20de%20Allende.%20Thursday%20night%20through%20Sunday." target="_blank" rel="noopener noreferrer">Outlook</a></li>
       </ul>
     </div>
-    <p class="scroll-note">Scroll for weekend details</p>
+  </section>
+
+  <section class="save-weekend" aria-label="Save the Date">
+    <p class="save-weekend-text"><span>Save the</span> <span>Date</span></p>
   </section>
 
   <section class="intro section">
@@ -1956,8 +2150,39 @@ html[data-palette] .rsvp-choice:focus-visible{
     </div>
   </section>
 
+
+
+  <section id="itinerary" class="section">
+    <div class="section-kicker section-glyph" aria-hidden="true"><span>&#10084;&#65038;</span></div>
+    <h2 class="section-title" data-reveal>Weekend Itinerary</h2>
+    <div class="itinerary-list" data-reveal>
+      <article class="itinerary-item">
+        <div class="itinerary-copy">
+          <h3 class="itinerary-heading"><span class="itinerary-event">Sun &amp; Swim</span><span class="itinerary-date"><span>Friday,</span> <span>May 7</span></span><span class="itinerary-meta">Afternoon, Casa de Sierra Nevada</span><span class="itinerary-optional">Optional</span></h3>
+        </div>
+        <img class="itinerary-image pool-art" src="uploads/figma/itinerary-pool.png" width="1352" height="1226" alt="" loading="lazy" decoding="async">
+      </article>
+
+      <article class="itinerary-item">
+        <div class="itinerary-copy">
+          <h3 class="itinerary-heading"><span class="itinerary-event">Welcome Party</span><span class="itinerary-date"><span>Friday,</span> <span>May 7</span></span><span class="itinerary-meta">Evening, Downtown San Miguel</span></h3>
+        </div>
+        <img class="itinerary-image welcome-art" src="uploads/figma/itinerary-welcome.png" width="558" height="741" alt="" loading="lazy" decoding="async">
+      </article>
+
+      <article class="itinerary-item">
+        <div class="itinerary-copy">
+          <h3 class="itinerary-heading"><span class="itinerary-event">Ceremony &amp; Reception</span><span class="itinerary-date"><span>Saturday,</span> <span>May 8</span></span><span class="itinerary-meta">Evening, Casa de Sierra Nevada</span></h3>
+        </div>
+        <img class="itinerary-image ceremony-art" src="uploads/figma/itinerary-ceremony.png" width="525" height="699" alt="" loading="lazy" decoding="async">
+      </article>
+
+    </div>
+    <p class="itinerary-followup" data-reveal>Details to follow.</p>
+  </section>
+
   <section id="rsvp-note" class="section rsvp-note">
-    <h2 class="section-title" data-reveal>Already know your schedule? Help us plan.</h2>
+    <h2 class="section-title" data-reveal><span>Already know your schedule?</span> <span>Help us plan.</span></h2>
     <form class="rsvp-form" id="guest-intent-form" action="https://formsubmit.co/wprathererwin@gmail.com" method="POST" data-endpoint="https://formsubmit.co/ajax/wprathererwin@gmail.com" data-reveal>
       <input type="hidden" name="_subject" value="Wedding website response">
       <input type="hidden" name="_template" value="table">
@@ -1986,47 +2211,18 @@ html[data-palette] .rsvp-choice:focus-visible{
     </form>
   </section>
 
-  <section id="itinerary" class="section">
-    <h2 class="section-title" data-reveal>Weekend Itinerary</h2>
-    <div class="itinerary-list" data-reveal>
-      <article class="itinerary-item">
-        <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Sun &amp; Swim</span><span class="itinerary-date">May 7</span><span class="itinerary-meta">Afternoon, Sierra Casa Nevada</span><span class="itinerary-optional">Optional</span></h3>
-        </div>
-        <div class="itinerary-pool-art" aria-hidden="true"><span></span><span></span><span></span></div>
-      </article>
-
-      <article class="itinerary-item">
-        <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Welcome Party</span><span class="itinerary-date">May 7</span><span class="itinerary-meta">Evening, Downtown San Miguel</span></h3>
-        </div>
-        <img class="itinerary-image welcome-art" src="uploads/figma/itinerary-welcome.png" width="558" height="741" alt="" loading="lazy" decoding="async">
-      </article>
-
-      <article class="itinerary-item">
-        <div class="itinerary-copy">
-          <h3 class="itinerary-heading"><span class="itinerary-event">Ceremony &amp; Reception</span><span class="itinerary-date">May 8</span><span class="itinerary-meta">Evening, Sierra Casa Nevada</span></h3>
-        </div>
-        <img class="itinerary-image ceremony-art" src="uploads/figma/itinerary-ceremony.png" width="525" height="699" alt="" loading="lazy" decoding="async">
-      </article>
-
-    </div>
-    <p class="itinerary-followup" data-reveal>Details to follow.</p>
-  </section>
-
   <section id="flights" class="section">
-    <div class="section-kicker"><span>02</span></div>
-    <img class="section-icon" src="uploads/figma/flights-icon.png" width="322" height="242" alt="" loading="lazy" decoding="async">
+    <div class="section-kicker section-glyph" aria-hidden="true"><span>&#x1F54A;&#65038;</span></div>
     <h2 class="section-title" data-reveal>Flights</h2>
     <div class="flight-guide" data-reveal>
       <div class="flight-editorial">
         <div class="flight-primary">
           <span class="flight-overview-label">Recommended Arrival</span>
           <h3>Fly into Querétaro</h3>
-          <p>QRO is our primary recommendation. It is about a 1-1.5-hour drive to San Miguel, with straightforward connections through DFW or IAH. Volaris offers limited direct flights from Los Angeles to QRO on Tuesdays, Thursdays, and Sundays.</p>
+          <p>QRO is our primary recommendation. It is about a 1-hour drive to San Miguel, with straightforward connections through DFW or IAH. Volaris offers limited direct flights from Los Angeles to QRO on Tuesdays, Thursdays, and Sundays.</p>
           <div class="flight-ticket-meta" aria-label="Recommended flight details">
             <div><span>Airport</span><strong>QRO</strong></div>
-            <div><span>Drive to San Miguel</span><strong>1-1.5 Hours</strong></div>
+            <div><span>Drive to San Miguel</span><strong>1 Hour</strong></div>
             <div><span>Easy Connections</span><strong>DFW / IAH</strong></div>
           </div>
         </div>
@@ -2045,7 +2241,7 @@ html[data-palette] .rsvp-choice:focus-visible{
               <span class="flight-origin-route">MEX</span>
               <h3>Mexico City</h3>
             </div>
-            <p class="flight-origin-copy">It is a 4 hour drive to San Miguel. Best if you plan for a CDMX trip before the wedding.</p>
+            <p class="flight-origin-copy">Spend a few days exploring Mexico City before the wedding. From there, take a 30-minute flight to Querétaro, followed by a 1-hour drive to San Miguel. You can also drive directly from Mexico City in about 4 hours.</p>
           </article>
         </div>
       </div>
@@ -2054,7 +2250,7 @@ html[data-palette] .rsvp-choice:focus-visible{
         <h3 id="flight-tips-title">Travel Tips</h3>
         <ul>
           <li>Check your passport expiration date. Six months of validity beyond your return date is recommended.</li>
-          <li>For those wanting to spend a couple of days in Mexico City before or after the wedding, it is about a 40 minute flight from QRO or a four hour drive from San Miguel.</li>
+          <li>For those wanting to spend a couple of days in Mexico City before or after the wedding, it is about a 30-minute flight from QRO or a four hour drive from San Miguel.</li>
           <li>To attend the full weekend, plan to travel Thursday through Sunday.</li>
         </ul>
       </aside>
@@ -2069,21 +2265,20 @@ html[data-palette] .rsvp-choice:focus-visible{
   </section>
 
   <section id="getting-around" class="section">
-    <div class="section-kicker"><span>03</span></div>
-    <img class="section-icon walking-icon" src="uploads/figma/walking-pair-icon.png" width="720" height="720" alt="" loading="lazy" decoding="async">
+    <div class="section-kicker section-glyph" aria-hidden="true"><span>&#x1F41D;&#65038;</span></div>
     <h2 class="section-title" data-reveal>Getting Around</h2>
     <div class="single-column" data-reveal>
-      <p><span class="copy-emphasis">San Miguel is made for walking.</span> The historic center is compact and easy to explore on foot. The streets are cobblestone and the hills are real, so bring comfortable shoes.</p>
+      <p><span class="copy-emphasis">Stay in Centro, the heart of San Miguel.</span> Choose accommodations within an easy walk of the wedding venues, and check the walking route before booking. The streets are cobblestone and the hills are real, so bring comfortable shoes.</p>
       <p><span class="copy-emphasis">Use a taxi or Uber for the climb.</span> Rent a car only if you are planning day trips beyond San Miguel. All wedding events are within a couple of walkable blocks.</p>
     </div>
   </section>
 
   <section id="travel" class="section">
-    <div class="section-kicker"><span>04</span></div>
-    <img class="section-icon travel-icon" src="uploads/figma/travel-icon.png" width="441" height="426" alt="" loading="lazy" decoding="async">
+    <div class="section-kicker section-glyph" aria-hidden="true"><span>&#x1F5DD;&#65038;</span></div>
     <h2 class="section-title" data-reveal>Where to Stay</h2>
     <div class="single-column" data-reveal>
-      <p>We're holding rooms at <span class="copy-emphasis">Numu.</span> Book early. Reference <span class="copy-emphasis">&ldquo;the Erwin Matthews Wedding.&rdquo;</span> A few more options are listed below.</p>
+      <p><span class="copy-emphasis">Please book in Centro, the heart of San Miguel.</span> Check the property location before reserving, as some listings are a 30-minute drive outside the city center.</p>
+      <p>We're holding rooms at <span class="copy-emphasis">Numu.</span> Book early. Reference <span class="copy-emphasis">&ldquo;Rachel and Will&rsquo;s wedding.&rdquo;</span> A few more options are listed below.</p>
     </div>
 
     <div class="travel-grid" data-reveal>
@@ -2281,6 +2476,11 @@ html[data-palette] .rsvp-choice:focus-visible{
     <p class="footer-place">San Miguel de Allende, Mexico / MMXXVII</p>
   </div>
 </footer>
+
+<section class="closing-photo" aria-label="Beach photograph">
+  <p class="hero-title hero-initials photo-monogram" aria-label="Rachel and William"><span class="initials-lockup" aria-hidden="true"><span>R</span><span>+</span><span>W</span></span></p>
+  <img src="uploads/photos/beach-couple.jpg" width="1206" height="1414" alt="A couple holding hands at the edge of the ocean" loading="lazy" decoding="async">
+</section>
 </x-dc>
 
 <script type="text/x-dc" data-dc-script>
@@ -2398,8 +2598,9 @@ class Component extends DCLogic {
       const confirm = intentRoot.querySelector('.rsvp-confirm');
       const responseInput = intentRoot.querySelector('#guest-response');
       const submit = intentRoot.querySelector('.rsvp-submit');
+      let isSubmitting = false;
       const updateSubmitState = () => {
-        if (submit) submit.disabled = !nameInput?.value.trim();
+        if (submit) submit.disabled = isSubmitting || form?.classList.contains('is-complete') || !nameInput?.value.trim();
       };
       const stepCopy = {
         no: "Thank you for letting us know. Who is responding?",
@@ -2455,28 +2656,46 @@ class Component extends DCLogic {
       if (form && submit && confirm) {
         form.addEventListener('submit', async (event) => {
           event.preventDefault();
-          if (!form.reportValidity() || !responseInput?.value) return;
+          if (isSubmitting || form.classList.contains('is-complete')) return;
+          if (nameInput) nameInput.value = nameInput.value.trim();
+          if (!form.reportValidity() || !nameInput?.value || !responseInput?.value) return;
 
+          const formData = new FormData(form);
+          const selectedIntent = choices.find((choice) => choice.getAttribute('aria-checked') === 'true')?.getAttribute('data-intent');
           const originalLabel = submit.textContent;
+          isSubmitting = true;
+          if (nameInput) nameInput.readOnly = true;
+          if (back) back.disabled = true;
           submit.disabled = true;
           submit.textContent = 'Sending…';
           confirm.textContent = '';
+          const controller = new AbortController();
+          const timeout = window.setTimeout(() => controller.abort(), 20000);
 
           try {
             const response = await fetch(form.dataset.endpoint, {
               method: 'POST',
               headers: { Accept: 'application/json' },
-              body: new FormData(form)
+              body: formData,
+              signal: controller.signal
             });
             if (!response.ok) throw new Error('Unable to send response');
+            const result = await response.json();
+            if (result.success !== true && result.success !== 'true') throw new Error('Response was not accepted');
 
             form.classList.add('is-complete');
-            const selectedIntent = choices.find((choice) => choice.getAttribute('aria-checked') === 'true')?.getAttribute('data-intent');
             confirm.textContent = intentCopy[selectedIntent] || 'Thank you. Your response has been sent.';
           } catch (error) {
-            confirm.textContent = "We couldn't send that just now. Please try again.";
-            updateSubmitState();
+            confirm.textContent = error.name === 'AbortError'
+              ? "We couldn't confirm your response was sent. Please try again."
+              : "We couldn't send that just now. Please try again.";
+          } finally {
+            window.clearTimeout(timeout);
+            isSubmitting = false;
+            if (nameInput) nameInput.readOnly = false;
+            if (back) back.disabled = false;
             submit.textContent = originalLabel;
+            updateSubmitState();
           }
         });
       }

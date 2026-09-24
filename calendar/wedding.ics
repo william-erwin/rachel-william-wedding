@@ -16,15 +16,15 @@ DTSTART:19700101T000000
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-UID:ceremony-20270508@rachel-and-william.wedding
-DTSTAMP:20260917T000000Z
-DTSTART;TZID=America/Mexico_City:20270508T170000
-DTEND;TZID=America/Mexico_City:20270508T230000
+UID:weekend-20270506@rachel-and-william.wedding
+DTSTAMP:20260917T040000Z
+DTSTART;TZID=America/Mexico_City:20270506T190000
+DTEND;TZID=America/Mexico_City:20270510T000000
 SUMMARY:The Wedding of Rachel & William
-LOCATION:Sierra Casa Nevada\, San Miguel de Allende\, Mexico
-DESCRIPTION:Ceremony in the garden at five o'clock in the evening.
+LOCATION:San Miguel de Allende\, Mexico
+DESCRIPTION:Wedding weekend in San Miguel de Allende. Thursday night through Sunday.
 STATUS:CONFIRMED
-SEQUENCE:0
+SEQUENCE:1
 TRANSP:OPAQUE
 END:VEVENT
 END:VCALENDAR
