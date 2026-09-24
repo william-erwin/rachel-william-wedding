@@ -2248,6 +2248,12 @@ html[data-palette] .rsvp-choice:focus-visible{
 
   .invitation-panel .hero-title.hero-initials{
     font-size:clamp(6rem,34vw,16rem);
+    /* Fit the initials' ink height so their spacing does not grow with the font. */
+    line-height:0.68;
+    margin-block:0;
+  }
+  .invitation-panel .invitation-details{
+    margin-top:2rem;
   }
   .hero-title.hero-initials > .initials-lockup{
     display:flex;
