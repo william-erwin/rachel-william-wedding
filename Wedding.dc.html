@@ -1144,6 +1144,17 @@ section#faqs{
     grid-template-columns:1fr;
     gap:1rem;
     background-image:none;
+    text-align:center;
+  }
+  .flight-tips ul{
+    padding:0;
+    list-style:none;
+    gap:1.25rem;
+  }
+  .flight-tips li{
+    padding:0;
+    text-align:center;
+    text-wrap:pretty;
   }
   .flight-tips::before,
   .flight-tips::after{
@@ -2227,9 +2238,9 @@ html[data-palette] .rsvp-choice:focus-visible{
   .single-column p,
   .faq-answer p{font-size:max(0.78125rem,calc(0.875rem * var(--mobile-type-scale)));}
   .hotel-card p:not(.hotel-link),
-  .trip-note p{font-size:max(0.78125rem,calc(0.84375rem * var(--mobile-type-scale)));}
-  .flight-primary p,
-  .flight-tips li{font-size:max(0.78125rem,calc(0.84375rem * var(--mobile-type-scale)));}
+  .trip-note p,
+  .flight-tips li,
+  .flight-primary p{font-size:max(0.78125rem,calc(0.84375rem * var(--mobile-type-scale)));}
   .flight-origin-copy{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
   .itinerary-event{font-size:max(0.78125rem,calc(1.2rem * var(--mobile-type-scale)));font-weight:700;}
   .itinerary-date{font-size:max(0.78125rem,calc(0.9rem * var(--mobile-type-scale)));}
