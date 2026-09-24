@@ -12,8 +12,6 @@
 <link rel="preload" href="fonts/GraphikRegular.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="fonts/TrueSans-RegularWeb.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/TrueSans-MediumExtendedWeb.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./palette-editor.css?v=20260923-mobile">
-<script src="./palette-editor.js?v=20260923-mobile"></script>
 <script src="./halftone-art.js"></script>
 <script src="./support.js"></script>
 <script>
@@ -83,6 +81,9 @@
 }
 
 html{
+  /* Safari can expose the root canvas behind its status and browser bars. */
+  background:#706b55 linear-gradient(rgba(24,17,12,0.38),rgba(24,17,12,0.38)) center / cover fixed no-repeat;
+  background-image:linear-gradient(rgba(24,17,12,0.38),rgba(24,17,12,0.38)),url("uploads/photos/beach-couple.jpg");
   scroll-behavior:smooth;
   -webkit-text-size-adjust:100%;
   text-size-adjust:100%;
@@ -94,7 +95,7 @@ html{
 
 body{
   margin:0;
-  background:var(--paper);
+  background:transparent;
   color:var(--ink);
   font-family:var(--body);
   font-weight:400;
@@ -140,6 +141,7 @@ x-dc{
 }
 
 #dc-root > .sc-host{
+  background:var(--paper);
   height:auto !important;
   min-height:100vh;
   overflow:visible !important;
@@ -342,7 +344,8 @@ section#faqs{
 .hero.invitation-panel{
   width:100vw;
   max-width:none;
-  min-height:100svh;
+  min-height:100vh;
+  min-height:100lvh;
   margin:0 0 0 calc(50% - 50vw);
   justify-content:center;
   padding:calc(var(--frame-inset) + var(--corner-size) + 0.75rem) calc(var(--frame-inset) + (var(--corner-size) + var(--border-band)) / 2 + 0.75rem);
@@ -888,13 +891,13 @@ section#faqs{
 .single-column p{
   margin:0;
   font-family:var(--body);
-  font-size:clamp(1rem,1.2vw,1.0625rem);
+  font-size:calc(clamp(1rem,1.2vw,1.0625rem) + 0.0625rem);
   font-weight:500;
   font-style:normal;
   line-height:1.65;
   letter-spacing:0;
   text-transform:none;
-  color:var(--ink);
+  color:var(--body-ink,var(--ink));
   font-feature-settings:"kern" 1,"liga" 1,"lnum" 1;
   text-wrap:pretty;
 }
@@ -989,13 +992,13 @@ section#faqs{
   line-height:1.65;
   letter-spacing:0;
   text-transform:none;
-  color:var(--ink);
+  color:var(--body-ink,var(--ink));
   text-wrap:pretty;
 }
 
 .flight-primary p{
   max-width:34rem;
-  font-size:clamp(0.875rem,1vw,0.9375rem);
+  font-size:calc(clamp(0.875rem,1vw,0.9375rem) + 0.0625rem);
 }
 
 .flight-ticket-meta{
@@ -1087,7 +1090,7 @@ section#faqs{
 
 .flight-origin-copy{
   padding-top:0.05rem;
-  font-size:clamp(0.8375rem,0.9vw,0.875rem);
+  font-size:calc(clamp(0.8375rem,0.9vw,0.875rem) + 0.0625rem);
 }
 
 .flight-tips{
@@ -1126,17 +1129,17 @@ section#faqs{
 .flight-tips li{
   padding-left:0.2rem;
   font-family:var(--body);
-  font-size:clamp(0.875rem,1vw,0.9375rem);
+  font-size:calc(clamp(0.875rem,1vw,0.9375rem) + 0.0625rem);
   font-weight:500;
   line-height:1.65;
   letter-spacing:0;
-  color:var(--ink);
+  color:var(--body-ink,var(--ink));
 
   text-transform:none;
 }
 
 .flight-tips li::marker{
-  color:var(--ink);
+  color:var(--body-ink,var(--ink));
 }
 
 @media (max-width: 760px){
@@ -1197,14 +1200,14 @@ section#faqs{
   max-width:none;
   margin:0;
   font-family:var(--body);
-  font-size:clamp(0.9375rem,1vw,0.975rem);
+  font-size:calc(clamp(0.9375rem,1vw,0.975rem) + 0.0625rem);
   font-weight:500;
   font-style:normal;
   line-height:1.65;
   letter-spacing:0;
   text-transform:none;
   text-align:left;
-  color:var(--ink);
+  color:var(--body-ink,var(--ink));
 }
 
 .trip-note strong{
@@ -1263,13 +1266,13 @@ section#faqs{
   max-width:24rem;
   min-height:2.84em;
   font-family:var(--body);
-  font-size:clamp(0.9375rem,1vw,0.975rem);
+  font-size:calc(clamp(0.9375rem,1vw,0.975rem) + 0.0625rem);
   font-weight:500;
   font-style:normal;
   line-height:1.65;
   letter-spacing:0;
   text-transform:none;
-  color:var(--ink);
+  color:var(--body-ink,var(--ink));
   font-feature-settings:"kern" 1,"liga" 1;
   text-wrap:balance;
 }
@@ -1570,12 +1573,12 @@ section#faqs{
   max-width:36rem;
   padding-inline:3rem;
   font-family:var(--body);
-  font-size:clamp(1rem,1.12vw,1.0625rem);
+  font-size:calc(clamp(1rem,1.12vw,1.0625rem) + 0.0625rem);
   font-weight:500;
   font-style:normal;
   line-height:1.65;
   letter-spacing:0;
-  color:var(--ink);
+  color:var(--body-ink,var(--ink));
   text-align:center;
   text-wrap:pretty;
 
@@ -1868,6 +1871,7 @@ html[data-palette="terracotta"]{
   --paper:#722A27;
   --paper-deep:#722A27;
   --hero-paper:#5D2220;
+  --body-ink:#EEDBCB;
   --ink:#FFF8EE;
   --ink-soft:var(--ink);
   --ink-mute:#FF9E7C;
@@ -2125,7 +2129,7 @@ html[data-palette] .rsvp-choice:focus-visible{
 
   .flight-origin-copy{
     max-width:30rem;
-    font-size:0.875rem;
+    font-size:calc(0.875rem + 0.0625rem);
     line-height:1.6;
   }
 
@@ -2171,7 +2175,7 @@ html[data-palette] .rsvp-choice:focus-visible{
 
   .faq-answer p{
     padding-inline:2.25rem;
-    font-size:0.9625rem;
+    font-size:calc(0.9625rem + 0.0625rem);
   }
 
   .rsvp-choices,
@@ -2267,12 +2271,12 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .single-column p,
-  .faq-answer p{font-size:max(0.78125rem,calc(0.875rem * var(--mobile-type-scale)));}
+  .faq-answer p{font-size:calc(max(0.78125rem,calc(0.875rem * var(--mobile-type-scale))) + 0.0625rem);}
   .hotel-card p:not(.hotel-link),
   .trip-note p,
   .flight-tips li,
-  .flight-primary p{font-size:max(0.78125rem,calc(0.84375rem * var(--mobile-type-scale)));}
-  .flight-origin-copy{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
+  .flight-primary p{font-size:calc(max(0.78125rem,calc(0.84375rem * var(--mobile-type-scale))) + 0.0625rem);}
+  .flight-origin-copy{font-size:calc(max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale))) + 0.0625rem);}
   .itinerary-event{font-size:max(0.78125rem,calc(1.2rem * var(--mobile-type-scale)));font-weight:700;}
   .itinerary-date{font-size:max(0.78125rem,calc(0.9rem * var(--mobile-type-scale)));}
   .itinerary-meta{font-size:max(0.78125rem,calc(0.8125rem * var(--mobile-type-scale)));}
@@ -2346,14 +2350,6 @@ html[data-palette] .rsvp-choice:focus-visible{
 </style>
 </helmet>
 
-<button class="color-editor-toggle" type="button" aria-expanded="false" aria-controls="color-editor">Edit colors</button>
-<aside class="color-editor" id="color-editor" data-open="false" aria-label="Edit website colors">
-  <header><h2>Your palette</h2><button class="color-editor-close" type="button" aria-label="Close color editor">Close</button></header>
-  <p>Enter hex colors or choose a swatch. Changes appear instantly and stay in this browser.</p>
-  <div class="color-editor-fields"></div>
-  <div class="color-editor-actions"><button type="button" data-reset-colors>Reset colors</button><button type="button" data-copy-colors>Copy palette</button></div>
-  <p class="color-editor-status" id="color-editor-status" role="status" aria-live="polite"></p>
-</aside>
 
 <svg class="palette-filters" aria-hidden="true" focusable="false">
   <defs>
@@ -2769,7 +2765,6 @@ html[data-palette] .rsvp-choice:focus-visible{
 class Component extends DCLogic {
   componentDidMount() {
     const root = document.querySelector('#dc-root > .sc-host') || document;
-    window.initWeddingColors(root);
     window.initWeddingHalftone(root);
     const scrollToHash = () => {
       if (!window.location.hash) return;
