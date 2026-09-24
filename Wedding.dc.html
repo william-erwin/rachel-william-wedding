@@ -2197,6 +2197,18 @@ html[data-palette] .rsvp-choice:focus-visible{
 
 /* Scale the reading hierarchy together on phones; keep controls large enough to tap. */
 @media (max-width:760px){
+  .invitation-panel .hero-title.hero-initials{
+    font-size:clamp(5.5rem,32vw,15rem);
+  }
+  .hero-title.hero-initials > .initials-lockup{
+    display:flex;
+    justify-content:center;
+  }
+  .initials-lockup > span:first-child,
+  .initials-lockup > span:last-child{
+    transform:none;
+  }
+
   .single-column p,
   .faq-answer p{font-size:0.875rem;}
   .hotel-card p:not(.hotel-link),
