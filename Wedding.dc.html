@@ -12,8 +12,8 @@
 <link rel="preload" href="fonts/GraphikRegular.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="fonts/TrueSans-RegularWeb.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/TrueSans-MediumExtendedWeb.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./palette-editor.css">
-<script src="./palette-editor.js"></script>
+<link rel="stylesheet" href="./palette-editor.css?v=20260923-mobile">
+<script src="./palette-editor.js?v=20260923-mobile"></script>
 <script src="./halftone-art.js"></script>
 <script src="./support.js"></script>
 <script>
@@ -2154,6 +2154,44 @@ html[data-palette] .rsvp-choice:focus-visible{
   .rsvp-choices{
     width:min(100%,18rem);
   }
+
+  .hotel-button,
+  .calendar-add-menu a,
+  .rsvp-back{
+    min-height:44px;
+    box-sizing:border-box;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .rsvp-back{display:flex;}
+
+  .rsvp-field-control{
+    display:grid;
+    gap:0.75rem;
+  }
+
+  .rsvp-field input{padding:0.85rem 0.9rem;}
+
+  .rsvp-submit{
+    position:static;
+    min-height:44px;
+    justify-self:center;
+    padding:0.85rem 1.25rem;
+  }
+
+  .trip-note{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .trip-note p{
+    min-width:0;
+    width:100%;
+    text-align:center;
+    overflow-wrap:anywhere;
+  }
 }
 
 @media (max-width: 420px){
@@ -2178,7 +2216,7 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .trip-note{
-    align-items:flex-start;
+    align-items:center;
   }
 
   .trip-note p{

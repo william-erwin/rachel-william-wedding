@@ -99,7 +99,7 @@ window.initWeddingColors = function(root) {
   const open = value => {
     panel.dataset.open = String(value);
     trigger.setAttribute('aria-expanded', String(value));
-    if (value) panel.querySelector('input[type="text"]').focus();
+    if (value) panel.querySelector('.color-editor-close').focus();
   };
   trigger.addEventListener('click', () => open(panel.dataset.open !== 'true'));
   panel.querySelector('.color-editor-close').addEventListener('click', () => { open(false); trigger.focus(); });

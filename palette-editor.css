@@ -19,3 +19,10 @@
 .color-editor-actions button:last-child{background:#252321;color:white;border-color:#252321;}
 .color-editor .color-editor-status{min-height:18px;margin:12px 0 0;font-size:11px;}
 @media print{.color-editor,.color-editor-toggle{display:none!important;}}
+
+  .color-editor-toggle,.color-editor button{min-height:44px;}
+  .color-editor-close{min-width:44px;}
+  .color-editor{top:66px;max-height:calc(100dvh - 82px);padding:18px;}
+  .color-editor-row{grid-template-columns:minmax(0,1fr) 44px 100px;gap:8px;}
+  .color-editor input[type="color"]{width:44px;height:44px;}
+  .color-editor input[type="text"]{width:100px;min-height:44px;font-size:16px;}
