@@ -446,7 +446,7 @@ section#faqs{
 
 .invitation-line{
   display:block;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .calendar-add{
@@ -554,13 +554,29 @@ section#faqs{
 
 @media (max-width: 760px){
   .calendar-add{
-    padding-block:0.75rem;
-    transform:translateY(clamp(1.5rem,8vh,2.5rem));
+    flex:0 0 auto;
+    margin-top:1.5rem;
+    padding:0;
+    min-height:0;
+    transform:none;
   }
 
   .calendar-add-trigger{
+    min-height:44px;
+    max-width:100%;
     font-size:0.625rem;
     letter-spacing:0.1em;
+  }
+
+  .calendar-add-menu{
+    flex-wrap:wrap;
+    justify-content:center;
+    min-width:0;
+    max-width:100%;
+  }
+
+  .calendar-add-menu a{
+    white-space:normal;
   }
 }
 
@@ -1666,9 +1682,27 @@ html[data-palette] .rsvp-choice:focus-visible{
     align-items:center;
   }
 
+  .section{
+    padding-block:3.5rem;
+  }
+
+  .intro.section{
+    padding:2rem 0 3rem;
+  }
+
+  .rsvp-note{
+    padding-block:3rem;
+  }
+
+  .rsvp-confirm:empty{
+    margin:0;
+    min-height:0;
+  }
+
   .hero{
-    padding-top:clamp(1.85rem,5.5vh,3.25rem);
-    padding-bottom:clamp(4.75rem,12vh,6rem);
+    min-height:0;
+    padding-top:2rem;
+    padding-bottom:0;
   }
 
   .hero-title{
@@ -1689,22 +1723,29 @@ html[data-palette] .rsvp-choice:focus-visible{
   }
 
   .invitation-details{
-    width:calc(100% - 1.5rem);
-    max-width:min(34rem,100%);
-    margin-top:0.65rem;
+    width:100%;
+    max-width:34rem;
+    margin-top:1.5rem;
     font-size:clamp(0.875rem,3vw,0.9375rem);
     line-height:1.65;
     letter-spacing:0.06em;
-    padding-inline:0.35rem;
+    padding-inline:0;
     box-sizing:border-box;
-    transform:translateY(clamp(1.5rem,5vh,2.25rem));
+    transform:none;
+  }
+
+  .invitation-venue-prefix,
+  .invitation-venue-name{
+    display:block;
   }
 
   .scroll-note{
-    bottom:0.45rem;
+    position:static;
+    margin:1.75rem auto 0;
     width:calc(100% - 1.5rem);
     font-size:0.5625rem;
     letter-spacing:0.14em;
+    white-space:normal;
   }
 
   .itinerary-item{
@@ -1803,21 +1844,8 @@ html[data-palette] .rsvp-choice:focus-visible{
     --gutter:1rem;
   }
 
-  .section{
-    padding-block:4.75rem;
-  }
-
-  .rsvp-note{
-    padding-block:4rem;
-  }
-
   .hero-title{
     font-size:clamp(5.5rem,25vw,6.75rem);
-  }
-
-  .invitation-details{
-    width:calc(100% - 1.25rem);
-    max-width:min(34rem,100%);
   }
 
   .flight-primary{
@@ -1916,7 +1944,7 @@ html[data-palette] .rsvp-choice:focus-visible{
     <h1 class="hero-title" data-reveal><span>Rachel</span><span>&amp;&nbsp;William</span></h1>
     <p class="invitation-details" data-reveal>
       <span class="invitation-line">Saturday, May the eighth, 2027</span>
-      <span class="invitation-line">in the garden at Belmond Casa de Sierra Nevada</span>
+      <span class="invitation-line"><span class="invitation-venue-prefix">in the garden at</span> <span class="invitation-venue-name">Belmond Casa de Sierra Nevada</span></span>
       <span class="invitation-line">San Miguel de Allende, Mexico</span>
     </p>
     <div class="calendar-add" data-reveal>
