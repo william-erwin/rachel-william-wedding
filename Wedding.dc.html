@@ -2420,9 +2420,7 @@ html[data-palette] .rsvp-choice:focus-visible{
 
   <section id="rsvp-note" class="section rsvp-note">
     <h2 class="section-title" id="rsvp-heading" aria-live="polite" data-reveal><span>Help us plan ahead</span></h2>
-    <form class="rsvp-form" id="guest-intent-form" aria-labelledby="rsvp-heading" action="https://formsubmit.co/wprathererwin@gmail.com" method="POST" data-endpoint="https://formsubmit.co/ajax/wprathererwin@gmail.com" data-reveal>
-      <input type="hidden" name="_subject" value="Wedding website response">
-      <input type="hidden" name="_template" value="table">
+    <form class="rsvp-form" id="guest-intent-form" aria-labelledby="rsvp-heading" action="https://rachel-william-responses.netlify.app/.netlify/functions/rsvp" method="POST" data-endpoint="https://rachel-william-responses.netlify.app/.netlify/functions/rsvp" data-reveal>
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden>
       <input type="hidden" name="response" id="guest-response" value="">
       <div class="rsvp-choices" role="radiogroup" aria-label="Can you join us?">
@@ -2436,7 +2434,7 @@ html[data-palette] .rsvp-choice:focus-visible{
           <label class="rsvp-field">
             <span>Name(s)</span>
             <span class="rsvp-field-control">
-              <input type="text" name="name" autocomplete="name" required>
+              <input type="text" name="name" autocomplete="name" maxlength="200" required>
               <button class="rsvp-submit" type="submit" disabled>Send my response</button>
             </span>
           </label>
@@ -2951,8 +2949,8 @@ class Component extends DCLogic {
           try {
             const response = await fetch(form.dataset.endpoint, {
               method: 'POST',
-              headers: { Accept: 'application/json' },
-              body: formData,
+              headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(formData).toString(),
               signal: controller.signal
             });
             if (!response.ok) throw new Error('Unable to send response');
